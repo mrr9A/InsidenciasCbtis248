@@ -1,0 +1,83 @@
+/* Estilos para la tarjeta */
+.card {
+  height: 130px; /* Altura perfecta */
+  width: 550px; /* Ancho ajustado */
+  padding: 1rem;
+  margin: 0 auto;
+  border-radius: 25px;
+  background-color: rgb(224, 221, 221);
+  box-shadow: inset 5px 5px 10px rgba(148, 145, 145, 0.627), inset -5px -5px 10px rgba(142, 142, 142, 0.638);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  top: 90px;
+}
+
+/* Contenedor para la imagen de perfil y el logo */
+.image-container {
+  position: relative;
+  border-radius: 50%;
+  background-color: white;
+  box-shadow: inset 3px 3px 6px rgba(0, 0, 0, 0.1), inset -3px -3px 6px rgba(255, 255, 255, 0.7); /* Efecto de sumido */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: -80px; /* Ajustar para centrar */
+}
+
+/* Imagen de perfil redondeada */
+.profile-img {
+  border-radius: 50%;
+  object-fit: cover;
+  z-index: 1;
+}
+
+/* Logo de la aplicación al lado derecho */
+.logo {
+  position: absolute;
+  top: 40px;
+  right: -50px; /* Pegado al lado derecho de la imagen */
+  z-index: 2;
+  object-fit: contain; /* Evitar que se deforme el logo */
+}
+
+/* Texto de bienvenida */
+.text {
+  font-size: 1.8rem; /* Letra más grande */
+  text-align: center;
+  color: #800020;
+  margin-top: 60px;
+  text-shadow: 2px 2px 4px rgba(7, 5, 5, 0.46);
+}
+
+/* Ajustes en pantallas móviles */
+@media (max-width: 768px) {
+  .card {
+    width: 280px;
+  }
+
+  .image-container {
+    width: 162px;
+    height: 162px;
+  }
+
+  .profile-img {
+    width: 130px;
+    height: 130px;
+  }
+
+  .logo {
+    width: 100px;
+    height: 150px;
+    top: -25px;
+    right: -60px;
+  }
+
+  .text {
+    font-size: 1.3rem;
+    margin-top: 70px;
+  }
+}

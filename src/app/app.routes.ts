@@ -9,6 +9,10 @@ export const routes: Routes = [
         loadComponent: () => import('./pages/home/home.component').then(m => m.HomeComponent)
       },
       {
+        path: 'historial-incidencias',
+        loadComponent: () => import('./pages/home/home.component').then(m => m.HomeComponent)
+      },
+      {
         path: '**',
         redirectTo: 'home'
       }

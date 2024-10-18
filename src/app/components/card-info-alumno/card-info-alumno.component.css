@@ -81,3 +81,94 @@
     margin-top: 70px;
   }
 }
+
+/* Contenedor del select y el ícono */
+.select-container {
+  position: relative; /* Necesario para el posicionamiento absoluto del ícono */
+  width: 350px; /* Ajusta el ancho según sea necesario */
+  margin: auto; /* Centrar horizontalmente */
+  margin-top: 120px; /* Para centrar verticalmente */
+}
+
+/* Estilo para el select */
+.custom-select {
+  width: 100%; /* Ancho completo del contenedor */
+  padding: 10px 40px 10px 40px; /* Espacio para los íconos */
+  font-size: 1.2rem; /* Tamaño del texto */
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  background-color: #f0f0f0; /* Color de fondo gris */
+  appearance: none; /* Quitar el estilo por defecto del select */
+  outline: none;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave debajo */
+}
+
+/* Estilo para el ícono de la izquierda */
+.icon {
+  position: absolute; /* Posicionar el ícono dentro del select */
+  top: 50%; /* Centramos verticalmente */
+  left: 15px; /* Ajusta según sea necesario */
+  transform: translateY(-50%); /* Ajustar la posición del ícono */
+  font-size: 1.5rem; /* Tamaño del ícono */
+  color: #555; /* Color del ícono */
+  pointer-events: none; /* Evita que el ícono interfiera con el select */
+}
+
+/* Estilo para el ícono de desplegar */
+.arrow-icon {
+  position: absolute; /* Posicionar el ícono de flecha dentro del select */
+  top: 50%; /* Centramos verticalmente */
+  right: 15px; /* Ajustar según sea necesario */
+  transform: translateY(-50%); /* Ajustar la posición del ícono */
+  font-size: 1.5rem; /* Tamaño del ícono */
+  color: #555; /* Color del ícono */
+  pointer-events: none; /* Evita que el ícono interfiera con el select */
+}
+
+/* Ajustes en pantallas pequeñas */
+@media (max-width: 768px) {
+  .select-container {
+    width: 230px; /* Ancho más pequeño */
+  }
+
+  .custom-select {
+    font-size: 1.2rem; /* Tamaño de texto más pequeño */
+    color: #800020;
+  }
+
+  .icon {
+    font-size: 1.5rem; /* Tamaño del ícono más pequeño */
+    color: #800020;
+  }
+
+  .arrow-icon {
+    font-size: 1.4rem; /* Tamaño del ícono de flecha más pequeño */
+    color: #800020;
+  }
+}
+
+/* Estilo para el contenedor de la información del alumno */
+.info-alumno {
+  padding: 15px;
+  margin: 20px auto; /* Centrar horizontalmente */
+  max-width: 400px; /* Ancho máximo */
+}
+
+/* Estilo para el título */
+.info-alumno h2 {
+  font-size: 1.3rem; /* Tamaño del ícono más pequeño */
+  padding: 24px;
+  color: #6E6E6E; /* Color guinda */
+}
+
+.icon1{
+  color: #800020;
+  padding: 12px;
+  font-size: 1.8rem;
+}
+
+.list-group-item{
+  background-color: transparent;
+  border-color: transparent;
+  border-bottom: 2px solid #000000; /* Línea inferior guinda siempre visible */
+}

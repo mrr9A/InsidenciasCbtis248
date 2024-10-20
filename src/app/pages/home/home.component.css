@@ -6,10 +6,10 @@
   position: fixed; /* Hace que el menú sea fijo */
   top: 0; /* Fijar en la parte superior */
   left: 0; /* Fijar en el lado izquierdo */
-  width: 20px; /* Ancho del menú */
+  width: 0px; /* Ancho del menú */
   height: 10%; /* Ocupa toda la altura de la ventana */
   background-color: #333; /* Color de fondo */
-  padding: 20px;
+  top: 12px;
   color: white;
   z-index: 1000; /* Asegura que esté por encima del contenido */
 }

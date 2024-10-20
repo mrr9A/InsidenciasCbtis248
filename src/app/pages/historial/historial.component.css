@@ -1,0 +1,105 @@
+/* Texto de bienvenida */
+.text {
+  font-size: 4rem;
+  text-align: start;
+  color: #800020;
+  margin-top: 16px;
+  margin-inline-start: 70px;
+  text-shadow: 2px 2px 4px rgba(7, 5, 5, 0.46);
+}
+
+/* Contenedor del select y el ícono */
+.select-container {
+  position: relative;
+  width: 270px;
+  margin: auto;
+  margin-top: 20px;
+}
+
+.custom-select {
+  width: 100%;
+  padding: 10px 40px;
+  font-size: 1.2rem;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  background-color: #f0f0f0;
+  appearance: none;
+  outline: none;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.icon {
+  position: absolute;
+  top: 50%;
+  left: 15px;
+  transform: translateY(-50%);
+  font-size: 1.5rem;
+  color: #800020;
+  pointer-events: none;
+}
+
+.arrow-icon {
+  position: absolute;
+  top: 50%;
+  right: 15px;
+  transform: translateY(-50%);
+  font-size: 1.5rem;
+  color: #800020;
+  pointer-events: none;
+}
+/* Estilos para la tarjeta principal */
+.card {
+  width: 350px; /* Se adapta a pantallas pequeñas */
+  height: 150px;
+  top: 24px;
+  background-color: rgb(224, 221, 221);
+  padding: 20px;
+  border-radius: 16px;
+  box-shadow: inset 5px 5px 10px rgba(148, 145, 145, 0.627), inset -5px -5px 10px rgba(142, 142, 142, 0.638);
+  margin: 0 auto; /* Centrar horizontalmente */
+}
+
+/* Contenido de la tarjeta */
+.card-content {
+  display: flex;
+  flex-direction: column;
+  gap: 20px; /* Espacio entre los elementos */
+}
+
+/* Elemento dentro de la tarjeta (item) */
+.card-item {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start; /* Alinear contenido a la izquierda */
+  padding: 8px;
+  border-bottom: 2px solid #ccc;
+  cursor: pointer;
+}
+
+/* Imagen miniatura */
+.thumbnail {
+  width: 100px; /* Ajuste de tamaño para que no sea demasiado grande */
+  height: 100px;
+  border-radius: 8px;
+  overflow: hidden;
+  flex-shrink: 0; /* Evitar que el contenedor de la imagen se encoja */
+}
+
+.thumbnail img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain; /* Asegura que la imagen mantenga su calidad sin deformarse */
+}
+
+/* Etiqueta de la tarjeta (texto) */
+.card-label {
+  margin-left: 20px; /* Separar el texto de la imagen */
+  display: flex;
+  align-items: center; /* Centrar verticalmente el texto */
+}
+
+.card-label span {
+  font-weight: bold;
+  color: #333;
+  font-size: 1.3rem;
+}

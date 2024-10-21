@@ -1,4 +1,4 @@
-<nav class="bg-light fixed-menu" [ngClass]="{ 'hidden-menu': isModalOpen }">
+<nav class="bg-light fixed-menu" *ngIf="!isModalOpen">
   <div class="container-fluid">
     <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#mobileMenu"
       aria-controls="mobileMenu">

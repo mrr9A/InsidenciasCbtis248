@@ -11,12 +11,12 @@
   left: 0; /* Posición izquierda */
   background-color: rgba(255, 255, 255, 1); /* Fondo blanco */
   transition: transform 0.3s ease-in-out; /* Transición suave */
-  transform: translateY(100%); /* Inicialmente fuera de la vista */
+  transform: translateX(-100%); /* Inicialmente fuera de la vista */
 }
 
 /* Efecto para mostrar el modal */
 .show {
-  transform: translateY(0); /* Mueve el contenido a su posición original */
+  transform: translateX(0); /* Mueve el contenido a su posición original */
 }
 
 /* Estilo para la barra de herramientas */

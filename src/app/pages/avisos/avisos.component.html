@@ -1,4 +1,4 @@
-<nav class="bg-light fixed-menu">
+<nav class="bg-light fixed-menu" *ngIf="!isModalOpen">
   <div class="container-fluid">
     <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#mobileMenu"
       aria-controls="mobileMenu">
@@ -7,13 +7,14 @@
   </div>
 </nav>
 <br><br>
-<div class="text">
-  <h2>Historial de incidencias</h2>
+<div class="text" *ngIf="!isModalOpen">
+  <h2>Avisos Importantes</h2>
 </div>
+<p class="tex1" *ngIf="!isModalOpen">Por favor revisar bien los anuncios de sus hijos/as</p>
 
-<div class="select-container">
+<div class="select-container" *ngIf="!isModalOpen">
   <select class="custom-select">
-    <option value="" disabled selected>Seleccione el mes:</option>
+    <option value="" disabled selected>Seleccione la fecha:</option>
     <option value="opcion1">Opción 1</option>
     <option value="opcion2">Opción 2</option>
     <option value="opcion3">Opción 3</option>
@@ -26,14 +27,14 @@
   </div>
 </div>
 
-<div class="card">
+<div class="card" (click)="openModal()">
   <div class="card-content">
-    <div class="card-item" onclick="openQrModal()">
+    <div class="card-item">
       <div class="thumbnail">
         <img src="https://www.cbtis248.edu.mx/bienvenida.png" alt="Silhouette of mountains">
       </div>
       <div class="card-label">
-        <span>Fecha: 12/05/23 al 23/05/23</span>
+        <span>Reunion de padres de familia y tequio en general</span>
       </div>
     </div>
     <!-- Otros elementos similares -->

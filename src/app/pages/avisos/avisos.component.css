@@ -126,4 +126,10 @@
   top: 12px;
   color: white;
   z-index: 1000; /* Asegura que esté por encima del contenido */
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.hidden-menu {
+  visibility: hidden; /* Oculta completamente el menú */
+  opacity: 0; /* Hace el menú invisible */
 }

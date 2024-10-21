@@ -9,16 +9,16 @@
   <div class="offcanvas-body">
     <ul class="navbar-nav">
       <li class="nav-item">
-        <a class="nav-link" href=""><i class="bi bi-house-door"></i> Inicio</a>
+        <a class="nav-link" [routerLink]="['/cbtis248/home']" ><i class="bi bi-house-door"></i> Inicio</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" routerLink="./historial-incidencias"><i class="bi bi-envelope"></i> Historial de incidencias</a>
+        <a class="nav-link" [routerLink]="['/cbtis248/historialIncidencias']" ><i class="bi bi-envelope"></i> Historial de incidencias</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#"><i class="bi bi-exclamation-circle"></i> Avisos</a>
+        <a class="nav-link" [routerLink]="['/cbtis248/avisos']" ><i class="bi bi-exclamation-circle"></i> Avisos</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#"><i class="bi bi-box-arrow-right"></i> Salir</a>
+        <a class="nav-link"><i class="bi bi-box-arrow-right"></i> Salir</a>
       </li>
     </ul>
   </div>

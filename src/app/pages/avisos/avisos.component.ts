@@ -2,11 +2,12 @@ import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ModalAnuncioComponent } from '../../components/modal-anuncio/modal-anuncio.component';
 import { CommonModule } from '@angular/common';
+import { MenuComponent } from '../../components/menu/menu.component';
 
 @Component({
   selector: 'app-avisos',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule,MenuComponent],
   templateUrl: './avisos.component.html',
   styleUrls: ['./avisos.component.css']
 })

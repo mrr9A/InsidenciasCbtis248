@@ -1,4 +1,4 @@
-<nav class="bg-light fixed-menu" *ngIf="!isModalOpen">
+<nav class="bg-light fixed-menu">
   <div class="container-fluid">
     <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#mobileMenu"
       aria-controls="mobileMenu">
@@ -6,15 +6,14 @@
     </button>
   </div>
 </nav>
-
-
+<app-menu></app-menu>
 <br><br>
-<div class="text" *ngIf="!isModalOpen">
+<div class="text">
   <h2>Avisos Importantes</h2>
 </div>
-<p class="tex1" *ngIf="!isModalOpen">Por favor revisar bien los anuncios de sus hijos/as</p>
+<p class="tex1">Por favor revisar bien los anuncios de sus hijos/as</p>
 
-<div class="select-container" *ngIf="!isModalOpen">
+<div class="select-container">
   <select class="custom-select">
     <option value="" disabled selected>Seleccione la fecha:</option>
     <option value="opcion1">Opción 1</option>

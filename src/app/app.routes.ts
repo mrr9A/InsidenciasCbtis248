@@ -10,7 +10,11 @@ export const routes: Routes = [
       },
       {
         path: 'historialIncidencias',
-        loadComponent: () => import('./pages/home/home.component').then(m => m.HomeComponent)
+        loadComponent: () => import('./pages/historial/historial.component').then(m => m.HistorialComponent)
+      },
+      {
+        path: 'avisos',
+        loadComponent: () => import('./pages/avisos/avisos.component').then(m => m.AvisosComponent)
       },
       {
         path: '**',

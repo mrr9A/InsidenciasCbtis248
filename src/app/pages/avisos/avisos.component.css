@@ -1,19 +1,23 @@
-/* Texto de bienvenida */
 .text {
-  font-size: 1rem;
-  text-align: start;
+  font-size: 4rem;
+  text-align: center; /* Centra horizontalmente el texto */
   color: #800020;
   margin-top: 16px;
-  margin-inline-start: 100px;
   text-shadow: 2px 2px 4px rgba(7, 5, 5, 0.46);
+  /* Para centrar el texto dentro de su contenedor */
+  display: flex;
+  justify-content: center; /* Centra horizontalmente */
 }
 
+
 .tex1{
-  font-size: 1rem;
-  text-align: start;
-  color: #8c0325;
+  text-align: center; /* Centra horizontalmente el texto */
+  color: #800020;
   margin-top: 16px;
-  margin-inline-start: 40px;
+  text-shadow: 2px 2px 4px rgba(7, 5, 5, 0.46);
+  /* Para centrar el texto dentro de su contenedor */
+  display: flex;
+  justify-content: center; /* Centra horizontalmente */
 }
 
 /* Contenedor del select y el ícono */
@@ -132,4 +136,20 @@
 .hidden-menu {
   visibility: hidden; /* Oculta completamente el menú */
   opacity: 0; /* Hace el menú invisible */
+}
+
+.navbar-toggler {
+  border: none; /* Sin borde en el botón */
+  outline: none !important; /* Asegúrate de que el contorno no aparezca nunca */
+  box-shadow: none !important; /* Evita cualquier sombra que pueda aparecer */
+}
+
+.navbar-toggler:focus {
+  outline: none !important; /* Evita el contorno al hacer clic */
+  box-shadow: none !important; /* Evita cualquier sombra al hacer clic */
+}
+
+.navbar-toggler:active {
+  outline: none !important; /* Evita el contorno mientras el botón está activo */
+  box-shadow: none !important; /* Elimina cualquier sombra o efecto activo */
 }

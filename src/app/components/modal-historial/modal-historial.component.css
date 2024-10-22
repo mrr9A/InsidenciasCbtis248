@@ -1,59 +1,85 @@
 /* Estilos del contenedor del contenido */
 .content {
   display: flex;
-  flex-direction: column; /* Asegura que el contenido esté en columna */
-  justify-content: flex-start; /* Alinea al inicio */
-  align-items: center; /* Centra horizontalmente */
-  height: 100vh; /* Llena toda la altura de la pantalla */
-  width: 100vw; /* Llena toda la anchura de la pantalla */
-  position: fixed; /* Fijo para que cubra toda la pantalla */
-  top: 0; /* Posición arriba */
-  left: 0; /* Posición izquierda */
-  background-color: rgba(255, 255, 255, 1); /* Fondo blanco */
-  transition: transform 0.3s ease-in-out; /* Transición suave */
-  transform: translateX(-100%); /* Inicialmente fuera de la vista */
+  flex-direction: column;
+  /* Asegura que el contenido esté en columna */
+  justify-content: flex-start;
+  /* Alinea al inicio */
+  align-items: center;
+  /* Centra horizontalmente */
+  height: 100vh;
+  /* Llena toda la altura de la pantalla */
+  width: 100vw;
+  /* Llena toda la anchura de la pantalla */
+  position: fixed;
+  /* Fijo para que cubra toda la pantalla */
+  top: 0;
+  /* Posición arriba */
+  left: 0;
+  /* Posición izquierda */
+  background-color: rgba(255, 255, 255, 1);
+  /* Fondo blanco */
+  transition: transform 0.3s ease-in-out;
+  /* Transición suave */
+  transform: translateX(-100%);
+  /* Inicialmente fuera de la vista */
 }
 
 /* Efecto para mostrar el modal */
 .show {
-  transform: translateX(0); /* Mueve el contenido a su posición original */
+  transform: translateX(0);
+  /* Mueve el contenido a su posición original */
 }
 
 /* Estilo para la barra de herramientas */
 .toolbar {
   display: flex;
-  justify-content: space-between; /* Asegura que el título y el botón estén en extremos opuestos */
-  align-items: center; /* Alinea verticalmente el contenido al centro */
+  justify-content: space-between;
+  /* Asegura que el título y el botón estén en extremos opuestos */
+  align-items: center;
+  /* Alinea verticalmente el contenido al centro */
   width: 100%;
-  padding: 10px 20px; /* Añade espacio alrededor */
-  background-color: white; /* Fondo blanco */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra ligera */
+  padding: 10px 20px;
+  /* Añade espacio alrededor */
+  background-color: transparent;
+  /* Fondo blanco */
 }
 
 /* Estilo para el título del anuncio */
 .toolbar h1 {
-  margin: 0;
-  font-size: 1.8rem;
-  color: #671233; /* Guinda */
-  flex-grow: 1; /* Ocupa el espacio restante */
-  text-align: left; /* Alinea el texto a la izquierda */
+  font-size: 2rem;
+  text-align: center;
+  /* Centra horizontalmente el texto */
+  color: #800020;
+  margin-top: 16px;
+  text-shadow: 2px 2px 4px rgba(7, 5, 5, 0.46);
+  /* Para centrar el texto dentro de su contenedor */
+  display: flex;
+  justify-content: center;
+  /* Centra horizontalmente */
 }
 
 /* Título del anuncio */
 .announcement-title {
-  color: #671233; /* Guinda */
+  color: #671233;
+  /* Guinda */
 }
 
 /* Estilos para la tarjeta */
 .card {
   max-width: 450px;
-  width: 90%; /* Para que se ajuste en pantallas pequeñas */
-  margin: 20px auto; /* Espacio arriba y centrado horizontalmente */
+  width: 90%;
+  /* Para que se ajuste en pantallas pequeñas */
+  margin: 20px auto;
+  /* Espacio arriba y centrado horizontalmente */
   padding: 20px;
   border-radius: 16px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave */
-  background-color: white; /* Fondo blanco para la tarjeta */
-  flex-grow: 1; /* Permite que la tarjeta ocupe el espacio restante */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  /* Sombra suave */
+  background-color: white;
+  /* Fondo blanco para la tarjeta */
+  flex-grow: 1;
+  /* Permite que la tarjeta ocupe el espacio restante */
   box-shadow: inset 5px 5px 10px rgba(148, 145, 145, 0.703), inset -5px -5px 10px rgba(142, 142, 142, 0.638);
   overflow: hidden;
 
@@ -61,10 +87,13 @@
 
 /* Asegura que la imagen del avatar se ajuste correctamente */
 .avatar-card {
-  width: 100%; /* Ocupa el 100% del contenedor */
-  height: auto; /* Mantiene la calidad original de la imagen */
+  width: 100%;
+  /* Ocupa el 100% del contenedor */
+  height: auto;
+  /* Mantiene la calidad original de la imagen */
   display: block;
-  margin: 0 auto 20px; /* Centrar imagen y espacio abajo */
+  margin: 0 auto 20px;
+  /* Centrar imagen y espacio abajo */
 }
 
 /* Estilo para los list-items */
@@ -75,7 +104,8 @@
 /* Personaliza el contenido del label */
 .label h2 {
   font-weight: bold;
-  color: #671233; /* Guinda */
+  color: #671233;
+  /* Guinda */
   text-align: center;
   margin-bottom: 8px;
 }
@@ -83,18 +113,33 @@
 /* Personaliza el contenido del label */
 .label h4 {
   font-weight: bold;
-  color: #1c0e13; /* Guinda */
+  color: #1c0e13;
+  /* Guinda */
   margin-inline-start: 10px;
   margin-bottom: 8px;
   font-size: 1rem;
 }
+
 /* Personaliza el contenido del label */
 .label h3 {
   font-weight: bold;
-  color: #671233; /* Guinda */
+  color: #671233;
+  /* Guinda */
   margin-inline-start: 10px;
   margin-bottom: 4px;
   font-size: 1.3rem;
+}
+
+/* Personaliza el contenido del label */
+.label h5 {
+  font-size: 1.3rem;
+  text-align: center; /* Centra horizontalmente el texto */
+  color: #5e5e5e;
+  margin-top: 4px;
+  text-shadow: 2px 2px 4px rgba(7, 5, 5, 0.46);
+  /* Para centrar el texto dentro de su contenedor */
+  display: flex;
+  justify-content: center; /* Centra horizontalmente */
 }
 
 .label p {
@@ -103,40 +148,56 @@
   margin-bottom: 6px;
   margin-inline-start: 10px;
   margin-bottom: 4px;
-  max-height: 200px; /* Altura máxima antes de activar el scroll */
+  max-height: 200px;
+  /* Altura máxima antes de activar el scroll */
   overflow-y: auto;
 }
 
 .label p strong {
-  color: #000; /* Cambia al color que prefieras */
+  color: #000;
+  /* Cambia al color que prefieras */
 }
 
 /* Estilo para el botón de cerrar */
 .close-button {
-  background-color: transparent; /* Color de fondo del botón */
-  border: none; /* Sin borde */
-
-  color: #671233; /* Guinda */
-  font-size: 3rem; /* Aumentar tamaño del icono */
-  cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
+  background-color: transparent;
+  /* Color de fondo del botón */
+  border: none;
+  /* Sin borde */
+  display: flex;
+  justify-content: start; /* Centra horizontalmente */
+  color: #800020;
+  /* Guinda */
+  font-size: 3rem;
+  /* Aumentar tamaño del icono */
+  cursor: pointer;
+  /* Cambia el cursor al pasar sobre el botón */
 }
 
 /* Evitar el efecto de resaltar el borde al hacer foco en el botón */
 .close-button:focus {
-  outline: none; /* Sin contorno de enfoque */
+  outline: none;
+  /* Sin contorno de enfoque */
 }
 
 /* Evitar el efecto de resaltar el borde al hacer clic */
 .close-button:active {
-  outline: none; /* Sin contorno de enfoque */
+  outline: none;
+  /* Sin contorno de enfoque */
 }
 
 /* Clase para el modal a pantalla completa */
 .full-screen-modal {
-  height: 100vh; /* Asegura que el modal ocupe toda la altura */
-  width: 100vw; /* Asegura que el modal ocupe toda la anchura */
-  top: 0; /* Sin margen superior */
-  left: 0; /* Sin margen izquierdo */
-  position: fixed; /* Fijo para que cubra toda la pantalla */
-  background-color: rgba(255, 255, 255, 1); /* Fondo blanco */
+  height: 100vh;
+  /* Asegura que el modal ocupe toda la altura */
+  width: 100vw;
+  /* Asegura que el modal ocupe toda la anchura */
+  top: 0;
+  /* Sin margen superior */
+  left: 0;
+  /* Sin margen izquierdo */
+  position: fixed;
+  /* Fijo para que cubra toda la pantalla */
+  background-color: rgba(255, 255, 255, 1);
+  /* Fondo blanco */
 }

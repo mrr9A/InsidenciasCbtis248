@@ -1,0 +1,115 @@
+.title {
+  font-size: 1.5rem;
+  color: #8B1E3F;
+  text-align: center;
+  margin-top: 10px;
+}
+
+.form-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  width: 100%;
+}
+
+.image-upload {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+/* .upload-label {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #f0f0f0;
+  border-radius: 50%;
+  width: 250px;
+  height: 250px;
+  justify-content: center;
+  cursor: pointer;
+} */
+
+.upload-label {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #f0f0f0;
+  border-radius: 50%;
+  width: 250px; /* Tamaño del contenedor */
+  height: 250px; /* Tamaño del contenedor */
+  justify-content: center;
+  cursor: pointer;
+  overflow: hidden; /* Asegura que la imagen se mantenga dentro del contenedor redondo */
+}
+
+/* .upload-icon {
+  width: 60px;
+  height: 60px;
+} */
+
+.upload-icon {
+  width: 100%; /* Asegura que la imagen ocupe todo el espacio disponible */
+  height: 100%; /* Mantiene la relación de aspecto de la imagen */
+  border-radius: 50%; /* Hace que la imagen sea redonda */
+  object-fit: cover; /* Asegura que la imagen llene el contenedor sin perder calidad */
+}
+
+
+.form-group {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  color: #8B1E3F;
+  font-size: 0.9rem;
+  margin-bottom: 5px;
+}
+
+.form-group input {
+  font-weight: bold;
+  color: #8B1E3F;
+  padding: 10px;
+  border: none;
+  border-bottom: 2px solid #8B1E3F; /* Reducir grosor a 2px */
+  outline: none;
+  font-size: 1rem;
+  background: transparent;
+}
+
+.form-group select {
+  font-weight: bold;
+  color: #8B1E3F;
+  padding: 10px;
+  border: 1px solid #ccc; /* Borde normal */
+  outline: none;
+  font-size: 1rem;
+  background: transparent;
+  cursor: pointer;
+}
+
+
+.submit-button {
+  background-color: #f8c8d6; /* Guinda bajito */
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.submit-button:disabled {
+  background-color: #f8c8d6; /* Guinda bajito cuando está deshabilitado */
+  cursor: not-allowed;
+}
+
+.submit-button:not(:disabled) {
+  background-color: #8B1E3F; /* Guinda fuerte cuando está habilitado */
+}
+

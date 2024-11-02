@@ -1,0 +1,37 @@
+<h2>Registrar Nueva Incidencia</h2>
+<form [formGroup]="incidenciaForm" (ngSubmit)="onSubmit()">
+  <div>
+    <label for="tipo_incidencia_id">Tipo de Incidencia</label>
+    <select id="tipo_incidencia_id" formControlName="tipo_incidencia_id" required>
+      <option *ngFor="let tipo of tiposIncidencia" [value]="tipo.id">{{ tipo.nombre }}</option>
+    </select>
+  </div>
+
+  <div>
+    <label for="descripcion">Descripción</label>
+    <textarea id="descripcion" formControlName="descripcion" required></textarea>
+  </div>
+
+  <div>
+    <label for="alumno_id">Alumno</label>
+    <select id="alumno_id" formControlName="alumno_id" required>
+      <option *ngFor="let alumno of alumnos" [value]="alumno.id">
+        {{ alumno.nombre }} {{ alumno.apellido_paterno }} {{ alumno.apellido_materno }}
+      </option>
+    </select>
+  </div>
+
+  <div>
+    <label for="grupo_id">Grupo</label>
+    <select id="grupo_id" formControlName="grupo_id" required>
+      <option *ngFor="let grupo of grupos" [value]="grupo.id">{{ grupo.grado }} {{ grupo.grupo }} {{ grupo.especialidad }}</option>
+    </select>
+  </div>
+
+  <div>
+    <label for="fecha">Fecha</label>
+    <input id="fecha" formControlName="fecha" type="date" />
+  </div>
+
+  <button type="submit" [disabled]="incidenciaForm.invalid">Registrar Incidencia</button>
+</form>

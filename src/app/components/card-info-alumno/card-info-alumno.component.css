@@ -80,6 +80,11 @@
     font-size: 1.3rem;
     margin-top: 70px;
   }
+
+  .text2 {
+    font-size: 1.1rem;
+    color: #800020;
+  }
 }
 
 /* Contenedor del select y el ícono */
@@ -129,7 +134,7 @@
 /* Ajustes en pantallas pequeñas */
 @media (max-width: 768px) {
   .select-container {
-    width: 230px; /* Ancho más pequeño */
+    width: 320px; /* Ancho más pequeño */
   }
 
   .custom-select {

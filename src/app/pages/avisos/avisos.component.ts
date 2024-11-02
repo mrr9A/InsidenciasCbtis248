@@ -3,25 +3,68 @@ import { MatDialog } from '@angular/material/dialog';
 import { ModalAnuncioComponent } from '../../components/modal-anuncio/modal-anuncio.component';
 import { CommonModule } from '@angular/common';
 import { MenuComponent } from '../../components/menu/menu.component';
+import { ApisService } from '../../services/apis.service';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-avisos',
   standalone: true,
-  imports: [CommonModule,MenuComponent],
+  imports: [CommonModule, MenuComponent, FormsModule],
   templateUrl: './avisos.component.html',
   styleUrls: ['./avisos.component.css']
 })
 export class AvisosComponent {
-  private dialogRef: any; // Para almacenar la referencia del dialogo
+  alumnos: any[] = []; // Array para almacenar los alumnos
+  avisos: any[] = [];  // Array para almacenar todos los avisos de los alumnos
+  fechasDisponibles: string[] = []; // Fechas únicas de los avisos disponibles para el filtro
+  anunciosFiltrados: any[] = []; // Avisos filtrados según la fecha seleccionada
+  selectedFecha: string = ''; // Fecha seleccionada por el usuario para filtrar
   isModalOpen = false;
-  constructor(public dialog: MatDialog) {}
 
-  openModal(): void {
+  constructor(public dialog: MatDialog, private apiService: ApisService) {}
+  ngOnInit() {
+    this.loadAvisos(); // Cargar avisos al iniciar el componente
+  }
+
+  loadAvisos() {
+    const usuario = JSON.parse(localStorage.getItem('usuario') || '{}');
+
+    if (usuario?.responsable?.alumnoResponsables) {
+      this.alumnos = usuario.responsable.alumnoResponsables;
+
+      // Itera sobre cada alumno y agrega los avisos de su grupo
+      const allAvisos = this.alumnos
+        .map(alumno => alumno.alumno.grupo.avisos)
+        .flat(); // Aplana el arreglo si hay múltiples avisos
+
+      // Elimina avisos duplicados por ID
+      this.avisos = allAvisos.filter((aviso, index, self) =>
+        index === self.findIndex(a => a.id === aviso.id)
+      );
+
+      // Extrae las fechas únicas de los avisos para el filtro
+      this.fechasDisponibles = [...new Set(this.avisos.map(aviso => aviso.fecha))];
+
+      // Inicializar los anuncios filtrados con todos los avisos al inicio
+      this.anunciosFiltrados = this.avisos;
+    }
+  }
+
+  // Filtra los avisos según la fecha seleccionada
+  filterAnuncios() {
+    this.anunciosFiltrados = this.selectedFecha
+      ? this.avisos.filter(aviso => aviso.fecha === this.selectedFecha)
+      : this.avisos; // Muestra todos los avisos si no hay fecha seleccionada
+  }
+
+
+  openModal(anuncioId: number): void {
     this.isModalOpen = true; // Abre el modal
     const dialogRef = this.dialog.open(ModalAnuncioComponent, {
       width: '100%', // Ancho completo para el modal
       height: '100%', // Alto completo para el modal
-      panelClass: 'full-screen-modal' // Clase personalizada para el modal
+      panelClass: 'full-screen-modal', // Clase personalizada para el modal
+      data: { anuncioId }  // Pasa el ID del aviso
     });
 
     dialogRef.afterClosed().subscribe(() => {
@@ -30,3 +73,4 @@ export class AvisosComponent {
     });
   }
 }
+

@@ -1,4 +1,4 @@
-<nav class="bg-light fixed-menu">
+ <nav class="bg-light fixed-menu">
   <div class="container-fluid">
     <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#mobileMenu"
       aria-controls="mobileMenu">
@@ -14,11 +14,9 @@
 <p class="tex1">Por favor revisar bien los anuncios de sus hijos/as</p>
 
 <div class="select-container">
-  <select class="custom-select">
-    <option value="" disabled selected>Seleccione la fecha:</option>
-    <option value="opcion1">Opción 1</option>
-    <option value="opcion2">Opción 2</option>
-    <option value="opcion3">Opción 3</option>
+  <select class="custom-select" [(ngModel)]="selectedFecha" (change)="filterAnuncios()">
+    <option value="" selected>Seleccionar fecha</option>
+    <option *ngFor="let fecha of fechasDisponibles" [value]="fecha">{{ fecha | date: 'longDate' }}</option>
   </select>
   <div class="icon">
     <i class="bi bi-person-fill"></i>
@@ -28,16 +26,15 @@
   </div>
 </div>
 
-<div class="card" (click)="openModal()">
+<div class="card" *ngFor="let anuncio of anunciosFiltrados" (click)="openModal(anuncio.id)">
   <div class="card-content">
     <div class="card-item">
       <div class="thumbnail">
         <img src="https://www.cbtis248.edu.mx/bienvenida.png" alt="Silhouette of mountains">
       </div>
       <div class="card-label">
-        <span>Reunion de padres de familia y tequio en general</span>
+        <span>{{ anuncio.nombre }}</span>
       </div>
     </div>
-    <!-- Otros elementos similares -->
   </div>
 </div>

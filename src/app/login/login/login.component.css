@@ -1,0 +1,95 @@
+/* Estilos para la tarjeta */
+.card {
+  background-color: rgb(251, 251, 251);
+  border-radius: 60px;
+  box-shadow: 0 -8px 15px rgba(0, 0, 0, 0.2), 0 8px 15px rgba(0, 0, 0, 0.2);
+  width: 90vw;
+  height: 90vh;
+  margin: auto;
+  top: 32px;
+}
+
+.img {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-top: 24px;
+}
+
+.logo {
+  max-width: 80%;
+  height: auto;
+}
+
+.card-conten {
+  width: 95%;
+  text-align: start;
+  padding-left: 30px;
+  margin-top: 80px;
+}
+
+h1, p {
+  margin-top: 20px;
+  color: #7E1F2A;
+}
+
+.input-container {
+  margin-bottom: 15px;
+}
+
+.input-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.input-wrapper .bi {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #7E1F2A;
+  font-size: 28px; /* Aumentar tamaño del icono */
+}
+
+.user-icon {
+  left: 10px;
+  margin-top: -5px;
+}
+
+.password-icon {
+  left: 10px;
+  margin-top: -5px;
+}
+
+.eye-icon {
+  right: 10px;
+  cursor: pointer;
+  font-size: 28px; /* Aumentar tamaño del icono */
+  position: absolute; /* Para que no se mueva al cambiar el icono */
+}
+
+input {
+  width: 100%;
+  padding: 15px 40px 15px 40px; /* Ajuste para los íconos */
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  background-color: #f0f0f0;
+  color: #7E1F2A;
+  font-size: 18px; /* Aumentar tamaño de la fuente del input */
+}
+
+button {
+  margin-top: 12px;
+  width: 100%;
+  padding: 10px;
+  background-color: #7E1F2A;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #671233;
+}

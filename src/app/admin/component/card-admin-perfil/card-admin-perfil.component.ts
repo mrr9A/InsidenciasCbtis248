@@ -2,13 +2,13 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-card-profile',
+  selector: 'app-card-admin-perfil',
   standalone: true,
   imports: [],
-  templateUrl: './card-profile.component.html',
-  styleUrl: './card-profile.component.css'
+  templateUrl: './card-admin-perfil.component.html',
+  styleUrl: './card-admin-perfil.component.css'
 })
-export class CardProfileComponent {
+export class CardAdminPerfilComponent {
 
   usuario: any;
   correo: string = '';
@@ -30,10 +30,10 @@ export class CardProfileComponent {
       console.log(this.usuario);
 
       // Asigna los datos a las variables para mostrarlos en el HTML
-      this.correo = this.usuario.responsable?.correo_electronico || '';
+      this.correo = this.usuario.administrativo?.correo_electronico || '';
       this.password = this.usuario.password || '';
-      this.telefono = this.usuario.responsable?.num_telefono || '';
-      this.tipoPerfil = this.usuario.responsable?.rol?.nombre || 'Responsable';
+      this.telefono = this.usuario.administrativo?.num_telefono || '';
+      this.tipoPerfil = this.usuario.administrativo?.rol?.nombre || 'Responsable';
     }
   }
 

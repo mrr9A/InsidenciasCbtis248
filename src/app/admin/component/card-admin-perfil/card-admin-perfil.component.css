@@ -1,0 +1,208 @@
+/* Contenedor principal para centrar horizontalmente */
+.main-container {
+  display: flex;
+  justify-content: center; /* Centrado horizontal */
+}
+
+/* Estilos para la tarjeta */
+.card {
+  padding: 1rem;
+  margin: 0 auto;
+  border-radius: 25px;
+  border: transparent;
+  background-color: transparent; /* Fondo gris semitransparente */
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  top: 0;
+  z-index: 1;
+}
+
+/* Contenedor para la imagen de perfil y el logo */
+.image-container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+
+
+/* Logo de la aplicación */
+.logo {
+  position: absolute;
+  left: -70px; /* Ajusta este valor para mover el logo horizontalmente */
+  top: -50px; /* Ajusta este valor para mover el logo verticalmente */
+  width: 180px;
+  height: 180px;
+  z-index: 0;
+  object-fit: contain; /* Evitar que se deforme el logo */
+}
+
+/* Logo de la aplicación */
+.logo1 {
+  position: absolute;
+  left: 5px; /* Ajusta este valor para mover el logo horizontalmente */
+  top: -90px; /* Ajusta este valor para mover el logo verticalmente */
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  z-index: 0;
+  object-fit: cover; /* Evitar que se deforme el logo */
+}
+
+/* Card padre con el fondo gris semitransparente */
+.card-parent {
+  width: 450px;   /* Ancho ajustado */
+  height: 350px;  /* Alto ajustado */
+  background-color: rgba(224, 221, 221, 0.8); /* Fondo gris semitransparente */
+  border-radius: 15px;
+  margin: 20px auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: inset 5px 5px 10px rgba(148, 145, 145, 0.627), inset -5px -5px 10px rgba(142, 142, 142, 0.638);
+  z-index: 1;
+}
+
+/* Estilo para el texto dentro de la card padre */
+.card-parent h5 {
+  font-size: 1.5rem;
+  color: #800020;
+  text-align: center;
+  margin: 0;
+  text-shadow: 2px 2px 4px rgba(7, 5, 5, 0.46);
+}
+
+/* Ajustes en pantallas móviles */
+@media (max-width: 768px) {
+  .card {
+    width: 300px;
+    height: 160px;
+  }
+
+  .image-container {
+    width: 162px;
+    height: 10px;
+    display: flex;
+  }
+
+
+  .logo {
+    width: 260px;
+    height: 360px;
+    top: -172px;
+  }
+
+  .logo1 {
+    width: 150px;
+    height: 150px;
+    top: -66px;
+  }
+
+  .text {
+    font-size: 1.3rem;
+  }
+
+  .card-parent {
+    width: 290px;
+    height: 190px;
+  }
+
+}
+
+/* Contenedor principal de la tarjeta */
+.profile-card {
+  width: 90%;
+  max-width: 400px;
+  margin: 0 auto;
+  background-color: #f0f0f0;
+  padding: 1.5rem;
+  border-radius: 15px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  max-height: 80vh; /* Limitar la altura de la tarjeta al 80% de la pantalla */
+  overflow-y: auto; /* Habilitar scroll interno si el contenido sobrepasa el límite */
+}
+
+/* Ocultar el scroll en navegadores basados en Webkit (Chrome, Safari, etc.) */
+.profile-card::-webkit-scrollbar {
+  display: none;
+}
+
+/* Ocultar el scroll en Firefox */
+.profile-card {
+  scrollbar-width: none; /* Ocultar la barra de desplazamiento en Firefox */
+}
+
+/* Estilo del nombre */
+.profile-name {
+  background-color: #4a4a4a;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 10px;
+  margin-bottom: 1.5rem;
+  font-size: 1.2rem;
+  font-weight: bold;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+/* Sección de información */
+.info-section p {
+  font-weight: bold;
+  margin-bottom: 1rem;
+  text-align: left;
+  font-size: 1.1rem;
+}
+
+.info-item {
+  display: flex;
+  align-items: center;
+  background-color: #d9d9d9;
+  padding: 0.8rem 1rem;
+  border-radius: 10px;
+  margin-bottom: 1rem;
+  box-shadow: inset 2px 2px 5px rgba(0, 0, 0, 0.1), inset -2px -2px 5px rgba(255, 255, 255, 0.7);
+}
+
+/* Estilo para los íconos */
+.info-item i {
+  font-size: 1.5rem;
+  margin-right: 10px;
+}
+
+/* Estilo del botón de cerrar sesión */
+.logout-btn {
+  background-color: #800020;
+  color: white;
+  padding: 0.8rem 1.5rem;
+  border: none;
+  border-radius: 10px;
+  font-size: 1rem;
+  font-weight: bold;
+  margin-top: 1.5rem; /* Espacio adecuado para que se separe del contenido */
+  cursor: pointer;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.logout-btn:hover {
+  background-color: #9b0024;
+}
+
+/* Responsive para pantallas más pequeñas */
+@media (max-width: 768px) {
+  .profile-card {
+    width: 100%;
+    max-height: 70vh; /* Ajuste de altura para pantallas pequeñas */
+  }
+
+  .profile-name {
+    font-size: 1rem;
+  }
+
+  .info-item {
+    font-size: 0.9rem;
+  }
+
+  .logout-btn {
+    font-size: 0.9rem;
+  }
+}

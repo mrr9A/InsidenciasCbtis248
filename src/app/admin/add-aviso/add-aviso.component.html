@@ -1,0 +1,26 @@
+<h2>Registrar Nuevo Ítem</h2>
+<form [formGroup]="itemForm" (ngSubmit)="onSubmit()">
+  <div>
+    <label for="nombre">Nombre</label>
+    <input id="nombre" formControlName="nombre" type="text" required />
+  </div>
+
+  <div>
+    <label for="descripcion">Descripción</label>
+    <input id="descripcion" formControlName="descripcion" type="text" required />
+  </div>
+
+  <div>
+    <label for="fecha">Fecha</label>
+    <input id="fecha" formControlName="fecha" type="date" required />
+  </div>
+
+  <div class="select-container">
+    <label for="grupoIds">Grupos</label>
+    <select id="grupoIds" multiple (change)="onGrupoChange($event)">
+      <option *ngFor="let grupo of grupos" [value]="grupo.id">{{ grupo.grado }} {{ grupo.grupo }} {{ grupo.especialidad }}</option>
+    </select>
+  </div>
+
+  <button type="submit" [disabled]="itemForm.invalid">Registrar</button>
+</form>

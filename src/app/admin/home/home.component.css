@@ -1,0 +1,31 @@
+.navbar-toggler {
+  border: none; /* Sin borde en el botón */
+}
+
+.fixed-menu {
+  position: fixed; /* Hace que el menú sea fijo */
+  top: 0; /* Fijar en la parte superior */
+  left: 0; /* Fijar en el lado izquierdo */
+  width: 0px; /* Ancho del menú */
+  height: 10%; /* Ocupa toda la altura de la ventana */
+  background-color: #ffffff; /* Color de fondo */
+  top: 12px;
+  color: white;
+  z-index: 1000; /* Asegura que esté por encima del contenido */
+}
+
+.navbar-toggler {
+  border: none; /* Sin borde en el botón */
+  outline: none !important; /* Asegúrate de que el contorno no aparezca nunca */
+  box-shadow: none !important; /* Evita cualquier sombra que pueda aparecer */
+}
+
+.navbar-toggler:focus {
+  outline: none !important; /* Evita el contorno al hacer clic */
+  box-shadow: none !important; /* Evita cualquier sombra al hacer clic */
+}
+
+.navbar-toggler:active {
+  outline: none !important; /* Evita el contorno mientras el botón está activo */
+  box-shadow: none !important; /* Elimina cualquier sombra o efecto activo */
+}

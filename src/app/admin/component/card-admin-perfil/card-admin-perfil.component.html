@@ -1,4 +1,3 @@
-
 <br><br>
 <!-- Card padre con el texto del nombre del usuario -->
 <div class="card-parent">
@@ -16,11 +15,9 @@
 <br>
 <!-- app info -->
 <div class="profile-card">
-  <h5 class="profile-name">{{ usuario?.responsable?.nombre }} {{ usuario?.responsable?.apellido_paterno }}</h5>
-  <br>
-  <div class="info-section">
+  <h5 class="profile-name">{{ usuario?.administrativo?.nombre }} {{ usuario?.administrativo?.apellido_paterno }} {{ usuario?.administrativo?.apellido_materno }}</h5>
+  <br><div class="info-section">
     <p>Información:</p>
-    <br>
     <div class="info-item">
       <i class="bi bi-envelope"></i> <!-- Icono de correo -->
       <span><strong>Correo electronico:</strong> {{ correo }}</span>

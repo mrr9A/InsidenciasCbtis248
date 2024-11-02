@@ -11,15 +11,14 @@
 <div class="text">
   <h2>Historial de incidencias</h2>
 </div>
-<p class="tex1">Por favor seleccione la fecha que desea ver las incidencias de su hijos/as</p>
+<p class="tex1">Por favor seleccione la fecha que desea ver las incidencias de sus hijos/as</p>
 
 <div class="select-container">
-  <select class="custom-select">
-    <option value="" disabled selected>Seleccione el mes:</option>
-    <option value="opcion1">Opción 1</option>
-    <option value="opcion2">Opción 2</option>
-    <option value="opcion3">Opción 3</option>
+  <select (change)="onAlumnoSeleccionado($event)" class="custom-select">
+    <option selected>Seleccione al alumno</option>
+    <option *ngFor="let alumno of alumnos" [value]="alumno.id">{{ alumno.nombre }}</option>
   </select>
+
   <div class="icon">
     <i class="bi bi-person-fill"></i>
   </div>
@@ -28,16 +27,32 @@
   </div>
 </div>
 
-<div class="card">
+<div class="select-container">
+  <select (change)="onFechaSeleccionada($event)" class="custom-select">
+    <option selected disabled>Seleccione la fecha</option>
+    <option *ngFor="let fecha of fechasDisponibles" [value]="fecha">{{ fecha }}</option>
+  </select>
+  <div class="icon">
+    <i class="bi bi-calendar"></i>
+  </div>
+  <div class="arrow-icon">
+    <i class="bi bi-chevron-down"></i>
+  </div>
+</div>
+
+<div class="card" *ngIf="incidenciasFiltradas.length > 0">
   <div class="card-content">
-    <div class="card-item" (click)="openModal()">
+    <div class="card-item" *ngFor="let incidencia of incidenciasFiltradas" (click)="openModal(incidencia.id)">
       <div class="thumbnail">
         <img src="https://www.cbtis248.edu.mx/bienvenida.png" alt="Silhouette of mountains">
       </div>
       <div class="card-label">
-        <span>Fecha: 12/05/23 al 23/05/23</span>
+        <span>Fecha: {{ incidencia.fecha }}</span>
       </div>
     </div>
-    <!-- Otros elementos similares -->
   </div>
 </div>
+
+<p *ngIf="incidenciasFiltradas.length === 0 && selectedAlumnoId && selectedFecha">
+  No hay incidencias disponibles para la fecha y alumno seleccionados.
+</p>

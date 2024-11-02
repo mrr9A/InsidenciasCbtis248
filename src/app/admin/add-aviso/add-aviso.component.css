@@ -1,0 +1,22 @@
+.select-container {
+  position: relative;
+  width: 270px;
+  margin: auto;
+  margin-top: 20px;
+}
+
+.custom-select {
+  width: 100%;
+  padding: 10px 40px;
+  font-size: 1.2rem;
+  border-radius: 8px;
+  border: 1px solid #2d1111;
+  background-color: #f0f0f0;
+  appearance: none;
+  outline: none;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+.custom-select option {
+  color: #800020;
+  font-size: 16px; /* Aumenta el tamaño de la fuente en las opciones */
+}

@@ -50,24 +50,13 @@ export class ApisService {
     return this.http.get(`${this.apiURL}/api/alumno-responsable`)
   }
 
-/*   crearTutors(data: FormData) { //ESTE ES LA API PARA CREAR A LOS TUTORES
-    console.log(data)
-    return this.http.post(`${this.apiURL}/api/tutors`, data)
-  }
- */
-  postAdministrativos(data: any) {
-    return this.http.post('http://localhost:3000/api/administrativos', data, {
-      headers: { 'Content-Type': 'application/json' }
-    });
+  postAdministrativos(formData: FormData): Observable<any> {
+    return this.http.post('http://localhost:3000/api/administrativos', formData);
   }
 
-  postAvisos(data: any): Observable<any> {
-    return this.http.post(`${this.apiURL}/api/avisos`, data);
+  postAvisos(formData: FormData): Observable<any> {
+    return this.http.post(`${this.apiURL}/api/avisos`, formData);
   }
-
-  /*   postTutor(data: any): Observable<any> {
-      return this.http.post(`${this.apiURL}/api/responsables`, data);
-    } */
 
   postTutor(formData: FormData): Observable<any> {
     return this.http.post(`${this.apiURL}/api/responsables`, formData);

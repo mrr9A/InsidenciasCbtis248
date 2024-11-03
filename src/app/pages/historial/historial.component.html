@@ -28,8 +28,8 @@
 </div>
 
 <div class="select-container">
-  <select (change)="onFechaSeleccionada($event)" class="custom-select">
-    <option selected disabled>Seleccione la fecha</option>
+  <select (change)="onFechaSeleccionada($event)" [(ngModel)]="chooseDate" class="custom-select">
+    <option selected disabled value="">Seleccione la fecha</option>
     <option *ngFor="let fecha of fechasDisponibles" [value]="fecha">{{ fecha }}</option>
   </select>
   <div class="icon">

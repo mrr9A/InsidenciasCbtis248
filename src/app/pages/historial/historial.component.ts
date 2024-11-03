@@ -16,6 +16,7 @@ export class HistorialComponent {
   fechasDisponibles: string[] = []; // Fechas únicas de las incidencias
   selectedFecha: string = ''; // Fecha seleccionada
   selectedAlumnoId: number | null = null; // ID del alumno seleccionado
+  chooseDate: string = '';
 
   ngOnInit() {
     this.loadAlumnos(); // Cargar incidencias al iniciar el componente
@@ -41,6 +42,7 @@ export class HistorialComponent {
     console.log('Alumno encontrado:', alumno);
 
     if (alumno) {
+      this.chooseDate = ''
       // Extrae fechas únicas de las incidencias del alumno, asegurando que sean de tipo string
       this.fechasDisponibles = Array.from(
         new Set(alumno.incidencias.map((incidencia: any) => incidencia.fecha))
@@ -81,7 +83,7 @@ export class HistorialComponent {
   }
 
 
- openModal(incidenciaId: number) {
+  openModal(incidenciaId: number) {
     console.log('Abrir modal para la incidencia con ID:', incidenciaId);
   }
 }

@@ -1,46 +1,50 @@
-<h2>Registrar Administrativo</h2>
-<form [formGroup]="administrativoForm" (ngSubmit)="onSubmit()" method="POST">
-  <div>
-    <label for="nombre">Nombre</label>
+<h2 class="title">Registrar Administrativo</h2>
+<form [formGroup]="administrativoForm" (ngSubmit)="onSubmit()" class="form-container">
+
+  <div class="image-upload">
+    <input type="file" id="upload-photo" formControlName="file" hidden (change)="onImageSelected($event)" />
+    <label for="upload-photo" class="upload-label">
+      <img [src]="imagePreview || 'assets/img/Group 6863.png'" alt="Subir foto" class="upload-icon" />
+    </label>
+  </div>
+
+  <div class="form-group">
+    <label for="nombre">Nombre del responsable</label>
     <input id="nombre" formControlName="nombre" type="text" required />
   </div>
 
-  <div>
+  <div class="form-group">
     <label for="apellido_paterno">Apellido Paterno</label>
     <input id="apellido_paterno" formControlName="apellido_paterno" type="text" required />
   </div>
 
-  <div>
+  <div class="form-group">
     <label for="apellido_materno">Apellido Materno</label>
     <input id="apellido_materno" formControlName="apellido_materno" type="text" required />
   </div>
 
-  <div>
-    <label for="correo_electronico">Correo Electrónico</label>
-    <input id="correo_electronico" formControlName="correo_electronico" type="email" required />
-  </div>
-
-  <div>
-    <label for="num_telefono">Número de Teléfono</label>
+  <div class="form-group">
+    <label for="num_telefono">Número de teléfono</label>
     <input id="num_telefono" formControlName="num_telefono" type="text" required />
   </div>
 
-  <div>
-    <label for="imagen_perfil">URL de Imagen de Perfil</label>
-    <input id="imagen_perfil" formControlName="imagen_perfil" type="text" required />
+  <div class="form-group">
+    <label for="correo_electronico">Correo electrónico</label>
+    <input id="correo_electronico" formControlName="correo_electronico" type="email" required />
   </div>
 
-  <div>
-    <label>Rol:</label>
-    <select formControlName="rolId">
-      <option *ngFor="let rol of roles" [value]="rol.id">{{ rol.nombre }}</option>
-    </select>
-  </div>
-
-  <div>
+  <div class="form-group">
     <label for="password">Contraseña</label>
-    <input id="password" formControlName="password" type="text" required />
+    <input id="password" formControlName="password" type="password" required />
   </div>
 
-  <button type="submit" [disabled]="administrativoForm.invalid">Registrar</button>
+  <mat-form-field>
+    <mat-select placeholder="Seleccionar alumnos" formControlName="rolId">
+      <mat-option *ngFor="let rol of roles" [value]="rol.id">
+        {{ rol.nombre }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <button type="submit" [disabled]="administrativoForm.invalid" class="submit-button">Registrar</button>
 </form>

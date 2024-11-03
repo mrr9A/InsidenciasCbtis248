@@ -5,6 +5,7 @@ import { CommonModule } from '@angular/common';
 import { MenuComponent } from '../../components/menu/menu.component';
 import { ApisService } from '../../services/apis.service';
 import { FormsModule } from '@angular/forms';
+import { onTimeService } from '../../services/actulizarInfor.service';
 
 @Component({
   selector: 'app-avisos',
@@ -21,8 +22,11 @@ export class AvisosComponent {
   selectedFecha: string = ''; // Fecha seleccionada por el usuario para filtrar
   isModalOpen = false;
 
-  constructor(public dialog: MatDialog, private apiService: ApisService) {}
+  constructor(public dialog: MatDialog, private apiService: ApisService, private onTimeService : onTimeService) {}
   ngOnInit() {
+    setInterval(() => {
+      this.onTimeService.getActualUser();
+    }, 180000);
     this.loadAvisos(); // Cargar avisos al iniciar el componente
   }
 

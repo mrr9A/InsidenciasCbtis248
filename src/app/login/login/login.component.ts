@@ -3,6 +3,7 @@ import { ApisService } from '../../services/apis.service';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { onTimeService } from '../../services/actulizarInfor.service';
 
 @Component({
   selector: 'app-login',
@@ -19,7 +20,7 @@ export class LoginComponent {
 
   errorMessage: string | null = null;
 
-  constructor(private apiService: ApisService, private router: Router) { }
+  constructor(private apiService: ApisService, private router: Router, private onTimeService : onTimeService) { }
 
   showPassword: boolean = false; // Definir la propiedad showPassword
 
@@ -44,17 +45,20 @@ export class LoginComponent {
             localStorage.setItem('usuario', JSON.stringify(usuarioEncontrado));
 
             // Redirigir según el rol
-            const rol_tutor = usuarioEncontrado.responsable != null ?   usuarioEncontrado.responsable.rol.nombre : null;
-            const rol_admin =  usuarioEncontrado.adminstrativo != null ?  usuarioEncontrado.responsable.rol.nombre : null;
+            const rol_tutor = usuarioEncontrado.responsable != null ? usuarioEncontrado.responsable.rol.nombre : null;
+            const rol_admin = usuarioEncontrado.administrativo != null ? usuarioEncontrado.administrativo.rol.nombre : null;
 
+            setInterval(() => {
+              this.onTimeService.getActualUser();
+            }, 180000);
 
             if (rol_tutor === 'Tutor') {
               this.router.navigate(['cbtis248/home']);
             } else if (rol_admin === 'Admin') {
-              this.router.navigate(['cbtis248/homeadmin']);
-            }else if (rol_admin === 'Maestro') {
-              this.router.navigate(['cbtis248/homeadmin']);
-            }else if (rol_admin === 'Prefecto') {
+              this.router.navigate(['cbtis248/homeAdmin']);
+            } else if (rol_admin === 'Maestro') {
+              this.router.navigate(['cbtis248/homeAdmin']);
+            } else if (rol_admin === 'Prefecto') {
               this.router.navigate(['cbtis248/homeAdmin']);
             }
           } else {
@@ -68,5 +72,25 @@ export class LoginComponent {
       }
     });
   }
+
+/*   async getActualUser() {
+    const data = localStorage.getItem('usuario') || '{}';
+    const actualUser = JSON.parse(data);
+
+    this.apiService.getUsuarios().subscribe((usuarios: any[]) => {
+      console.log('recargando Informacion');
+
+      const usuarioAutenticadoId = actualUser?.id;
+      const usuarioEncontrado = usuarios.find(usuario => usuario.id === usuarioAutenticadoId);
+
+      if (usuarioEncontrado) {
+        console.log('Información del usuario encontrado:', usuarioEncontrado);
+        // Guardar la información del usuario en localStorage
+        localStorage.setItem('usuario', JSON.stringify(usuarioEncontrado));
+      } else {
+        console.log('Usuario no encontrado en la lista.');
+      }
+    });
+  } */
 
 }

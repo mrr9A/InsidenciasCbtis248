@@ -73,6 +73,7 @@
   border-radius: 16px;
   box-shadow: inset 5px 5px 10px rgba(148, 145, 145, 0.627), inset -5px -5px 10px rgba(142, 142, 142, 0.638);
   margin: 0 auto; /* Centrar horizontalmente */
+  margin-bottom: 0.5rem;
 }
 
 /* Contenido de la tarjeta */

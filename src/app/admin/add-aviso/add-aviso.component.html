@@ -1,26 +1,33 @@
-<h2>Registrar Nuevo Ítem</h2>
-<form [formGroup]="itemForm" (ngSubmit)="onSubmit()">
-  <div>
-    <label for="nombre">Nombre</label>
+<h2 class="title">Agregar aviso</h2>
+<form [formGroup]="itemForm" (ngSubmit)="onSubmit()" class="form-container">
+  <div class="image-upload">
+    <input type="file" id="upload-photo" formControlName="file" hidden (change)="onImageSelected($event)" />
+    <label for="upload-photo" class="upload-label">
+      <img [src]="imagePreview || 'assets/img/Group 6863.png'" alt="Subir foto" class="upload-icon" />
+    </label>
+  </div>
+
+  <div class="form-group">
+    <label for="nombre">Nombre del responsable</label>
     <input id="nombre" formControlName="nombre" type="text" required />
   </div>
 
-  <div>
+  <div class="form-group">
     <label for="descripcion">Descripción</label>
-    <input id="descripcion" formControlName="descripcion" type="text" required />
+    <textarea id="descripcion" formControlName="descripcion" type="text" required></textarea>
   </div>
 
-  <div>
+  <div class="form-group">
     <label for="fecha">Fecha</label>
     <input id="fecha" formControlName="fecha" type="date" required />
   </div>
 
-  <div class="select-container">
-    <label for="grupoIds">Grupos</label>
-    <select id="grupoIds" multiple (change)="onGrupoChange($event)">
-      <option *ngFor="let grupo of grupos" [value]="grupo.id">{{ grupo.grado }} {{ grupo.grupo }} {{ grupo.especialidad }}</option>
-    </select>
-  </div>
-
-  <button type="submit" [disabled]="itemForm.invalid">Registrar</button>
+  <mat-form-field>
+    <mat-select placeholder="Seleccionar grupos" (selectionChange)="onGrupoChange($event)" multiple>
+      <mat-option *ngFor="let grupo of grupos" [value]="grupo.id">
+        {{ grupo.grado }} {{ grupo.grupo }} {{ grupo.especialidad }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <button type="submit" [disabled]="itemForm.invalid" class="submit-button">Registrar</button>
 </form>

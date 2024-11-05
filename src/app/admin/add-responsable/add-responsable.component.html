@@ -1,3 +1,13 @@
+<body>
+<nav class="bg-light fixed-menu">
+  <div class="container-fluid">
+    <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#mobileMenu"
+      aria-controls="mobileMenu">
+      <img src="assets/img/ico-menu.svg" alt="">
+    </button>
+  </div>
+</nav>
+<app-menu-admin></app-menu-admin>
 <h2 class="title">Agregar responsable</h2>
 <form [formGroup]="tutorForm" (ngSubmit)="onSubmit()" class="form-container">
 
@@ -48,3 +58,4 @@
 
   <button type="submit" [disabled]="tutorForm.invalid" class="submit-button">Registrar</button>
 </form>
+</body>

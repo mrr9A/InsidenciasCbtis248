@@ -1,3 +1,12 @@
+<nav class="bg-light fixed-menu">
+  <div class="container-fluid">
+    <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#mobileMenu"
+      aria-controls="mobileMenu">
+      <img src="assets/img/ico-menu.svg" alt="">
+    </button>
+  </div>
+</nav>
+<app-menu-admin></app-menu-admin>
 <h2 class="title">Agregar aviso</h2>
 <form [formGroup]="itemForm" (ngSubmit)="onSubmit()" class="form-container">
   <div class="image-upload">

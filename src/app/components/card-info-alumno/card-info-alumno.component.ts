@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { ApisService } from '../../services/apis.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { onTimeService } from '../../services/actulizarInfor.service';
 
 @Component({
   selector: 'app-card-info-alumno',
@@ -14,9 +15,12 @@ export class CardInfoAlumnoComponent {
   selectedAlumno: any | null = null; // Almacena el alumno seleccionado
   alumnos: any[] = []; // Arreglo para almacenar la lista de alumnos
 
-  constructor(private apisService: ApisService) { }
+  constructor(private onTimeService : onTimeService,private apisService: ApisService) { }
 
   ngOnInit() {
+    setInterval(() => {
+      this.onTimeService.getActualUser();
+    }, 180000);
     this.loadAlumnos(); // Cargar la lista de alumnos al inicializar el componente
   }
 

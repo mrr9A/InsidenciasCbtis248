@@ -1,5 +1,6 @@
 import { Component, ElementRef } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
+import { onTimeService } from '../../services/actulizarInfor.service';
 
 @Component({
   selector: 'app-modal-historial',
@@ -10,12 +11,18 @@ import { MatDialogRef } from '@angular/material/dialog';
 })
 export class ModalHistorialComponent {
 
-  constructor(public dialogRef: MatDialogRef<ModalHistorialComponent>, private elementRef: ElementRef) {
+  constructor(private onTimeService : onTimeService,public dialogRef: MatDialogRef<ModalHistorialComponent>, private elementRef: ElementRef) {
     // Muestra el modal al abrirlo
     setTimeout(() => {
       const content = this.elementRef.nativeElement.querySelector('.content');
       content.classList.add('show');
     }, 0);
+  }
+
+  ngOnInit(): void {
+    setInterval(() => {
+      this.onTimeService.getActualUser();
+    }, 180000);
   }
 
   onClose(): void {

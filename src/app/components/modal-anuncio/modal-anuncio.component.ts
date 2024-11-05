@@ -2,6 +2,7 @@ import { Component, ElementRef, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { ApisService } from '../../services/apis.service';
 import { CommonModule } from '@angular/common';
+import { onTimeService } from '../../services/actulizarInfor.service';
 
 @Component({
   selector: 'app-modal-anuncio',
@@ -13,7 +14,7 @@ import { CommonModule } from '@angular/common';
 export class ModalAnuncioComponent {
   anuncio: any;
 
-  constructor(public dialogRef: MatDialogRef<ModalAnuncioComponent>, private elementRef: ElementRef,
+  constructor(private onTimeService : onTimeService,public dialogRef: MatDialogRef<ModalAnuncioComponent>, private elementRef: ElementRef,
     @Inject(MAT_DIALOG_DATA) public data: { anuncioId: number },
     private apisService: ApisService
   ) {
@@ -25,6 +26,9 @@ export class ModalAnuncioComponent {
   }
 
   ngOnInit(): void {
+    setInterval(() => {
+      this.onTimeService.getActualUser();
+    }, 180000);
     this.apisService.getAvisos().subscribe((data: any[]) => {
       this.anuncio = data.find(anuncio => anuncio.id === this.data.anuncioId);
     });

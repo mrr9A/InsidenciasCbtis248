@@ -1,0 +1,36 @@
+<nav class="bg-light fixed-menu">
+  <div class="container-fluid">
+    <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#mobileMenu"
+      aria-controls="mobileMenu">
+      <img src="assets/img/ico-menu.svg" alt="">
+    </button>
+  </div>
+</nav>
+<app-menu-admin></app-menu-admin>
+<h2 class="title">Lista de Responsables</h2>
+<div class="image-upload">
+  <img src="assets/img/Logo2uia 4.png" alt="Subir foto"/>
+</div>
+<form class="form-container">
+  <mat-form-field class="rounded-field">
+    <mat-select placeholder="Seleccionar grupo" (selectionChange)="onGrupoSeleccionado($event.value)">
+      <mat-option *ngFor="let grupo of grupos" [value]="grupo">
+        {{ grupo.grado }} - {{ grupo.grupo }} - {{ grupo.especialidad }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <h3 class="title">Lista de Responsables:</h3>
+
+  <div *ngIf="responsables.length > 0; else noResponsables">
+    <div class="info-item" *ngFor="let responsable of responsables">
+      <img [src]="responsable.responsable.img" alt="{{ responsable.responsable.nombre }}" width="50" class="img-avar">
+      <span><strong>Responsable:</strong> {{ responsable.responsable.nombre }} {{ responsable.responsable.apellido_paterno }} {{ responsable.responsable.apellido_materno }}</span>
+      <i class="bi bi-chevron-compact-right"></i>
+    </div>
+  </div>
+
+  <ng-template #noResponsables>
+    <p>Sin responsables</p>
+  </ng-template>
+</form>

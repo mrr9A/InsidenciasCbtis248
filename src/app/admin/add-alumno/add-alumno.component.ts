@@ -8,31 +8,32 @@ import { MenuAdminComponent } from '../component/menu-admin/menu-admin.component
 import { onTimeService } from '../../services/actulizarInfor.service';
 
 @Component({
-  selector: 'app-add-administrativo',
+  selector: 'app-add-alumno',
   standalone: true,
   imports: [ReactiveFormsModule,CommonModule, NgSelectModule, MatSelectModule,MenuAdminComponent],
-  templateUrl: './add-administrativo.component.html',
-  styleUrl: './add-administrativo.component.css'
+  templateUrl: './add-alumno.component.html',
+  styleUrl: './add-alumno.component.css'
 })
-export class AddAdministrativoComponent {
+export class AddAlumnoComponent {
 
-  administrativoForm: FormGroup;
-  roles: any[] = [];
+
+  alumnoForm: FormGroup;
+  grupos: any[] = [];
   selectedImage: File | null = null; // Para almacenar la imagen seleccionada
   imagePreview: string | null = null; // Para almacenar la URL de la imagen para la previsualización
 
   constructor(private onTimeService : onTimeService,private fb: FormBuilder, private apiService: ApisService) {
-    this.administrativoForm = this.fb.group({
+    this.alumnoForm = this.fb.group({
       nombre: ['', Validators.required],
       apellido_paterno: ['', Validators.required],
       apellido_materno: ['', Validators.required],
       correo_electronico: ['', [Validators.required, Validators.email]],
       num_telefono: ['', Validators.required],
+      num_control_escolar: ['', Validators.required],
       file: [],
-      folder: ['administrativos',Validators.required], // Campo para la imagen
-      img: ['placeholder',Validators.required], // Campo para la imagen
-      rolId: [, Validators.required],
-      password: ['', [Validators.required, Validators.minLength(8)]]
+      folder: ['alumnos',Validators.required], // Campo para la imagen
+      imagen_perfil: ['placeholder',Validators.required], // Campo para la imagen
+      grupoId: [, Validators.required],
     });
   }
 
@@ -44,9 +45,9 @@ export class AddAdministrativoComponent {
   }
 
   loadRoles() {
-    this.apiService.getRoles().subscribe({
-      next: (roles: any[]) => {
-        this.roles = roles;
+    this.apiService.getGrupos().subscribe({
+      next: (grupos: any[]) => {
+        this.grupos = grupos;
       },
       error: (error) => console.error('Error al cargar roles:', error)
     });
@@ -68,21 +69,21 @@ export class AddAdministrativoComponent {
     }
 
     onSubmit(): void {
-      if (this.administrativoForm.valid) {
+      if (this.alumnoForm.valid) {
   /*       const alumnoIds = this.tutorForm.get('alumnoIds')?.value;
         console.log(alumnoIds); */
 
           const formData = new FormData();
 
-          formData.append('nombre', this.administrativoForm.get('nombre')?.value);
-          formData.append('apellido_paterno', this.administrativoForm.get('apellido_paterno')?.value);
-          formData.append('apellido_materno', this.administrativoForm.get('apellido_materno')?.value);
-          formData.append('correo_electronico', this.administrativoForm.get('correo_electronico')?.value);
-          formData.append('num_telefono', this.administrativoForm.get('num_telefono')?.value);
-          formData.append('rolId', this.administrativoForm.get('rolId')?.value);
-          formData.append('password', this.administrativoForm.get('password')?.value);
-          formData.append('folder', this.administrativoForm.get('folder')?.value);
-          formData.append('img', this.administrativoForm.get('img')?.value);
+          formData.append('nombre', this.alumnoForm.get('nombre')?.value);
+          formData.append('apellido_paterno', this.alumnoForm.get('apellido_paterno')?.value);
+          formData.append('apellido_materno', this.alumnoForm.get('apellido_materno')?.value);
+          formData.append('correo_electronico', this.alumnoForm.get('correo_electronico')?.value);
+          formData.append('num_telefono', this.alumnoForm.get('num_telefono')?.value);
+          formData.append('num_control_escolar', this.alumnoForm.get('num_control_escolar')?.value);
+          formData.append('grupoId', this.alumnoForm.get('grupoId')?.value);
+          formData.append('folder', this.alumnoForm.get('folder')?.value);
+          formData.append('imagen_perfil', this.alumnoForm.get('imagen_perfil')?.value);
 
           if (this.selectedImage) {
               formData.append('file', this.selectedImage);
@@ -93,9 +94,9 @@ export class AddAdministrativoComponent {
               console.log(key, value);
           });
 
-          this.apiService.postAdministrativos(formData).subscribe({
-              next: () => console.log('Administrativo guardado con éxito'),
-              error: (error) => console.error('Error al guardar Administrativo:', error)
+          this.apiService.postAlumnos(formData).subscribe({
+              next: () => console.log('Alumno guardado con éxito'),
+              error: (error) => console.error('Error al guardar alumno:', error)
           });
       }
   }

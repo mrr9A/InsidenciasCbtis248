@@ -8,7 +8,6 @@
 .form-container {
   display: flex;
   flex-direction: column;
-  align-items: center;
   padding: 20px;
   width: 100%;
 }
@@ -44,7 +43,6 @@
   background: transparent;
 }
 
-
 .form-group textarea {
   font-weight: bold;
   color: #671233;
@@ -54,7 +52,6 @@
   font-size: 1rem;
   background: transparent;
 }
-
 
 .submit-button {
   background-color: #f8c8d6; /* Guinda bajito */
@@ -99,9 +96,7 @@ mat-form-field {
   color: #671233; /* Color de las opciones */
 }
 
-
 /* CSS DEL MENU */
-
 .navbar-toggler {
   border: none; /* Sin borde en el botón */
 }
@@ -132,4 +127,25 @@ mat-form-field {
 .navbar-toggler:active {
   outline: none !important; /* Evita el contorno mientras el botón está activo */
   box-shadow: none !important; /* Elimina cualquier sombra o efecto activo */
+}
+
+.info-item {
+  display: flex;
+  align-items: center;
+  background-color: #d9d9d9;
+  padding: 0.8rem 1rem;
+  border-radius: 10px;
+  margin-bottom: 1rem;
+  box-shadow: inset 2px 2px 5px rgba(0, 0, 0, 0.1), inset -2px -2px 5px rgba(255, 255, 255, 0.7);
+}
+
+/* Estilo para los íconos */
+.info-item i {
+  font-size: 1.5rem;
+  margin-left: auto; /* Mueve el ícono a la derecha */
+}
+
+/* Estilo específico para la imagen */
+.info-item img {
+  margin-right: 15px; /* Espacio a la derecha de la imagen */
 }

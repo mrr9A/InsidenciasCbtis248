@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { MenuComponent } from '../../components/menu/menu.component';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { onTimeService } from '../../services/actulizarInfor.service';
 
 @Component({
   selector: 'app-historial',
@@ -17,8 +18,11 @@ export class HistorialComponent {
   selectedFecha: string = ''; // Fecha seleccionada
   selectedAlumnoId: number | null = null; // ID del alumno seleccionado
   chooseDate: string = '';
-
+constructor(private onTimeService : onTimeService){}
   ngOnInit() {
+    setInterval(() => {
+      this.onTimeService.getActualUser();
+    }, 180000);
     this.loadAlumnos(); // Cargar incidencias al iniciar el componente
   }
   loadAlumnos() {

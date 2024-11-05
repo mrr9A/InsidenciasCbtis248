@@ -1,3 +1,6 @@
+html, body {
+  overflow: auto; /* Asegúrate de que no esté configurado en hidden */
+}
 .title {
   font-size: 1.5rem;
   color: #8B1E3F;
@@ -20,17 +23,6 @@
   margin-bottom: 30px;
 }
 
-/* .upload-label {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background-color: #f0f0f0;
-  border-radius: 50%;
-  width: 250px;
-  height: 250px;
-  justify-content: center;
-  cursor: pointer;
-} */
 
 .upload-label {
   display: flex;
@@ -44,11 +36,6 @@
   cursor: pointer;
   overflow: hidden; /* Asegura que la imagen se mantenga dentro del contenedor redondo */
 }
-
-/* .upload-icon {
-  width: 60px;
-  height: 60px;
-} */
 
 .upload-icon {
   width: 100%; /* Asegura que la imagen ocupe todo el espacio disponible */
@@ -113,3 +100,62 @@
   background-color: #8B1E3F; /* Guinda fuerte cuando está habilitado */
 }
 
+
+mat-form-field {
+  width: 100%; /* Ajusta el ancho como desees */
+  border-radius: 8px; /* Bordes redondeados */
+  overflow: hidden; /* Asegura que el contenido respete los bordes redondeados */
+}
+
+.mat-select-panel {
+  border-radius: 8px; /* Bordes redondeados del panel desplegable */
+}
+
+.mat-select {
+  background-color: #D9D9D9; /* Color de fondo */
+  color: #671233; /* Color de las letras */
+  border-radius: 8px; /* Bordes redondeados */
+}
+
+.mat-select .mat-select-value {
+  color: #671233; /* Color del texto seleccionado */
+}
+
+.mat-option {
+  color: #671233; /* Color de las opciones */
+}
+
+
+/* CSS DEL MENU */
+
+.navbar-toggler {
+  border: none; /* Sin borde en el botón */
+}
+
+.fixed-menu {
+  position: fixed; /* Hace que el menú sea fijo */
+  top: 0; /* Fijar en la parte superior */
+  left: 0; /* Fijar en el lado izquierdo */
+  width: 0px; /* Ancho del menú */
+  height: 10%; /* Ocupa toda la altura de la ventana */
+  background-color: #ffffff; /* Color de fondo */
+  top: 12px;
+  color: white;
+  z-index: 1000; /* Asegura que esté por encima del contenido */
+}
+
+.navbar-toggler {
+  border: none; /* Sin borde en el botón */
+  outline: none !important; /* Asegúrate de que el contorno no aparezca nunca */
+  box-shadow: none !important; /* Evita cualquier sombra que pueda aparecer */
+}
+
+.navbar-toggler:focus {
+  outline: none !important; /* Evita el contorno al hacer clic */
+  box-shadow: none !important; /* Evita cualquier sombra al hacer clic */
+}
+
+.navbar-toggler:active {
+  outline: none !important; /* Evita el contorno mientras el botón está activo */
+  box-shadow: none !important; /* Elimina cualquier sombra o efecto activo */
+}

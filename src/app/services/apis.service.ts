@@ -22,8 +22,8 @@ export class ApisService {
     return this.http.get(`${this.apiURL}/api/tipo-incidencias`)
   }
 
-  getGrupos() { //ESTE ES LA API PARA MANDAR A LLAMAR A LOS TUTORES
-    return this.http.get(`${this.apiURL}/api/grupos`)
+  getGrupos(): Observable<any[]> { //ESTE ES LA API PARA MANDAR A LLAMAR A LOS TUTORES
+    return this.http.get<any[]>(`${this.apiURL}/api/grupos`)
   }
 
   getRoles(): Observable<any[]> {
@@ -53,6 +53,9 @@ export class ApisService {
   postAdministrativos(formData: FormData): Observable<any> {
     return this.http.post('http://localhost:3000/api/administrativos', formData);
   }
+  postAlumnos(formData: FormData): Observable<any> {
+    return this.http.post('http://localhost:3000/api/alumnos', formData);
+  }
 
   postAvisos(formData: FormData): Observable<any> {
     return this.http.post(`${this.apiURL}/api/avisos`, formData);
@@ -62,8 +65,8 @@ export class ApisService {
     return this.http.post(`${this.apiURL}/api/responsables`, formData);
   }
 
-  postIncidencia(data: any): Observable<any> {
-    return this.http.post(`${this.apiURL}/api/incidencias`, data);
+  postIncidencia(formData: FormData): Observable<any> {
+    return this.http.post(`${this.apiURL}/api/incidencias`, formData);
   }
 
 }

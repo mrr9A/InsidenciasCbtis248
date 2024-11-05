@@ -1,9 +1,9 @@
 <div class="offcanvas offcanvas-start" tabindex="-1" id="mobileMenu" aria-labelledby="mobileMenuLabel">
   <div class="offcanvas-header bg-custom text-white">
     <div class="text-center w-100">
-      <img src="assets/img/maxfoto.png" alt="Profile Image" class="rounded-circle profile-img">
+      <img [src]="usuario.administrativo.img" alt="Profile Image" class="rounded-circle profile-img">
       <br><br>
-      <h5 class="mt-2">Maximiliano León</h5>
+      <h5 class="mt-2">{{usuario.administrativo.nombre}}</h5>
     </div>
   </div>
   <div class="offcanvas-body">
@@ -18,10 +18,19 @@
         <a class="nav-link" [routerLink]="['/cbtis248/addResponsable']"><i class="bi bi-person-plus"></i>Agregar responsable</a>
       </li>
       <li class="nav-item">
+        <a class="nav-link" [routerLink]="['/cbtis248/addAlumno']"><i class="bi bi-person-fill-check"></i>Agregar alumno</a>
+      </li>
+      <li class="nav-item">
         <a class="nav-link" [routerLink]="['/cbtis248/addAviso']" ><i class="bi bi-patch-plus"></i>Agregar avisos</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" [routerLink]="['/cbtis248/addReporte']"><i class="bi bi-exclamation-diamond"></i>Levantar reporte</a>
+        <a class="nav-link" [routerLink]="['/cbtis248/listResponsable']"><i class="bi bi-list-check"></i>Lista de responsables</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" [routerLink]="['/cbtis248/listAdministrativos']"><i class="bi bi-list-check"></i>Lista de administrativos</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" [routerLink]="['/cbtis248/listAlumnos']"><i class="bi bi-list-check"></i>Lista de alumnos</a>
       </li>
     </ul>
   </div>

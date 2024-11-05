@@ -3,11 +3,13 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, FormArray, Validators, ReactiveFormsModule } from '@angular/forms';
 import { ApisService } from '../../services/apis.service';
 import { MatSelectModule } from '@angular/material/select';
+import { MenuAdminComponent } from '../component/menu-admin/menu-admin.component';
+import { onTimeService } from '../../services/actulizarInfor.service';
 
 @Component({
   selector: 'app-add-aviso',
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule,MatSelectModule],
+  imports: [ReactiveFormsModule, CommonModule,MatSelectModule,MenuAdminComponent],
   templateUrl: './add-aviso.component.html',
   styleUrl: './add-aviso.component.css'
 })
@@ -17,7 +19,7 @@ export class AddAvisoComponent {
   selectedImage: File | null = null; // Para almacenar la imagen seleccionada
   imagePreview: string | null = null; // Para almacenar la URL de la imagen para la previsualización
 
-  constructor(private fb: FormBuilder, private apiService: ApisService) {
+  constructor(private onTimeService : onTimeService,private fb: FormBuilder, private apiService: ApisService) {
     this.itemForm = this.fb.group({
       nombre: ['', Validators.required],
       descripcion: ['', Validators.required],
@@ -30,6 +32,9 @@ export class AddAvisoComponent {
   }
 
   ngOnInit(): void {
+    setInterval(() => {
+      this.onTimeService.getActualUser();
+    }, 180000);
     this.cargarGrupos();
   }
 
@@ -99,16 +104,5 @@ export class AddAvisoComponent {
         });
     }
 }
-/*   onSubmit(): void {
-    if (this.itemForm.valid) {
-      const formData = this.itemForm.value;
-      console.log('Datos enviados:', formData);
 
-      // Llamada a la API para guardar los datos
-      this.apiService.postAvisos(formData).subscribe({
-        next: () => console.log('Item guardado con éxito'),
-        error: (error) => console.error('Error al guardar item:', error)
-      });
-    }
-  } */
 }

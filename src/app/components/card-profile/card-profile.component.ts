@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { onTimeService } from '../../services/actulizarInfor.service';
 
 @Component({
   selector: 'app-card-profile',
@@ -16,9 +17,12 @@ export class CardProfileComponent {
   telefono: string = '';
   tipoPerfil: string = '';
 
-  constructor(private router: Router) {}
+  constructor(private onTimeService : onTimeService,private router: Router) {}
 
   ngOnInit(): void {
+    setInterval(() => {
+      this.onTimeService.getActualUser();
+    }, 180000);
     this.loadUsuario();
   }
 

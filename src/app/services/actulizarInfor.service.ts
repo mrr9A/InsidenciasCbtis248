@@ -13,17 +13,17 @@ export class onTimeService {
     const actualUser = JSON.parse(data);
 
     this.apiService.getUsuarios().subscribe((usuarios: any[]) => {
-      console.log('recargando Informacion');
+     // console.log('recargando Informacion');
 
       const usuarioAutenticadoId = actualUser?.id;
       const usuarioEncontrado = usuarios.find(usuario => usuario.id === usuarioAutenticadoId);
 
       if (usuarioEncontrado) {
-        console.log('Información del usuario encontrado:', usuarioEncontrado);
+       // console.log('Información del usuario encontrado:', usuarioEncontrado);
         // Guardar la información del usuario en localStorage
         localStorage.setItem('usuario', JSON.stringify(usuarioEncontrado));
       } else {
-        console.log('Usuario no encontrado en la lista.');
+        //console.log('Usuario no encontrado en la lista.');
       }
     });
   }

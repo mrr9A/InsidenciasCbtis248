@@ -13,7 +13,6 @@
   display: flex;
   justify-content: center;
   width: 100%;
-  margin-top: 24px;
 }
 
 .logo {
@@ -25,7 +24,6 @@
   width: 95%;
   text-align: start;
   padding-left: 30px;
-  margin-top: 80px;
 }
 
 h1, p {

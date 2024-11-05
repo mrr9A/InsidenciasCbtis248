@@ -2,11 +2,13 @@ import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet,CommonModule,HttpClientModule],
+  imports: [RouterOutlet,CommonModule,HttpClientModule,MatSnackBarModule,MatProgressSpinnerModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })

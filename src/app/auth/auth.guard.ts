@@ -35,7 +35,7 @@ export const authGuard: CanActivateFn = (route, state) => {
 
     // Verificación de rutas permitidas para los usuarios autenticados
     const rutasPermitidas = {
-      Tutor: ['historialIncidencias', 'avisos', 'profile'],
+      Tutor: ['historialIncidencias', 'avisos', 'profile','home'],
       Admin: [
         'homeAdmin', 'addReporte', 'addAdministrativo', 'addResponsable',
         'addAviso', 'listResponsable', 'listAdministrativos', 'addAlumno','listAlumnos'

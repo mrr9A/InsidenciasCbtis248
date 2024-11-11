@@ -3,6 +3,8 @@ import { MenuComponent } from '../../components/menu/menu.component';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { onTimeService } from '../../services/actulizarInfor.service';
+import { MatDialog } from '@angular/material/dialog';
+import { ModalHistorialComponent } from '../../components/modal-historial/modal-historial.component';
 
 @Component({
   selector: 'app-historial',
@@ -18,7 +20,8 @@ export class HistorialComponent {
   selectedFecha: string = ''; // Fecha seleccionada
   selectedAlumnoId: number | null = null; // ID del alumno seleccionado
   chooseDate: string = '';
-constructor(private onTimeService : onTimeService){}
+  isModalOpen = false;
+constructor(private onTimeService : onTimeService,public dialog: MatDialog){}
   ngOnInit() {
     setInterval(() => {
       this.onTimeService.getActualUser();
@@ -86,8 +89,18 @@ constructor(private onTimeService : onTimeService){}
     }
   }
 
+    openModal(anuncioId: number): void {
+      this.isModalOpen = true; // Abre el modal
+      const dialogRef = this.dialog.open(ModalHistorialComponent, {
+        width: '100%', // Ancho completo para el modal
+        height: '100%', // Alto completo para el modal
+        panelClass: 'full-screen-modal', // Clase personalizada para el modal
+        data: { anuncioId }  // Pasa el ID del aviso
+      });
 
-  openModal(incidenciaId: number) {
-    console.log('Abrir modal para la incidencia con ID:', incidenciaId);
-  }
+      dialogRef.afterClosed().subscribe(() => {
+        this.isModalOpen = false; // Cierra el modal
+        console.log('El modal fue cerrado');
+      });
+    }
 }

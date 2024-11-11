@@ -109,13 +109,13 @@ export class AddResponsableComponent {
                   console.log(key, value);
               }); */
 
-      /*         this.apiService.postTutor(formData).subscribe({
+              this.apiService.postTutor(formData).subscribe({
                   next: () => console.log('Tutor guardado con éxito'),
                   error: (error) => console.error('Error al guardar tutor:', error)
               });
           }
-      } */
-      this.apiService.postTutor(formData).subscribe({
+      }
+/*       this.apiService.postTutor(formData).subscribe({
         next: () => {
           console.log('Tutor guardado con éxito');
           this.router.navigate(['/ruta/lista-responsables']); // Cambia '/ruta/lista-responsables' por tu ruta real
@@ -123,7 +123,7 @@ export class AddResponsableComponent {
         error: (error) => console.error('Error al guardar tutor:', error)
       });
     }
-  }
+  } */
 
 
 }

@@ -8,7 +8,8 @@ import { Observable } from 'rxjs';
 export class ApisService {
 
   constructor(private http: HttpClient) { }
-  private apiURL = 'http://localhost:3000'
+  /* private apiURL = 'http://localhost:3000' */
+  private apiURL = 'https://cbtis248back.onrender.com'
 
   login(credentials: { correo_electronico: string; password: string }) {
     return this.http.post(`${this.apiURL}/api/auth/login`, credentials);
@@ -43,7 +44,10 @@ export class ApisService {
   }
 
   getUsuarios() { // Tipamos la respuesta como Observable<any[]>
-    return this.http.get<any[]>(`${this.apiURL}/api/usuarios`)
+    let data =  this.http.get<any[]>(`${this.apiURL}/api/usuarios`);
+    console.log("User Data", typeof data);
+
+    return data;
   }
 
   getAlumnosRespo() { // Tipamos la respuesta como Observable<any[]>

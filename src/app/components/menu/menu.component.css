@@ -71,3 +71,20 @@
     padding-left: 0;
   }
 }
+
+/* Logo de la aplicación */
+.logo1 {
+  left: 5px; /* Ajusta este valor para mover el logo horizontalmente */
+  top: 5px; /* Ajusta este valor para mover el logo verticalmente */
+  width: 160px;
+  margin-top: 5px;
+  height: 160px;
+  border-radius: 50%;
+  object-fit: cover; /* Evitar que se deforme el logo */
+}
+
+.title {
+  font-size: 1.2rem;
+  color: #ffffff;
+  text-align: center;
+}

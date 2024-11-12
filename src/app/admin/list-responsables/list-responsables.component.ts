@@ -1,23 +1,3 @@
-/* import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { MenuAdminComponent } from '../component/menu-admin/menu-admin.component';
-import { MatSelectModule } from '@angular/material/select';
-import { ApisService } from '../../services/apis.service';
-import { onTimeService } from '../../services/actulizarInfor.service';
-
-@Component({
-  selector: 'app-list-responsables',
-  standalone: true,
-  imports: [ReactiveFormsModule, CommonModule, MenuAdminComponent, MatSelectModule],
-  templateUrl: './list-responsables.component.html',
-  styleUrls: ['./list-responsables.component.css'] // Asegúrate de que sea 'styleUrls' y no 'styleUrl'
-})
-export class ListResponsablesComponent {
-
-}
- */
-
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
@@ -50,7 +30,7 @@ export class ListResponsablesComponent {
     this.apiService.getGrupos().subscribe({
       next: (data: any) => {
         this.grupos = data;
-        console.log(this.grupos);
+        //console.log(this.grupos);
       },
       error: (error) => {
         console.error('Error al cargar grupos:', error);
@@ -60,7 +40,7 @@ export class ListResponsablesComponent {
 
   onGrupoSeleccionado(grupoSeleccionado: any): void {
     this.responsables = this.extraerResponsables(grupoSeleccionado.alumnos); // Extraer los responsables
-    console.log('Responsables del grupo seleccionado:', this.responsables);
+    //console.log('Responsables del grupo seleccionado:', this.responsables);
   }
 
   extraerResponsables(alumnos: any[]): any[] {

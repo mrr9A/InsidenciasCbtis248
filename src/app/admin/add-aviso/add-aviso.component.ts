@@ -5,11 +5,14 @@ import { ApisService } from '../../services/apis.service';
 import { MatSelectModule } from '@angular/material/select';
 import { MenuAdminComponent } from '../component/menu-admin/menu-admin.component';
 import { onTimeService } from '../../services/actulizarInfor.service';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-aviso',
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule,MatSelectModule,MenuAdminComponent],
+  imports: [ReactiveFormsModule, CommonModule, MatSelectModule, MenuAdminComponent, MatProgressSpinnerModule],
   templateUrl: './add-aviso.component.html',
   styleUrl: './add-aviso.component.css'
 })
@@ -18,8 +21,9 @@ export class AddAvisoComponent {
   grupos: any[] = [];
   selectedImage: File | null = null; // Para almacenar la imagen seleccionada
   imagePreview: string | null = null; // Para almacenar la URL de la imagen para la previsualización
+  isLoading = false;  // Variable para controlar el estado de carga
 
-  constructor(private onTimeService : onTimeService,private fb: FormBuilder, private apiService: ApisService) {
+  constructor(private onTimeService: onTimeService, private fb: FormBuilder, private apiService: ApisService, private snackBar: MatSnackBar,private router: Router) {
     this.itemForm = this.fb.group({
       nombre: ['', Validators.required],
       descripcion: ['', Validators.required],
@@ -77,32 +81,33 @@ export class AddAvisoComponent {
 
   onSubmit(): void {
     if (this.itemForm.valid) {
-/*       const alumnoIds = this.tutorForm.get('alumnoIds')?.value;
-      console.log(alumnoIds); */
+      this.isLoading = true; // Activar el spinner al iniciar la petición
+      const formData = new FormData();
 
-        const formData = new FormData();
+      formData.append('nombre', this.itemForm.get('nombre')?.value);
+      formData.append('descripcion', this.itemForm.get('descripcion')?.value);
+      formData.append('fecha', this.itemForm.get('fecha')?.value);
+      formData.append('img', this.itemForm.get('img')?.value);
+      formData.append('folder', this.itemForm.get('folder')?.value);
+      formData.append('grupoIds', JSON.stringify(this.itemForm.get('grupoIds')?.value));
 
-        formData.append('nombre', this.itemForm.get('nombre')?.value);
-        formData.append('descripcion', this.itemForm.get('descripcion')?.value);
-        formData.append('fecha', this.itemForm.get('fecha')?.value);
-        formData.append('img', this.itemForm.get('img')?.value);
-        formData.append('folder', this.itemForm.get('folder')?.value);
-        formData.append('grupoIds', JSON.stringify(this.itemForm.get('grupoIds')?.value));
+      if (this.selectedImage) {
+        formData.append('file', this.selectedImage);
+      }
 
-        if (this.selectedImage) {
-            formData.append('file', this.selectedImage);
+      this.apiService.postAvisos(formData).subscribe({
+        next: () => {
+          this.isLoading = false; // Desactivar el spinner al finalizar
+          this.snackBar.open('Aviso registrado con éxito', 'Cerrar', { duration: 3000 });
+          this.router.navigate(['/cbtis248/listAlumnos']); // Cambia '/ruta/lista-responsables' por tu ruta real
+        },
+        error: (error) => {
+          this.isLoading = false; // Desactivar el spinner en caso de error
+          this.snackBar.open(`Error al guardar aviso: ${error.message}`, 'Cerrar', { duration: 3000 });
+          console.error('Error al guardar aviso:', error);
         }
-
-        // Imprime los campos de FormData para verificación
-        formData.forEach((value, key) => {
-            console.log(key, value);
-        });
-
-        this.apiService.postAvisos(formData).subscribe({
-            next: () => console.log('Tutor guardado con éxito'),
-            error: (error) => console.error('Error al guardar tutor:', error)
-        });
+      });
     }
-}
+  }
 
 }

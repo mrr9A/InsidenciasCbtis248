@@ -5,11 +5,14 @@ import { CommonModule } from '@angular/common';
 import { MenuAdminComponent } from '../component/menu-admin/menu-admin.component';
 import { MatSelectModule } from '@angular/material/select';
 import { onTimeService } from '../../services/actulizarInfor.service';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-reporte',
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule, MenuAdminComponent, MatSelectModule],
+  imports: [ReactiveFormsModule, CommonModule, MenuAdminComponent, MatSelectModule, MatProgressSpinnerModule],
   templateUrl: './add-reporte.component.html',
   styleUrl: './add-reporte.component.css'
 })
@@ -19,8 +22,9 @@ export class AddReporteComponent {
   alumnos: any[] = []; // Lista de alumnos a mostrar
   grupos: any[] = [];  // Lista de grupos obtenidos
   tiposIncidencia: any[] = [];  // Lista de tipos de incidencia obtenidos
+  isLoading = false; // Variable para controlar el estado de carga
 
-  constructor(private onTimeService : onTimeService,private fb: FormBuilder, private apiService: ApisService) {
+  constructor(private onTimeService: onTimeService, private fb: FormBuilder, private apiService: ApisService, private snackBar: MatSnackBar,private router: Router) {
     this.incidenciaForm = this.fb.group({
       tipo_incidencia_id: [, Validators.required],
       descripcion: ['', Validators.required],
@@ -75,22 +79,29 @@ export class AddReporteComponent {
     }
   }
 
-    onSubmit(): void {
-      if (this.incidenciaForm.valid) {
-        // Agregar la fecha actual si no se ha proporcionado una
-        const fechaActual = new Date().toISOString().split('T')[0]; // Formato 'YYYY-MM-DD'
-        this.incidenciaForm.get('fecha')?.setValue(fechaActual);
+  onSubmit(): void {
+    if (this.incidenciaForm.valid) {
+      this.isLoading = true; // Activar el spinner al iniciar la petición
+      // Agregar la fecha actual si no se ha proporcionado una
+      const fechaActual = new Date().toISOString().split('T')[0]; // Formato 'YYYY-MM-DD'
+      this.incidenciaForm.get('fecha')?.setValue(fechaActual);
 
-        const formData = this.incidenciaForm.value;
-        console.log('Datos enviados:', formData);
+      const formData = this.incidenciaForm.value;
 
-        // Llamada a la API para guardar los datos
-        this.apiService.postIncidencia(formData).subscribe({
-          next: () => console.log('Incidencia guardada con éxito'),
-          error: (error) => console.error('Error al guardar incidencia:', error)
-        });
-      }
+      this.apiService.postIncidencia(formData).subscribe({
+        next: () => {
+          this.isLoading = false; // Desactivar el spinner al finalizar
+          this.snackBar.open('Incidencia guardada con éxito', 'Cerrar', { duration: 3000 });
+          this.router.navigate(['/cbtis248/listAlumnos']); // Cambia '/ruta/lista-responsables' por tu ruta real
+        },
+        error: (error) => {
+          this.isLoading = false; // Desactivar el spinner en caso de error
+          this.snackBar.open(`Error al guardar incidencia: ${error.message}`, 'Cerrar', { duration: 3000 });
+          console.error('Error al guardar incidencia:', error);
+        }
+      });
     }
+  }
 
 
 }

@@ -9,12 +9,13 @@
 <app-menu-admin></app-menu-admin>
 <h2 class="title">Lista de administrativos</h2>
 <div class="image-upload">
-  <img src="assets/img/Logo2uia 4.png" alt="Subir foto"/>
+  <img src="assets/img/Logo2uia 4.png" alt="Subir foto" />
 </div>
 <form class="form-container">
 
   <mat-form-field class="rounded-field">
-    <mat-select placeholder="Seleccionar el rol del administrativo" id="roleSelect" (selectionChange)="onRoleChange($event)">
+    <mat-select placeholder="Seleccionar el rol del administrativo" id="roleSelect"
+      (selectionChange)="onRoleChange($event)">
       <mat-option value="all">
         Todos los administrativos
       </mat-option>
@@ -25,12 +26,15 @@
   </mat-form-field>
 
   <div *ngIf="administrativos.length === 0; else adminList">
-    <p>No hay administrativos para mostrar.</p>
+    <p class="title4">No hay administrativos con ese ROL, por favor seleccione otro ROL</p>
+    <div class="image-upload">
+      <img src="assets/img/auditoria.png" alt="foto" />
+    </div>
   </div>
 
   <ng-template #adminList>
     <div class="info-item" *ngFor="let admin of administrativos">
-      <img  [src]="admin.img" alt="{{ admin.nombre }}" width="50" class="img-avar">
+      <img [src]="admin.img" alt="{{ admin.nombre }}" width="50" class="img-avar">
       <span><strong>Nombre:</strong> {{ admin.nombre }} {{ admin.apellido_paterno }} {{ admin.apellido_materno }}</span>
       <i class="bi bi-chevron-compact-right"></i>
     </div>

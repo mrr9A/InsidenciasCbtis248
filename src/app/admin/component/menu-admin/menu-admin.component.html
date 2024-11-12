@@ -1,9 +1,10 @@
-<div class="offcanvas offcanvas-start" tabindex="-1" id="mobileMenu" aria-labelledby="mobileMenuLabel">
+ <div class="offcanvas offcanvas-start" tabindex="-1" id="mobileMenu" aria-labelledby="mobileMenuLabel">
   <div class="offcanvas-header bg-custom text-white">
     <div class="text-center w-100">
       <img [src]="usuario.administrativo.img" alt="Profile Image" class="rounded-circle profile-img">
       <br><br>
-      <h5 class="mt-2">{{usuario.administrativo.nombre}}</h5>
+      <h5 class="mt-2">{{usuario.administrativo.nombre}} {{usuario.administrativo.apellido_paterno}} {{usuario.administrativo.apellido_materno}}</h5>
+      <p>Rol: {{usuario.administrativo.rol.nombre}}</p>
     </div>
   </div>
   <div class="offcanvas-body">
@@ -11,29 +12,33 @@
       <li class="nav-item">
         <a class="nav-link" [routerLink]="['/cbtis248/homeAdmin']"><i class="bi bi-house-door"></i> Inicio</a>
       </li>
-            <li class="nav-item">
-        <a class="nav-link" [routerLink]="['/cbtis248/addAdministrativo']" ><i class="bi bi-person-add"></i> Agregar administrativo</a>
+
+      <!-- Opciones solo visibles para el rol "admin" -->
+      <li class="nav-item" *ngIf="usuario.administrativo.rol.nombre === 'Admin'">
+        <a class="nav-link" [routerLink]="['/cbtis248/addAdministrativo']"><i class="bi bi-person-add"></i> Agregar administrativo</a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" [routerLink]="['/cbtis248/addResponsable']"><i class="bi bi-person-plus"></i>Agregar responsable</a>
+      <li class="nav-item" *ngIf="usuario.administrativo.rol.nombre === 'Admin'">
+        <a class="nav-link" [routerLink]="['/cbtis248/addResponsable']"><i class="bi bi-person-plus"></i> Agregar responsable</a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" [routerLink]="['/cbtis248/addAlumno']"><i class="bi bi-person-fill-check"></i>Agregar alumno</a>
+      <li class="nav-item" *ngIf="usuario.administrativo.rol.nombre === 'Admin'">
+        <a class="nav-link" [routerLink]="['/cbtis248/addAlumno']"><i class="bi bi-person-fill-check"></i> Agregar alumno</a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" [routerLink]="['/cbtis248/addAviso']" ><i class="bi bi-patch-plus"></i>Agregar avisos</a>
+
+      <!-- Opciones visibles para "admin", "maestro" y "prefecto" -->
+      <li class="nav-item" *ngIf="usuario.administrativo.rol.nombre === 'Admin' || usuario.administrativo.rol.nombre === 'Maestro' || usuario.administrativo.rol.nombre === 'Prefecto'">
+        <a class="nav-link" [routerLink]="['/cbtis248/addAviso']"><i class="bi bi-patch-plus"></i> Agregar avisos</a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" [routerLink]="['/cbtis248/addReporte']" ><i class="bi bi-exclamation-diamond"></i>Agregar insidencia</a>
+      <li class="nav-item" *ngIf="usuario.administrativo.rol.nombre === 'Admin' || usuario.administrativo.rol.nombre === 'Maestro' || usuario.administrativo.rol.nombre === 'Prefecto'">
+        <a class="nav-link" [routerLink]="['/cbtis248/addReporte']"><i class="bi bi-exclamation-diamond"></i> Agregar incidencia</a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" [routerLink]="['/cbtis248/listResponsable']"><i class="bi bi-list-check"></i>Lista de responsables</a>
+      <li class="nav-item" *ngIf="usuario.administrativo.rol.nombre === 'Admin' || usuario.administrativo.rol.nombre === 'Maestro' || usuario.administrativo.rol.nombre === 'Prefecto'">
+        <a class="nav-link" [routerLink]="['/cbtis248/listResponsable']"><i class="bi bi-list-check"></i> Lista de responsables</a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" [routerLink]="['/cbtis248/listAdministrativos']"><i class="bi bi-list-check"></i>Lista de administrativos</a>
+      <li class="nav-item" *ngIf="usuario.administrativo.rol.nombre === 'Admin' || usuario.administrativo.rol.nombre === 'Maestro' || usuario.administrativo.rol.nombre === 'Prefecto'">
+        <a class="nav-link" [routerLink]="['/cbtis248/listAdministrativos']"><i class="bi bi-list-check"></i> Lista de administrativos</a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" [routerLink]="['/cbtis248/listAlumnos']"><i class="bi bi-list-check"></i>Lista de alumnos</a>
+      <li class="nav-item" *ngIf="usuario.administrativo.rol.nombre === 'Admin' || usuario.administrativo.rol.nombre === 'Maestro' || usuario.administrativo.rol.nombre === 'Prefecto'">
+        <a class="nav-link" [routerLink]="['/cbtis248/listAlumnos']"><i class="bi bi-list-check"></i> Lista de alumnos</a>
       </li>
     </ul>
   </div>

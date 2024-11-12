@@ -7,12 +7,14 @@ import { MatSelectModule } from '@angular/material/select';
 import { MenuAdminComponent } from '../component/menu-admin/menu-admin.component';
 import { onTimeService } from '../../services/actulizarInfor.service';
 import { Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 
 @Component({
   selector: 'app-add-responsable',
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule, NgSelectModule, MatSelectModule, MenuAdminComponent],
+  imports: [ReactiveFormsModule, CommonModule, NgSelectModule, MatSelectModule, MenuAdminComponent, MatProgressSpinnerModule],
   templateUrl: './add-responsable.component.html',
   styleUrl: './add-responsable.component.css'
 })
@@ -22,8 +24,9 @@ export class AddResponsableComponent {
   alumnos: any[] = []; // Lista para almacenar los alumnos obtenidos
   selectedImage: File | null = null; // Para almacenar la imagen seleccionada
   imagePreview: string | null = null; // Para almacenar la URL de la imagen para la previsualización
+  isLoading = false;  // Variable para controlar el estado de carga
 
-  constructor(private fb: FormBuilder, private apiService: ApisService, private onTimeService: onTimeService, private router: Router) {
+  constructor(private fb: FormBuilder, private apiService: ApisService, private onTimeService: onTimeService, private router: Router, private snackBar: MatSnackBar) {
     this.tutorForm = this.fb.group({
       nombre: ['', Validators.required],
       apellido_paterno: ['', Validators.required],
@@ -84,9 +87,7 @@ export class AddResponsableComponent {
 
   onSubmit(): void {
     if (this.tutorForm.valid) {
-      /*       const alumnoIds = this.tutorForm.get('alumnoIds')?.value;
-            console.log(alumnoIds); */
-
+      this.isLoading = true;  // Activar el spinner al iniciar la petición
       const formData = new FormData();
 
       formData.append('nombre', this.tutorForm.get('nombre')?.value);
@@ -104,26 +105,21 @@ export class AddResponsableComponent {
         formData.append('file', this.selectedImage);
       }
 
-      // Imprime los campos de FormData para verificación
-      /*         formData.forEach((value, key) => {
-                  console.log(key, value);
-              }); */
 
-              this.apiService.postTutor(formData).subscribe({
-                  next: () => console.log('Tutor guardado con éxito'),
-                  error: (error) => console.error('Error al guardar tutor:', error)
-              });
-          }
-      }
-/*       this.apiService.postTutor(formData).subscribe({
+      this.apiService.postTutor(formData).subscribe({
         next: () => {
-          console.log('Tutor guardado con éxito');
-          this.router.navigate(['/ruta/lista-responsables']); // Cambia '/ruta/lista-responsables' por tu ruta real
+          this.isLoading = false;  // Desactivar el spinner al finalizar
+          this.snackBar.open('Tutor registrado con éxito', 'Cerrar', { duration: 3000 });
+          this.router.navigate(['/cbtis248/listResponsable']); // Cambia '/ruta/lista-responsables' por tu ruta real
         },
-        error: (error) => console.error('Error al guardar tutor:', error)
+        error: (error) => {
+          this.isLoading = false;  // Desactivar el spinner en caso de error
+          this.snackBar.open(`Error al guardar tutor: ${error.message}`, 'Cerrar', { duration: 3000 });
+          console.error('Error al guardar tutor:', error);
+        }
       });
     }
-  } */
+  }
 
 
 }

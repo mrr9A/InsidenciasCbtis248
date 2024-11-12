@@ -32,7 +32,7 @@ export class CardAdminPerfilComponent {
     const usuarioData = localStorage.getItem('usuario');
     if (usuarioData) {
       this.usuario = JSON.parse(usuarioData);
-      console.log(this.usuario);
+      //console.log(this.usuario);
 
       // Asigna los datos a las variables para mostrarlos en el HTML
       this.correo = this.usuario.administrativo?.correo_electronico || '';

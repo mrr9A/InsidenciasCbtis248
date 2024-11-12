@@ -12,7 +12,7 @@
   <div class="image-upload">
     <input type="file" id="upload-photo" formControlName="file" hidden (change)="onImageSelected($event)" />
     <label for="upload-photo" class="upload-label">
-      <img [src]="imagePreview || 'assets/img/Group 6863.png'" alt="Subir foto" class="upload-icon" />
+      <img [src]="imagePreview || 'assets/img/agregar.png'" alt="Subir foto" class="upload-icon" />
     </label>
   </div>
 
@@ -38,5 +38,15 @@
       </mat-option>
     </mat-select>
   </mat-form-field>
-  <button type="submit" [disabled]="itemForm.invalid" class="submit-button">Registrar</button>
+
+  <button type="submit" [disabled]="itemForm.invalid || isLoading" class="submit-button" (click)="onSubmit()">
+    <ng-container *ngIf="!isLoading; else loadingSpinner">
+      Registrar
+    </ng-container>
+  </button>
+
+  <ng-template #loadingSpinner>
+    <mat-spinner diameter="20"></mat-spinner>
+  </ng-template>
+
 </form>

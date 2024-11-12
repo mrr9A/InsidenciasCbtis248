@@ -149,3 +149,10 @@ mat-form-field {
 .info-item img {
   margin-right: 15px; /* Espacio a la derecha de la imagen */
 }
+
+.title4 {
+  font-size: 1rem;
+  color: #671233;
+  text-align: center;
+  margin-top: 10px;
+}

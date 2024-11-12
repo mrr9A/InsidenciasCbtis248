@@ -34,7 +34,7 @@ export class CardInfoAlumnoComponent {
       }
     }
 
-    console.log(this.selectedAlumno.alumno.id, 'hOLA'); // Opcional: para verificar los datos
+    //console.log(this.selectedAlumno.alumno.id, 'hOLA'); // Opcional: para verificar los datos
   }
 
   onSelectAlumno(event: Event) {

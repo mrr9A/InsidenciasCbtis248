@@ -44,10 +44,11 @@ export class ApisService {
   }
 
   getUsuarios() { // Tipamos la respuesta como Observable<any[]>
-    let data =  this.http.get<any[]>(`${this.apiURL}/api/usuarios`);
-    console.log("User Data", typeof data);
+    return this.http.get<any[]>(`${this.apiURL}/api/usuarios`);
+/*     let data =  this.http.get<any[]>(`${this.apiURL}/api/usuarios`); */
+/*     console.log("User Data", typeof data);
 
-    return data;
+    return data; */
   }
 
   getAlumnosRespo() { // Tipamos la respuesta como Observable<any[]>

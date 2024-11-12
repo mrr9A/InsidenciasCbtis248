@@ -9,7 +9,7 @@
 <app-menu-admin></app-menu-admin>
 <h2 class="title">Nueva Incidencia</h2>
 <div class="image-upload">
-  <img src="assets/img/Logo2uia 4.png" alt="Subir foto"/>
+  <img src="assets/img/Logo2uia 4.png" alt="Subir foto" />
 </div>
 <form [formGroup]="incidenciaForm" (ngSubmit)="onSubmit()" class="form-container">
 
@@ -42,5 +42,14 @@
     <textarea id="descripcion" formControlName="descripcion" required></textarea>
   </div>
 
-  <button type="submit" [disabled]="incidenciaForm.invalid" class="submit-button">Registrar Incidencia</button>
+  <button type="submit" [disabled]="incidenciaForm.invalid || isLoading" class="submit-button" (click)="onSubmit()">
+    <ng-container *ngIf="!isLoading; else loadingSpinner">
+      Guardar
+    </ng-container>
+  </button>
+
+  <ng-template #loadingSpinner>
+    <mat-spinner diameter="20"></mat-spinner>
+  </ng-template>
+
 </form>

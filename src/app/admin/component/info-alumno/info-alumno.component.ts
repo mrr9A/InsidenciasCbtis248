@@ -25,8 +25,16 @@ export class InfoAlumnoComponent {
         this.alumno = data;
         console.log(this.alumno);
 
-        // Asignamos las incidencias de `this.alumno` a `this.incidencias`
-        this.incidencias = this.alumno.incidencias || [];
+        // Filtrar incidencias para eliminar duplicados basados en la descripción
+        const incidenciasUnicas = new Map();
+        this.alumno.incidencias.forEach((incidencia: any) => {
+          if (!incidenciasUnicas.has(incidencia.descripcion)) {
+            incidenciasUnicas.set(incidencia.descripcion, incidencia);
+          }
+        });
+
+        // Convertimos el mapa a un array para asignarlo a `this.incidencias`
+        this.incidencias = Array.from(incidenciasUnicas.values());
       });
     }
   }

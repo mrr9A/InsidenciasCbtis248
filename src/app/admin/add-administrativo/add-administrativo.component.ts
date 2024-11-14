@@ -24,6 +24,7 @@ export class AddAdministrativoComponent {
   selectedImage: File | null = null; // Para almacenar la imagen seleccionada
   imagePreview: string | null = null; // Para almacenar la URL de la imagen para la previsualización
   isLoading = false;  // Variable para controlar el estado de carga
+  isSubmitted = false; // Nuevo campo para evitar el doble envío
 
   constructor(private onTimeService: onTimeService, private fb: FormBuilder, private apiService: ApisService, private snackBar: MatSnackBar, private router: Router) {
     this.administrativoForm = this.fb.group({
@@ -72,11 +73,11 @@ export class AddAdministrativoComponent {
   }
 
   onSubmit(): void {
-    if (this.administrativoForm.valid) {
-      this.isLoading = true;  // Activar el spinner al iniciar la petición
+    if (this.administrativoForm.valid && !this.isSubmitted) {
+      this.isLoading = true;
+      this.isSubmitted = true; // Marcar como enviado
 
       const formData = new FormData();
-
       formData.append('nombre', this.administrativoForm.get('nombre')?.value);
       formData.append('apellido_paterno', this.administrativoForm.get('apellido_paterno')?.value);
       formData.append('apellido_materno', this.administrativoForm.get('apellido_materno')?.value);
@@ -93,18 +94,18 @@ export class AddAdministrativoComponent {
 
       this.apiService.postAdministrativos(formData).subscribe({
         next: () => {
-          this.isLoading = false;  // Desactivar el spinner al finalizar
+          this.isLoading = false;
+          this.isSubmitted = false; // Restablecer después de la respuesta
           this.snackBar.open('Administrativo registrado con éxito', 'Cerrar', { duration: 3000 });
-          this.router.navigate(['/cbtis248/listAdministrativos']); // Cambia '/ruta/lista-responsables' por tu ruta real
+          this.router.navigate(['/cbtis248/listAdministrativos']);
         },
         error: (error) => {
-          this.isLoading = false;  // Desactivar el spinner en caso de error
+          this.isLoading = false;
+          this.isSubmitted = false; // Restablecer en caso de error
           this.snackBar.open(`Error al guardar Administrativo: ${error.message}`, 'Cerrar', { duration: 3000 });
           console.error('Error al guardar Administrativo:', error);
         }
       });
     }
   }
-
-
 }

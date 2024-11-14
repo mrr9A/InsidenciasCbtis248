@@ -71,7 +71,7 @@ export class AddAlumnoComponent {
       reader.readAsDataURL(this.selectedImage);
     }
   }
-
+/*
   onSubmit(): void {
     if (this.alumnoForm.valid) {
       this.isLoading = true;  // Activar el spinner al iniciar la petición
@@ -96,6 +96,41 @@ export class AddAlumnoComponent {
           this.isLoading = false;  // Desactivar el spinner al finalizar
           this.snackBar.open('Alumno registrado con éxito', 'Cerrar', { duration: 3000 });
           this.router.navigate(['/cbtis248/listAlumnos']); // Cambia '/ruta/lista-responsables' por tu ruta real
+        },
+        error: (error) => {
+          this.isLoading = false;  // Desactivar el spinner en caso de error
+          this.snackBar.open(`Error al guardar alumno: ${error.message}`, 'Cerrar', { duration: 3000 });
+          console.error('Error al guardar alumno:', error);
+        }
+      });
+    }
+  }
+ */
+
+  onSubmit(): void {
+    if (this.alumnoForm.valid && !this.isLoading) {
+      this.isLoading = true;  // Activar el spinner y evitar más envíos
+      const formData = new FormData();
+
+      formData.append('nombre', this.alumnoForm.get('nombre')?.value);
+      formData.append('apellido_paterno', this.alumnoForm.get('apellido_paterno')?.value);
+      formData.append('apellido_materno', this.alumnoForm.get('apellido_materno')?.value);
+      formData.append('correo_electronico', this.alumnoForm.get('correo_electronico')?.value);
+      formData.append('num_telefono', this.alumnoForm.get('num_telefono')?.value);
+      formData.append('num_control_escolar', this.alumnoForm.get('num_control_escolar')?.value);
+      formData.append('grupoId', this.alumnoForm.get('grupoId')?.value);
+      formData.append('folder', this.alumnoForm.get('folder')?.value);
+      formData.append('imagen_perfil', this.alumnoForm.get('imagen_perfil')?.value);
+
+      if (this.selectedImage) {
+        formData.append('file', this.selectedImage);
+      }
+
+      this.apiService.postAlumnos(formData).subscribe({
+        next: () => {
+          this.isLoading = false;  // Desactivar el spinner
+          this.snackBar.open('Alumno registrado con éxito', 'Cerrar', { duration: 3000 });
+          this.router.navigate(['/cbtis248/listAlumnos']);
         },
         error: (error) => {
           this.isLoading = false;  // Desactivar el spinner en caso de error

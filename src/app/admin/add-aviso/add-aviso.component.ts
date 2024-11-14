@@ -23,13 +23,14 @@ export class AddAvisoComponent {
   imagePreview: string | null = null; // Para almacenar la URL de la imagen para la previsualización
   isLoading = false;  // Variable para controlar el estado de carga
 
-  constructor(private onTimeService: onTimeService, private fb: FormBuilder, private apiService: ApisService, private snackBar: MatSnackBar,private router: Router) {
+  constructor(private onTimeService: onTimeService, private fb: FormBuilder, private apiService: ApisService, private snackBar: MatSnackBar, private router: Router) {
     this.itemForm = this.fb.group({
       nombre: ['', Validators.required],
       descripcion: ['', Validators.required],
       fecha: ['', Validators.required],
       img: ['placeholder', Validators.required],
       file: [],
+      administrativoId: [],
       folder: ['avisos', Validators.required],
       grupoIds: this.fb.array([], Validators.required)  // Usar FormArray para almacenar múltiples IDs
     });
@@ -80,29 +81,35 @@ export class AddAvisoComponent {
   }
 
   onSubmit(): void {
-    if (this.itemForm.valid) {
-      this.isLoading = true; // Activar el spinner al iniciar la petición
+    if (this.itemForm.valid && !this.isLoading) { // Solo permite envío si no está cargando
+      this.isLoading = true;
       const formData = new FormData();
+
+      // Agrega el ID del administrativo desde localStorage
+      const usuarioEncontrado = JSON.parse(localStorage.getItem('usuario') || '{}');
+      const administrativoId = usuarioEncontrado?.administrativo?.id;
 
       formData.append('nombre', this.itemForm.get('nombre')?.value);
       formData.append('descripcion', this.itemForm.get('descripcion')?.value);
       formData.append('fecha', this.itemForm.get('fecha')?.value);
-      formData.append('img', this.itemForm.get('img')?.value);
       formData.append('folder', this.itemForm.get('folder')?.value);
       formData.append('grupoIds', JSON.stringify(this.itemForm.get('grupoIds')?.value));
 
+      if (administrativoId) {
+        formData.append('administrativoId', administrativoId.toString());
+      }
       if (this.selectedImage) {
         formData.append('file', this.selectedImage);
       }
 
       this.apiService.postAvisos(formData).subscribe({
         next: () => {
-          this.isLoading = false; // Desactivar el spinner al finalizar
+          this.isLoading = false;
           this.snackBar.open('Aviso registrado con éxito', 'Cerrar', { duration: 3000 });
-          this.router.navigate(['/cbtis248/listAlumnos']); // Cambia '/ruta/lista-responsables' por tu ruta real
+          this.router.navigate(['/cbtis248/listAlumnos']);
         },
         error: (error) => {
-          this.isLoading = false; // Desactivar el spinner en caso de error
+          this.isLoading = false;
           this.snackBar.open(`Error al guardar aviso: ${error.message}`, 'Cerrar', { duration: 3000 });
           console.error('Error al guardar aviso:', error);
         }

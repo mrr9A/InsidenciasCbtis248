@@ -86,8 +86,8 @@ export class AddResponsableComponent {
   }
 
   onSubmit(): void {
-    if (this.tutorForm.valid) {
-      this.isLoading = true;  // Activar el spinner al iniciar la petición
+    if (this.tutorForm.valid && !this.isLoading) { // Verifica que no esté en estado de carga
+      this.isLoading = true;  // Activa el spinner y evita nuevos envíos
       const formData = new FormData();
 
       formData.append('nombre', this.tutorForm.get('nombre')?.value);
@@ -105,15 +105,14 @@ export class AddResponsableComponent {
         formData.append('file', this.selectedImage);
       }
 
-
       this.apiService.postTutor(formData).subscribe({
         next: () => {
-          this.isLoading = false;  // Desactivar el spinner al finalizar
+          this.isLoading = false;  // Desactiva el spinner al finalizar
           this.snackBar.open('Tutor registrado con éxito', 'Cerrar', { duration: 3000 });
-          this.router.navigate(['/cbtis248/listResponsable']); // Cambia '/ruta/lista-responsables' por tu ruta real
+          this.router.navigate(['/cbtis248/listResponsable']); // Redirige tras éxito
         },
         error: (error) => {
-          this.isLoading = false;  // Desactivar el spinner en caso de error
+          this.isLoading = false;  // Desactiva el spinner en caso de error
           this.snackBar.open(`Error al guardar tutor: ${error.message}`, 'Cerrar', { duration: 3000 });
           console.error('Error al guardar tutor:', error);
         }

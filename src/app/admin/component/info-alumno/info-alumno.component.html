@@ -1,88 +1,92 @@
-<div class="content">
-  <header>
-    <div class="toolbar">
-      <button class="close-button" (click)="onClose()">
-        <i class="bi bi-x-circle"></i>
-      </button>
-      <h1 class="announcement-title">{{ alumno?.nombre || 'Cargando...' }} {{ alumno?.apellido_paterno }} {{
-        alumno?.apellido_materno }}</h1>
-    </div>
-  </header>
+<body>
+  <div class="content">
+    <header>
+      <div class="toolbar">
+        <button class="close-button" (click)="onClose()">
+          <i class="bi bi-x-circle"></i>
+        </button>
+        <h1 class="announcement-title">{{ alumno?.nombre || 'Cargando...' }} {{ alumno?.apellido_paterno }} {{
+          alumno?.apellido_materno }}</h1>
+      </div>
+    </header>
 
-  <div class="card">
-    <div class="avatar-container">
-      <img [src]="alumno?.imagen_perfil" alt="{{ alumno?.nombre }}" class="avatar-card" />
-    </div>
+    <div class="card">
+      <div class="avatar-container">
+        <img [src]="alumno?.imagen_perfil" alt="{{ alumno?.nombre }}" class="avatar-card" />
+      </div>
 
-    <div class="list">
-      <div class="list-item">
-        <div class="label">
-          <h2 class="info-title">Información del alumno</h2>
+      <div class="list">
+        <div class="list-item">
+          <div class="label">
+            <h2 class="info-title">Información del alumno</h2>
 
-          <div class="info-row">
-            <i class="bi bi-person icon"></i>
-            <h3 class="target-announcement">Nombre:</h3>
-            <p>{{ alumno?.nombre || 'Nombre no disponible.' }} {{ alumno?.apellido_paterno }} {{
-              alumno?.apellido_materno }}</p>
-          </div>
+            <div class="info-row">
+              <i class="bi bi-person icon"></i>
+              <h3 class="target-announcement">Nombre:</h3>
+              <p>{{ alumno?.nombre || 'Nombre no disponible.' }} {{ alumno?.apellido_paterno }} {{
+                alumno?.apellido_materno }}</p>
+            </div>
 
-          <div class="info-row">
-            <i class="bi bi-list-ol icon"></i>
-            <h3 class="target-announcement">Numero de control:</h3>
-            <p>{{ alumno?.num_control_escolar || 'Numero de control no disponible.' }}</p>
-          </div>
+            <div class="info-row">
+              <i class="bi bi-list-ol icon"></i>
+              <h3 class="target-announcement">Numero de control:</h3>
+              <p>{{ alumno?.num_control_escolar || 'Numero de control no disponible.' }}</p>
+            </div>
 
-          <div class="info-row">
-            <i class="bi bi-gear-wide icon"></i>
-            <h3 class="target-announcement">Especialidad:</h3>
-            <p>{{ alumno?.grupo.grado || 'Grado no disponible.' }}°{{ alumno?.grupo.grupo }} {{
-              alumno?.grupo.especialidad }}</p>
-          </div>
+            <div class="info-row">
+              <i class="bi bi-gear-wide icon"></i>
+              <h3 class="target-announcement">Especialidad:</h3>
+              <p>{{ alumno?.grupo.grado || 'Grado no disponible.' }}°{{ alumno?.grupo.grupo }} {{
+                alumno?.grupo.especialidad }}</p>
+            </div>
 
-          <div class="info-row">
-            <i class="bi bi-envelope icon"></i>
-            <h3 class="target-announcement">Correo electrónico:</h3>
-            <p>{{ alumno?.correo_electronico || 'Correo electrónico no disponible.' }}</p>
-          </div>
+            <div class="info-row">
+              <i class="bi bi-envelope icon"></i>
+              <h3 class="target-announcement">Correo electrónico:</h3>
+              <p>{{ alumno?.correo_electronico || 'Correo electrónico no disponible.' }}</p>
+            </div>
 
-          <div class="info-row">
-            <i class="bi bi-telephone icon"></i>
-            <h3 class="target-announcement">Teléfono:</h3>
-            <p>{{ alumno?.num_telefono || 'Teléfono no disponible.' }}</p>
+            <div class="info-row">
+              <i class="bi bi-telephone icon"></i>
+              <h3 class="target-announcement">Teléfono:</h3>
+              <p>{{ alumno?.num_telefono || 'Teléfono no disponible.' }}</p>
+            </div>
           </div>
         </div>
       </div>
-    </div>
 
-    <div class="incidencias-container">
-      <button class="ver-incidencias-button" (click)="toggleIncidencias()">
-        Ver incidencias
-      </button>
+      <div class="incidencias-container">
+        <button class="ver-incidencias-button" (click)="toggleIncidencias()">
+          Ver incidencias
+        </button>
 
-      <div *ngIf="mostrarIncidencias" class="list-group">
-        <div *ngFor="let incidencia of incidencias" class="incidencia-item">
-          <button type="button" class="list-group-item list-group-item-action"
-            (click)="toggleDetalleIncidencia(incidencia)" [ngClass]="{'active': incidencia === incidenciaSeleccionada}">
-            Fecha: {{ incidencia.fecha }}
-          </button>
+        <div *ngIf="mostrarIncidencias" class="list-group">
+          <div *ngFor="let incidencia of incidencias" class="incidencia-item">
+            <button type="button" class="list-group-item list-group-item-action"
+              (click)="toggleDetalleIncidencia(incidencia)"
+              [ngClass]="{'active': incidencia === incidenciaSeleccionada}">
+              Fecha: {{ incidencia.fecha }}
+            </button>
 
-          <div *ngIf="incidenciaSeleccionada === incidencia" class="incidencia-detalle expandido">
-            <div class="incidencia-header">
-              <h3 class="titleInci">Asunto: {{ incidencia.tipo_incidencia.nombre }}</h3>
+            <div *ngIf="incidenciaSeleccionada === incidencia" class="incidencia-detalle expandido">
+              <div class="incidencia-header">
+                <h3 class="titleInci">Asunto: {{ incidencia.tipo_incidencia.nombre }}</h3>
+              </div>
+              <p class="incidencia-clasificacion">
+                <i class="fas fa-calendar-alt"></i><strong>Clasificación: </strong>
+                {{ incidencia.tipo_incidencia.descripcion }}
+              </p>
+              <p class="incidencia-descripcion">
+                <i class="fas fa-calendar-alt"></i><strong>Descripción: </strong> {{ incidencia.descripcion }}
+              </p>
+              <p class="incidencia-fecha">
+                <i class="fas fa-calendar-alt"></i><strong>Fecha: </strong> {{ incidencia.fecha }}
+              </p>
             </div>
-            <p class="incidencia-clasificacion">
-              <i class="fas fa-calendar-alt"></i><strong>Clasificación: </strong>
-              {{ incidencia.tipo_incidencia.descripcion }}
-            </p>
-            <p class="incidencia-descripcion">
-              <i class="fas fa-calendar-alt"></i><strong>Descripción: </strong> {{ incidencia.descripcion }}
-            </p>
-            <p class="incidencia-fecha">
-              <i class="fas fa-calendar-alt"></i><strong>Fecha: </strong> {{ incidencia.fecha }}
-            </p>
           </div>
         </div>
       </div>
     </div>
   </div>
-</div>
+
+</body>

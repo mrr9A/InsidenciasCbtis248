@@ -1,55 +1,58 @@
-<nav class="bg-light fixed-menu">
-  <div class="container-fluid">
-    <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#mobileMenu"
-      aria-controls="mobileMenu">
-      <img src="assets/img/ico-menu.svg" alt="">
+<body>
+  <nav class="bg-light fixed-menu">
+    <div class="container-fluid">
+      <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#mobileMenu"
+        aria-controls="mobileMenu">
+        <img src="assets/img/ico-menu.svg" alt="">
+      </button>
+    </div>
+  </nav>
+  <app-menu-admin></app-menu-admin>
+  <h2 class="title">Nueva Incidencia</h2>
+  <div class="image-upload">
+    <img src="assets/img/Logo2uia 4.png" alt="Subir foto" />
+  </div>
+  <form [formGroup]="incidenciaForm" (ngSubmit)="onSubmit()" class="form-container">
+
+    <mat-form-field class="rounded-field">
+      <mat-select placeholder="Seleccionar grupo" formControlName="grupo_id">
+        <mat-option *ngFor="let grupo of grupos" [value]="grupo.id">
+          {{ grupo.grado }} {{ grupo.grupo }} {{ grupo.especialidad }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field class="rounded-field">
+      <mat-select placeholder="Seleccionar alumno" formControlName="alumno_id">
+        <mat-option *ngFor="let alumno of alumnos" [value]="alumno.id">
+          {{ alumno.nombre }} {{ alumno.apellido_paterno }} {{ alumno.apellido_materno }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field class="custom-style">
+      <mat-select placeholder="Seleccionar insidencia" formControlName="tipo_incidencia_id">
+        <mat-option *ngFor="let tipo of tiposIncidencia" [value]="tipo.id">
+          {{ tipo.nombre }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <div class="form-group">
+      <label for="descripcion">Descripción</label>
+      <textarea id="descripcion" formControlName="descripcion" required></textarea>
+    </div>
+
+    <button type="submit" [disabled]="incidenciaForm.invalid || isLoading" class="submit-button" (click)="onSubmit()">
+      <ng-container *ngIf="!isLoading; else loadingSpinner">
+        Guardar
+      </ng-container>
     </button>
-  </div>
-</nav>
-<app-menu-admin></app-menu-admin>
-<h2 class="title">Nueva Incidencia</h2>
-<div class="image-upload">
-  <img src="assets/img/Logo2uia 4.png" alt="Subir foto" />
-</div>
-<form [formGroup]="incidenciaForm" (ngSubmit)="onSubmit()" class="form-container">
 
-  <mat-form-field class="rounded-field">
-    <mat-select placeholder="Seleccionar grupo" formControlName="grupo_id">
-      <mat-option *ngFor="let grupo of grupos" [value]="grupo.id">
-        {{ grupo.grado }} {{ grupo.grupo }} {{ grupo.especialidad }}
-      </mat-option>
-    </mat-select>
-  </mat-form-field>
+    <ng-template #loadingSpinner>
+      <mat-spinner diameter="20"></mat-spinner>
+    </ng-template>
 
-  <mat-form-field class="rounded-field">
-    <mat-select placeholder="Seleccionar alumno" formControlName="alumno_id">
-      <mat-option *ngFor="let alumno of alumnos" [value]="alumno.id">
-        {{ alumno.nombre }} {{ alumno.apellido_paterno }} {{ alumno.apellido_materno }}
-      </mat-option>
-    </mat-select>
-  </mat-form-field>
+  </form>
 
-  <mat-form-field class="custom-style">
-    <mat-select placeholder="Seleccionar insidencia" formControlName="tipo_incidencia_id">
-      <mat-option *ngFor="let tipo of tiposIncidencia" [value]="tipo.id">
-        {{ tipo.nombre }}
-      </mat-option>
-    </mat-select>
-  </mat-form-field>
-
-  <div class="form-group">
-    <label for="descripcion">Descripción</label>
-    <textarea id="descripcion" formControlName="descripcion" required></textarea>
-  </div>
-
-  <button type="submit" [disabled]="incidenciaForm.invalid || isLoading" class="submit-button" (click)="onSubmit()">
-    <ng-container *ngIf="!isLoading; else loadingSpinner">
-      Guardar
-    </ng-container>
-  </button>
-
-  <ng-template #loadingSpinner>
-    <mat-spinner diameter="20"></mat-spinner>
-  </ng-template>
-
-</form>
+</body>

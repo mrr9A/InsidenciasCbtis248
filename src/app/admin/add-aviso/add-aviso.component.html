@@ -1,52 +1,55 @@
-<nav class="bg-light fixed-menu">
-  <div class="container-fluid">
-    <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#mobileMenu"
-      aria-controls="mobileMenu">
-      <img src="assets/img/ico-menu.svg" alt="">
+<body>
+  <nav class="bg-light fixed-menu">
+    <div class="container-fluid">
+      <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#mobileMenu"
+        aria-controls="mobileMenu">
+        <img src="assets/img/ico-menu.svg" alt="">
+      </button>
+    </div>
+  </nav>
+  <app-menu-admin></app-menu-admin>
+  <h2 class="title">Agregar aviso</h2>
+  <form [formGroup]="itemForm" (ngSubmit)="onSubmit()" class="form-container">
+    <div class="image-upload">
+      <input type="file" id="upload-photo" formControlName="file" hidden (change)="onImageSelected($event)" />
+      <label for="upload-photo" class="upload-label">
+        <img [src]="imagePreview || 'assets/img/agregar.png'" alt="Subir foto" class="upload-icon" />
+      </label>
+    </div>
+
+    <div class="form-group">
+      <label for="nombre">Nombre del responsable</label>
+      <input id="nombre" formControlName="nombre" type="text" required />
+    </div>
+
+    <div class="form-group">
+      <label for="descripcion">Descripción</label>
+      <textarea id="descripcion" formControlName="descripcion" type="text" required></textarea>
+    </div>
+
+    <div class="form-group">
+      <label for="fecha">Fecha</label>
+      <input id="fecha" formControlName="fecha" type="date" required />
+    </div>
+
+    <mat-form-field>
+      <mat-select placeholder="Seleccionar grupos" (selectionChange)="onGrupoChange($event)" multiple>
+        <mat-option *ngFor="let grupo of grupos" [value]="grupo.id">
+          {{ grupo.grado }} {{ grupo.grupo }} {{ grupo.especialidad }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <button type="submit" [disabled]="itemForm.invalid || isLoading" class="submit-button" (click)="onSubmit()">
+      <ng-container *ngIf="!isLoading; else loadingSpinner">
+        Registrar
+      </ng-container>
     </button>
-  </div>
-</nav>
-<app-menu-admin></app-menu-admin>
-<h2 class="title">Agregar aviso</h2>
-<form [formGroup]="itemForm" (ngSubmit)="onSubmit()" class="form-container">
-  <div class="image-upload">
-    <input type="file" id="upload-photo" formControlName="file" hidden (change)="onImageSelected($event)" />
-    <label for="upload-photo" class="upload-label">
-      <img [src]="imagePreview || 'assets/img/agregar.png'" alt="Subir foto" class="upload-icon" />
-    </label>
-  </div>
 
-  <div class="form-group">
-    <label for="nombre">Nombre del responsable</label>
-    <input id="nombre" formControlName="nombre" type="text" required />
-  </div>
+    <ng-template #loadingSpinner>
+      <mat-spinner diameter="20"></mat-spinner>
+    </ng-template>
 
-  <div class="form-group">
-    <label for="descripcion">Descripción</label>
-    <textarea id="descripcion" formControlName="descripcion" type="text" required></textarea>
-  </div>
+  </form>
 
-  <div class="form-group">
-    <label for="fecha">Fecha</label>
-    <input id="fecha" formControlName="fecha" type="date" required />
-  </div>
-
-  <mat-form-field>
-    <mat-select placeholder="Seleccionar grupos" (selectionChange)="onGrupoChange($event)" multiple>
-      <mat-option *ngFor="let grupo of grupos" [value]="grupo.id">
-        {{ grupo.grado }} {{ grupo.grupo }} {{ grupo.especialidad }}
-      </mat-option>
-    </mat-select>
-  </mat-form-field>
-
-  <button type="submit" [disabled]="itemForm.invalid || isLoading" class="submit-button" (click)="onSubmit()">
-    <ng-container *ngIf="!isLoading; else loadingSpinner">
-      Registrar
-    </ng-container>
-  </button>
-
-  <ng-template #loadingSpinner>
-    <mat-spinner diameter="20"></mat-spinner>
-  </ng-template>
-
-</form>
+</body>

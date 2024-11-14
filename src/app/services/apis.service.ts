@@ -52,10 +52,11 @@ export class ApisService {
   }
 
   postAdministrativos(formData: FormData): Observable<any> {
-    return this.http.post('http://localhost:3000/api/administrativos', formData);
+    return this.http.post(`${this.apiURL}/api/administrativos`, formData);
   }
   postAlumnos(formData: FormData): Observable<any> {
-    return this.http.post('http://localhost:3000/api/alumnos', formData);
+    return this.http.post(`${this.apiURL}/api/alumnos`, formData);
+
   }
 
   postAvisos(formData: FormData): Observable<any> {

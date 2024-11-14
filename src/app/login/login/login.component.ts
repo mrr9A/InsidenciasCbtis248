@@ -35,7 +35,7 @@ export class LoginComponent {
     this.apiService.login(this.credentials).subscribe({
       next: (response: any) => {
         this.isLoading = false; // Desactiva el spinner
-        console.log('Inicio de sesión exitoso', response);
+        //console.log('Inicio de sesión exitoso', response);
         localStorage.setItem('correo_electronico', response.correo_electronico);
         localStorage.setItem('id', response.id.toString());
 
@@ -56,7 +56,7 @@ export class LoginComponent {
               this.router.navigate(['cbtis248/homeAdmin']);
             }
           } else {
-            console.log('Usuario no encontrado en la lista.');
+           // console.log('Usuario no encontrado en la lista.');
           }
         });
       },

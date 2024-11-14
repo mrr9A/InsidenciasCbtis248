@@ -23,7 +23,7 @@
   <h3 class="title">Lista de Alumnos:</h3>
 
   <div *ngIf="alumnos.length > 0; else noAlumnos">
-    <div class="info-item" *ngFor="let alumno of alumnos">
+    <div class="info-item" *ngFor="let alumno of alumnos" (click)="verDetalleAlumno(alumno.id)">
       <img [src]="alumno.imagen_perfil" alt="{{ alumno.nombre }}" width="50" class="img-avar">
       <span><strong>Nombre:</strong> {{ alumno.nombre }} {{ alumno.apellido_paterno }} {{ alumno.apellido_materno }}</span>
       <i class="bi bi-chevron-compact-right"></i>

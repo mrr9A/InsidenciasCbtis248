@@ -38,7 +38,8 @@ export const authGuard: CanActivateFn = (route, state) => {
       Tutor: ['historialIncidencias', 'avisos', 'profile','home'],
       Admin: [
         'homeAdmin', 'addReporte', 'addAdministrativo', 'addResponsable',
-        'addAviso', 'listResponsable', 'listAdministrativos', 'addAlumno','listAlumnos'
+        'addAviso', 'listResponsable', 'listAdministrativos', 'addAlumno','listAlumnos','detalleResponsable/:id',
+        'detalleAlumno/:id','detalleAdministrativo/:id'
       ]
     };
 

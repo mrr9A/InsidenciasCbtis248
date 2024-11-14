@@ -23,7 +23,7 @@
   <h3 class="title">Lista de Responsables:</h3>
 
   <div *ngIf="responsables.length > 0; else noResponsables">
-    <div class="info-item" *ngFor="let responsable of responsables">
+    <div class="info-item" *ngFor="let responsable of responsables" (click)="verDetalleResponsable(responsable.responsable.id)">
       <img [src]="responsable.responsable.img" alt="{{ responsable.responsable.nombre }}" width="50" class="img-avar">
       <span><strong>Responsable:</strong> {{ responsable.responsable.nombre }} {{ responsable.responsable.apellido_paterno }} {{ responsable.responsable.apellido_materno }}</span>
       <i class="bi bi-chevron-compact-right"></i>

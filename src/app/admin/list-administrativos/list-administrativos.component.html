@@ -33,7 +33,7 @@
   </div>
 
   <ng-template #adminList>
-    <div class="info-item" *ngFor="let admin of administrativos">
+    <div class="info-item" *ngFor="let admin of administrativos" (click)="verDetalleAdministrativo(admin.id)">
       <img [src]="admin.img" alt="{{ admin.nombre }}" width="50" class="img-avar">
       <span><strong>Nombre:</strong> {{ admin.nombre }} {{ admin.apellido_paterno }} {{ admin.apellido_materno }}</span>
       <i class="bi bi-chevron-compact-right"></i>

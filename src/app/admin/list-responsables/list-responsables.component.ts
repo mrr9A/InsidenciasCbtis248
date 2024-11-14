@@ -5,6 +5,7 @@ import { MenuAdminComponent } from '../component/menu-admin/menu-admin.component
 import { MatSelectModule } from '@angular/material/select';
 import { ApisService } from '../../services/apis.service';
 import { onTimeService } from '../../services/actulizarInfor.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-list-responsables',
@@ -17,7 +18,7 @@ export class ListResponsablesComponent {
   grupos: any[] = [];  // Lista de grupos obtenidos
   responsables: any[] = []; // Lista de responsables del grupo seleccionado
 
-  constructor(private onTimeService: onTimeService, private fb: FormBuilder, private apiService: ApisService) { }
+  constructor(private router: Router, private onTimeService: onTimeService, private fb: FormBuilder, private apiService: ApisService) { }
 
   ngOnInit(): void {
     setInterval(() => {
@@ -52,5 +53,10 @@ export class ListResponsablesComponent {
       }
     });
     return responsables; // Retornar la lista de responsables
+  }
+
+  // Navega al componente de detalle enviando el ID del responsable
+  verDetalleResponsable(id: string): void {
+    this.router.navigate(['/cbtis248/detalleResponsable',id]); // Cambia '/ruta/lista-responsables' por tu ruta real
   }
 }

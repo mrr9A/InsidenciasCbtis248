@@ -62,6 +62,18 @@ export const routes: Routes = [
         loadComponent: () => import('./admin/list-alumno/list-alumno.component').then(m => m.ListAlumnoComponent), canActivate: [authGuard]
       },
       {
+        path: 'detalleResponsable/:id',
+        loadComponent: () => import('./admin/component/info-responsable/info-responsable.component').then(m => m.InfoResponsableComponent), canActivate: [authGuard]
+      },
+      {
+        path: 'detalleAlumno/:id',
+        loadComponent: () => import('./admin/component/info-alumno/info-alumno.component').then(m => m.InfoAlumnoComponent), canActivate: [authGuard]
+      },
+      {
+        path: 'detalleAdministrativo/:id',
+        loadComponent: () => import('./admin/component/info-administrativo/info-administrativo.component').then(m => m.InfoAdministrativoComponent), canActivate: [authGuard]
+      },
+      {
         path: '**',
         redirectTo: 'login'
       }

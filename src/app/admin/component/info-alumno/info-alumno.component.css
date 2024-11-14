@@ -1,0 +1,258 @@
+/* Estilo para la barra de herramientas */
+.toolbar {
+  display: flex;
+  justify-content: space-between;
+  /* Asegura que el título y el botón estén en extremos opuestos */
+  align-items: center;
+  /* Alinea verticalmente el contenido al centro */
+  width: 100%;
+  padding: 10px 20px;
+  /* Añade espacio alrededor */
+  background-color: white;
+  /* Fondo blanco */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  /* Sombra ligera */
+}
+
+/* Estilo para el título del anuncio */
+.toolbar h1 {
+  margin: 0;
+  font-size: 1.8rem;
+  color: #671233;
+  /* Guinda */
+  flex-grow: 1;
+  /* Ocupa el espacio restante */
+  text-align: left;
+  /* Alinea el texto a la izquierda */
+}
+
+/* Título del anuncio */
+.announcement-title {
+  color: #671233;
+  /* Guinda */
+}
+
+/* Estilos para la tarjeta */
+.card {
+  max-width: 450px;
+  width: 90%;
+  /* Para que se ajuste en pantallas pequeñas */
+  margin: 20px auto;
+  /* Espacio arriba y centrado horizontalmente */
+  padding: 20px;
+  border-radius: 16px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  /* Sombra suave */
+  background-color: white;
+  /* Fondo blanco para la tarjeta */
+  flex-grow: 1;
+  /* Permite que la tarjeta ocupe el espacio restante */
+  overflow: hidden;
+
+}
+
+/* Asegura que la imagen del avatar se ajuste correctamente */
+.avatar-card {
+  width: 100%;
+  /* Ocupa el 100% del contenedor */
+  height: auto;
+  /* Mantiene la calidad original de la imagen */
+  display: block;
+  margin: 0 auto 20px;
+  /* Centrar imagen y espacio abajo */
+  border-radius: 60px;
+}
+
+/* Personaliza el contenido del label */
+.label h2 {
+  font-weight: bold;
+  color: #671233;
+  /* Guinda */
+  text-align: center;
+  margin-bottom: 4px;
+  font-size: 1.5rem;
+}
+
+/* Personaliza el contenido del label */
+.label h3 {
+  color: #671233;
+  /* Guinda */
+  margin-inline-start: 10px;
+  margin-bottom: 4px;
+  font-size: 1.1rem;
+}
+
+/* Estilo para el botón de cerrar */
+.close-button {
+  background-color: transparent;
+  /* Color de fondo del botón */
+  border: none;
+  /* Sin borde */
+
+  color: #671233;
+  /* Guinda */
+  font-size: 3rem;
+  /* Aumentar tamaño del icono */
+  cursor: pointer;
+  /* Cambia el cursor al pasar sobre el botón */
+}
+
+/* Evitar el efecto de resaltar el borde al hacer foco en el botón */
+.close-button:focus {
+  outline: none;
+  /* Sin contorno de enfoque */
+}
+
+/* Evitar el efecto de resaltar el borde al hacer clic */
+.close-button:active {
+  outline: none;
+  /* Sin contorno de enfoque */
+}
+
+/* Estilos para la fila de información */
+.info-row {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+/* Icono a la izquierda de cada información */
+.icon {
+  font-size: 1.3rem;
+  color: #671233;
+  margin-right: 1px;
+}
+
+/* Alineación de títulos y detalles en cada fila */
+.target-announcement {
+  color: #671233;
+  font-size: 1rem;
+  margin-right: 5px;
+  font-weight: bold;
+  margin: 0;
+}
+
+.info-row p {
+  font-size: 0.9rem;
+  color: #000000;
+  margin-bottom: 6px;
+  margin-inline-start: 8px;
+  overflow-y: auto;
+}
+
+ .incidencias-container {
+  margin-top: 20px;
+}
+
+.ver-incidencias-button {
+  background-color: #671233;
+  color: #fff;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 100%;
+}
+
+.incidencia-item {
+  margin-bottom: 10px;
+}
+
+.incidencia-detalle {
+  background-color: #f9f9f9;
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  margin-top: 5px;
+  transition: max-height 0.3s ease;
+}
+
+.incidencia-detalle.expandido {
+  max-height: 300px;
+}
+
+.incidencia-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+}
+
+.incidencia-header h3 {
+  font-size: 20px;
+  margin: 0;
+  color: #800020;
+}
+
+
+.incidencia-clasificacion {
+  color: #000000; /* Guinda */
+  font-weight: normal; /* Cambiar a normal ya que el texto debe estar en negrita */
+  /* display: flex; */
+  /* align-items: center; */
+  margin-top: 15px;
+  font-size: 1rem;
+}
+
+.incidencia-descripcion {
+  color: #000000;
+  /* display: flex; */
+  /* align-items: center; */
+  margin-top: 15px;
+  font-size: 1rem;
+}
+
+.incidencia-fecha {
+  color: #000000;
+  /* display: flex; */
+  /* align-items: center; */
+  margin-top: 15px;
+  font-size: 1rem;
+}
+
+.incidencia-clasificacion i,
+.incidencia-descripcion i,
+.incidencia-fecha i {
+  margin-right: 8px;
+  color: #800020;
+}
+
+strong {
+  color: #800020;
+  font-size: 1rem;
+}
+
+.titleInci{
+font-size: 12px;
+}
+
+/* Elimina el sombreado azul y personaliza el botón en estado "active" */
+.list-group-item.active {
+  background-color: #671233; /* Fondo guinda */
+  color: #ffffff; /* Texto blanco */
+  font-weight: bold;
+  outline: none; /* Elimina el sombreado al hacer clic */
+  border: none; /* Elimina el borde alrededor */
+  box-shadow: none; /* Evita sombras adicionales */
+}
+
+/* Agrega margen para la separación entre el botón y el detalle */
+.incidencia-item .list-group-item {
+  margin-top: 10px; /* Espacio entre botón y el detalle desplegable */
+  border-radius: 5px; /* Bordes redondeados para el botón */
+}
+
+/* Espaciado adicional entre el botón y el detalle de la incidencia */
+.incidencia-detalle {
+  margin-top: 15px; /* Espacio adicional encima del contenedor desplegable */
+  background-color: #f9f9f9;
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  transition: max-height 0.3s ease;
+}
+
+/* Ajuste del estilo de iconos cuando el botón está en estado activo */
+.list-group-item.active i {
+  color: #ffffff; /* Color blanco para íconos cuando está activo */
+}

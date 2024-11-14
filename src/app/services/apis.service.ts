@@ -45,10 +45,6 @@ export class ApisService {
 
   getUsuarios() { // Tipamos la respuesta como Observable<any[]>
     return this.http.get<any[]>(`${this.apiURL}/api/usuarios`);
-/*     let data =  this.http.get<any[]>(`${this.apiURL}/api/usuarios`); */
-/*     console.log("User Data", typeof data);
-
-    return data; */
   }
 
   getAlumnosRespo() { // Tipamos la respuesta como Observable<any[]>
@@ -72,6 +68,16 @@ export class ApisService {
 
   postIncidencia(formData: FormData): Observable<any> {
     return this.http.post(`${this.apiURL}/api/incidencias`, formData);
+  }
+
+  getResponsableById(id: string): Observable<any> {
+    return this.http.get<any>(`${this.apiURL}/api/responsables/${id}`);
+  }
+  getAlumnoById(id: string): Observable<any> {
+    return this.http.get<any>(`${this.apiURL}/api/alumnos/${id}`);
+  }
+  getAdministrativoById(id: string): Observable<any> {
+    return this.http.get<any>(`${this.apiURL}/api/administrativos/${id}`);
   }
 
 }

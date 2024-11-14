@@ -1,0 +1,48 @@
+ <div class="content">
+  <header>
+    <div class="toolbar">
+      <button class="close-button" (click)="onClose()">
+        <i class="bi bi-x-circle"></i>
+      </button>
+      <h1 class="announcement-title">{{ administrativo?.nombre || 'Cargando...' }} {{ administrativo?.apellido_paterno }} {{ administrativo?.apellido_materno }}</h1>
+    </div>
+  </header>
+
+  <div class="card">
+    <div class="avatar-container">
+      <img [src]="administrativo?.img" alt="{{ administrativo?.nombre }}" class="avatar-card" />
+    </div>
+
+    <div class="list">
+      <div class="list-item">
+        <div class="label">
+          <h2 class="info-title">Información del administrativo</h2>
+
+          <div class="info-row">
+            <i class="bi bi-person icon"></i>
+            <h3 class="target-announcement">Nombre:</h3>
+            <p>{{ administrativo?.nombre || 'Nombre no disponible.' }} {{ administrativo?.apellido_paterno }} {{ administrativo?.apellido_materno }}</p>
+          </div>
+
+          <div class="info-row">
+            <i class="bi bi-envelope icon"></i>
+            <h3 class="target-announcement">Correo electrónico:</h3>
+            <p>{{ administrativo?.correo_electronico || 'Correo electrónico no disponible.' }}</p>
+          </div>
+
+          <div class="info-row">
+            <i class="bi bi-telephone icon"></i>
+            <h3 class="target-announcement">Teléfono:</h3>
+            <p>{{ administrativo?.num_telefono || 'Teléfono no disponible.' }}</p>
+          </div>
+
+          <div class="info-row">
+            <i class="bi bi-person-badge icon"></i>
+            <h3 class="target-announcement">Rol del usuario:</h3>
+            <p>{{ administrativo?.rol.nombre || 'Rol no disponible.' }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

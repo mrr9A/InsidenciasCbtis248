@@ -6,6 +6,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { ApisService } from '../../services/apis.service';
 import { MatSelectChange } from '@angular/material/select';
 import { onTimeService } from '../../services/actulizarInfor.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -21,7 +22,7 @@ export class ListAdministrativosComponent {
   administrativos: any[] = [];
   allAdministrativos: any[] = [];
 
-  constructor(private onTimeService : onTimeService,private apiService: ApisService) {}
+  constructor(private onTimeService: onTimeService, private apiService: ApisService, private router: Router) { }
 
   ngOnInit(): void {
     setInterval(() => {
@@ -30,13 +31,13 @@ export class ListAdministrativosComponent {
     this.getRoles();
   }
 
-    getRoles(): void {
-      this.apiService.getRoles().subscribe((data: any[]) => {
-        // Filtrar roles para omitir el rol de "tutor"
-        this.roles = data.filter(role => role.nombre !== 'Tutor'); // Cambia 'Tutor' si el nombre es diferente
-        this.loadAllAdministrativos();
-      });
-    }
+  getRoles(): void {
+    this.apiService.getRoles().subscribe((data: any[]) => {
+      // Filtrar roles para omitir el rol de "tutor"
+      this.roles = data.filter(role => role.nombre !== 'Tutor'); // Cambia 'Tutor' si el nombre es diferente
+      this.loadAllAdministrativos();
+    });
+  }
 
 
   loadAllAdministrativos(): void {
@@ -44,15 +45,19 @@ export class ListAdministrativosComponent {
     this.administrativos = [...this.allAdministrativos]; // Mostrar todos por defecto
   }
 
-    onRoleChange(event: MatSelectChange): void {
-      const roleId = event.value;
+  onRoleChange(event: MatSelectChange): void {
+    const roleId = event.value;
 
-      if (roleId === 'all') {
-        this.administrativos = [...this.allAdministrativos];
-      } else {
-        const selectedRole = this.roles.find(role => role.id === +roleId);
-        this.administrativos = selectedRole ? selectedRole.administrativos : [];
-      }
+    if (roleId === 'all') {
+      this.administrativos = [...this.allAdministrativos];
+    } else {
+      const selectedRole = this.roles.find(role => role.id === +roleId);
+      this.administrativos = selectedRole ? selectedRole.administrativos : [];
     }
+  }
 
+  // Navega al componente de detalle enviando el ID del responsable
+  verDetalleAdministrativo(id: string): void {
+    this.router.navigate(['/cbtis248/detalleAdministrativo', id]); // Cambia '/ruta/lista-responsables' por tu ruta real
+  }
 }

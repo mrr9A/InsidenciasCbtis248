@@ -20,20 +20,18 @@ html, body {
 /* Estilo para el título del anuncio */
 .toolbar h1 {
   margin: 0;
-  font-size: 1.8rem;
+  font-size: 1.5rem;
+  font-weight: bold;
   color: #671233;
-  /* Guinda */
   flex-grow: 1;
-  /* Ocupa el espacio restante */
   text-align: left;
-  /* Alinea el texto a la izquierda */
 }
 
 /* Título del anuncio */
-.announcement-title {
+/* .announcement-title {
   color: #671233;
-  /* Guinda */
-}
+  font-size: 1rem;
+} */
 
 /* Estilos para la tarjeta */
 .card {

@@ -29,3 +29,6 @@
   outline: none !important; /* Evita el contorno mientras el botón está activo */
   box-shadow: none !important; /* Elimina cualquier sombra o efecto activo */
 }
+html, body {
+  overflow: auto; /* Asegúrate de que no esté configurado en hidden */
+}

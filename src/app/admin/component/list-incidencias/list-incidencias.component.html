@@ -1,0 +1,68 @@
+<body>
+  <nav class="bg-light fixed-menu">
+    <div class="container-fluid">
+      <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#mobileMenu"
+        aria-controls="mobileMenu">
+        <img src="assets/img/ico-menu.svg" alt="">
+      </button>
+    </div>
+  </nav>
+  <app-menu-admin></app-menu-admin>
+  <h2 class="title">Lista de incidencias</h2>
+  <div class="image-upload">
+    <img src="assets/img/Logo2uia 4.png" alt="Subir foto" />
+  </div>
+  <form class="form-container">
+
+    <!-- Selector de grupo usando Angular Material -->
+    <mat-form-field class="rounded-field">
+      <mat-select placeholder="Seleccionar grupo" (selectionChange)="onGrupoSeleccionado($event.value)">
+        <mat-option *ngFor="let grupo of grupos" [value]="grupo">
+          {{ grupo.grado }} - {{ grupo.grupo }} - {{ grupo.especialidad }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <!-- Lista de incidencias filtradas -->
+    <div *ngIf="mostrarIncidencias" class="list-group">
+      <div *ngFor="let incidencia of incidenciasFiltradas" class="incidencia-item">
+        <!-- Botón para cada incidencia que muestra la fecha y permite desplegar detalles -->
+        <button type="button" class="list-group-item list-group-item-action"
+          (click)="toggleDetalleIncidencia(incidencia)" [ngClass]="{'active': incidencia === incidenciaSeleccionada}">
+          Fecha: {{ incidencia.fecha }}
+        </button>
+
+        <!-- Detalles de la incidencia seleccionada -->
+        <div *ngIf="incidenciaSeleccionada === incidencia" class="incidencia-detalle expandido">
+          <div class="incidencia-header">
+            <h3 class="titleInci">Asunto: {{ incidencia.tipo_incidencia.nombre }}</h3>
+          </div>
+          <p class="incidencia-clasificacion">
+            <i class="bi bi-building-exclamation"></i><strong>Clasificación: </strong>
+            {{ incidencia.tipo_incidencia.descripcion }}
+          </p>
+          <p class="incidencia-descripcion">
+            <i class="bi bi-file-earmark-ppt"></i><strong>Descripción: </strong> {{ incidencia.descripcion }}
+          </p>
+          <p class="incidencia-fecha">
+            <i class="bi bi-calendar2-date"></i><strong>Fecha: </strong> {{ incidencia.fecha }}
+          </p>
+          <p class="incidencia-fecha">
+            <i class="bi bi-person"></i><strong>Alumno: </strong> {{ incidencia.alumno.nombre }} {{ incidencia.alumno.apellido_paterno }} {{ incidencia.alumno.apellido_materno }}
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mensaje cuando no hay incidencias para el grupo seleccionado -->
+    <div *ngIf="!mostrarIncidencias">
+      <p class="title4">Seleccione un grupo para ver las incidencias levantadas.</p>
+      <div class="image-upload">
+        <img src="assets/img/auditoria.png" alt="foto" />
+      </div>
+    </div>
+
+
+  </form>
+
+</body>

@@ -1,41 +1,44 @@
+<body>
 
-<br><br>
-<!-- Card padre con el texto del nombre del usuario -->
-<div class="card-parent">
-  <div class="main-container">
-    <div class="image-container">
-      <div class="card">
-        <img src="assets/img/Logo2uia 3.png" alt="App Logo" class="logo">
-        <div class="profile-border">
-          <img src="assets/img/maxfoto.png" alt="Profile Image" class="logo1">
+  <br><br>
+  <!-- Card padre con el texto del nombre del usuario -->
+  <div class="card-parent">
+    <div class="main-container">
+      <div class="image-container">
+        <div class="card">
+          <img src="assets/img/Logo2uia 3.png" alt="App Logo" class="logo">
+          <div class="profile-border">
+            <img src="assets/img/maxfoto.png" alt="Profile Image" class="logo1">
+          </div>
         </div>
       </div>
     </div>
   </div>
-</div>
-<br>
-<!-- app info -->
-<div class="profile-card">
-  <h5 class="profile-name">{{ usuario?.responsable?.nombre }} {{ usuario?.responsable?.apellido_paterno }}</h5>
   <br>
-  <div class="info-section">
-    <p>Información:</p>
+  <!-- app info -->
+  <div class="profile-card">
+    <h5 class="profile-name">{{ usuario?.responsable?.nombre }} {{ usuario?.responsable?.apellido_paterno }}</h5>
     <br>
-    <div class="info-item">
-      <i class="bi bi-envelope"></i> <!-- Icono de correo -->
-      <span><strong>Correo electronico:</strong> {{ correo }}</span>
+    <div class="info-section">
+      <p>Información:</p>
+      <br>
+      <div class="info-item">
+        <i class="bi bi-envelope"></i> <!-- Icono de correo -->
+        <span><strong>Correo electronico:</strong> {{ correo }}</span>
+      </div>
+
+      <div class="info-item">
+        <i class="bi bi-telephone"></i> <!-- Icono de teléfono -->
+        <span><strong>Telefono:</strong> {{ telefono }}</span>
+      </div>
+
+      <div class="info-item">
+        <i class="bi bi-person"></i> <!-- Icono de perfil -->
+        <span><strong>Tipo de perfil:</strong> {{ tipoPerfil }}</span>
+      </div>
     </div>
 
-    <div class="info-item">
-      <i class="bi bi-telephone"></i> <!-- Icono de teléfono -->
-      <span><strong>Telefono:</strong> {{ telefono }}</span>
-    </div>
-
-    <div class="info-item">
-      <i class="bi bi-person"></i> <!-- Icono de perfil -->
-      <span><strong>Tipo de perfil:</strong> {{ tipoPerfil }}</span>
-    </div>
+    <button class="logout-btn" (click)="logout()">Cerrar sesión</button>
   </div>
 
-  <button class="logout-btn" (click)="logout()">Cerrar sesión</button>
-</div>
+</body>

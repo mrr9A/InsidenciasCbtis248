@@ -1,58 +1,59 @@
-<nav class="bg-light fixed-menu">
-  <div class="container-fluid">
-    <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#mobileMenu"
-      aria-controls="mobileMenu">
-      <img src="assets/img/ico-menu.svg" alt="">
-    </button>
+<body>
+  <nav class="bg-light fixed-menu">
+    <div class="container-fluid">
+      <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#mobileMenu"
+        aria-controls="mobileMenu">
+        <img src="assets/img/ico-menu.svg" alt="">
+      </button>
+    </div>
+  </nav>
+  <app-menu></app-menu>
+  <br>
+  <div class="text">
+    <h2>Historial de incidencias</h2>
   </div>
-</nav>
-<app-menu></app-menu>
-<br><br>
-<div class="text">
-  <h2>Historial de incidencias</h2>
-</div>
-<p class="tex1">Por favor seleccione la fecha que desea ver las incidencias de sus hijos/as</p>
+  <p class="tex1">Por favor seleccione la fecha que desea ver las incidencias de sus hijos/as</p>
 
-<div class="select-container">
-  <select (change)="onAlumnoSeleccionado($event)" class="custom-select">
-    <option selected>Seleccione al alumno</option>
-    <option *ngFor="let alumno of alumnos" [value]="alumno.id">{{ alumno.nombre }}</option>
-  </select>
+  <form class="form-container">
+    <!-- Selector de alumnos -->
+    <mat-form-field class="rounded-field">
+      <mat-select placeholder="Seleccionar alumno" (selectionChange)="onAlumnoSeleccionado($event.value)">
+        <mat-option value="" disabled>Seleccione al alumno</mat-option>
+        <mat-option *ngFor="let alumno of alumnos" [value]="alumno.id">
+          {{ alumno.nombre }} {{ alumno.apellido_paterno }} {{ alumno.apellido_materno }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
 
-  <div class="icon">
-    <i class="bi bi-person-fill"></i>
-  </div>
-  <div class="arrow-icon">
-    <i class="bi bi-chevron-down"></i>
-  </div>
-</div>
+    <!-- Selector de fechas -->
+    <mat-form-field class="rounded-field">
+      <mat-select placeholder="Seleccionar fecha" [(value)]="chooseDate"
+        (selectionChange)="onFechaSeleccionada($event.value)">
+        <mat-option value="" disabled>Seleccione la fecha</mat-option>
+        <mat-option *ngFor="let fecha of fechasDisponibles" [value]="fecha">
+          {{ fecha }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
 
-<div class="select-container">
-  <select (change)="onFechaSeleccionada($event)" [(ngModel)]="chooseDate" class="custom-select">
-    <option selected disabled value="">Seleccione la fecha</option>
-    <option *ngFor="let fecha of fechasDisponibles" [value]="fecha">{{ fecha }}</option>
-  </select>
-  <div class="icon">
-    <i class="bi bi-calendar"></i>
-  </div>
-  <div class="arrow-icon">
-    <i class="bi bi-chevron-down"></i>
-  </div>
-</div>
-
-<div class="card" *ngIf="incidenciasFiltradas.length > 0">
-  <div class="card-content">
-    <div class="card-item" *ngFor="let incidencia of incidenciasFiltradas" (click)="openModal(incidencia.id)">
-      <div class="thumbnail">
-        <img src="https://www.cbtis248.edu.mx/bienvenida.png" alt="Silhouette of mountains">
-      </div>
-      <div class="card-label">
-        <span>Fecha: {{ incidencia.fecha }}</span>
+    <div *ngIf="incidenciasFiltradas.length > 0; else noIncidencias">
+      <div class="info-item" *ngFor="let incidencia of incidenciasFiltradas" (click)="openModal(incidencia.id)">
+        <img src="assets/img/Logo2uia 4.png" alt="{{ incidencia.nombre }}" width="50" class="img-avar">
+        <span><strong>Asunto:</strong> {{ incidencia.tipo_incidencia.nombre }}</span>
+        <i class="bi bi-chevron-compact-right"></i>
       </div>
     </div>
-  </div>
-</div>
 
-<p *ngIf="incidenciasFiltradas.length === 0 && selectedAlumnoId && selectedFecha">
-  No hay incidencias disponibles para la fecha y alumno seleccionados.
-</p>
+    <!-- Mensaje si no hay incidencias -->
+    <ng-template #noIncidencias>
+      <p class="title4">
+        Selecciona a un alumno para ver sus incidencias.
+      </p>
+      <div class="image-upload">
+        <img src="assets/img/auditoria.png" alt="foto" />
+      </div>
+    </ng-template>
+  </form>
+
+
+</body>

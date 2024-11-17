@@ -106,7 +106,7 @@ export class AddAvisoComponent {
         next: () => {
           this.isLoading = false;
           this.snackBar.open('Aviso registrado con éxito', 'Cerrar', { duration: 3000 });
-          this.router.navigate(['/cbtis248/listAlumnos']);
+          this.router.navigate(['/cbtis248/listAvisos']);
         },
         error: (error) => {
           this.isLoading = false;

@@ -79,17 +79,18 @@ export class AddReporteComponent {
     }
   }
 
+  onSubmit(): void {
+    if (this.incidenciaForm.valid && !this.isLoading) { // Solo proceder si el formulario es válido y no hay un envío en proceso
+      this.isLoading = true; // Activar el spinner para evitar más envíos
 
-/*   onSubmit(): void {
-    if (this.incidenciaForm.valid) {
-      this.isLoading = true; // Activar el spinner al iniciar la petición
-
-      // Agregar la fecha actual si no se ha proporcionado una
-      const fechaActual = new Date().toISOString().split('T')[0]; // Formato 'YYYY-MM-DD'
-      this.incidenciaForm.get('fecha')?.setValue(fechaActual);
+      // Agregar la fecha actual solo si no se ha proporcionado una
+      if (!this.incidenciaForm.get('fecha')?.value) {
+        const fechaActual = new Date().toISOString().split('T')[0]; // Formato 'YYYY-MM-DD'
+        this.incidenciaForm.get('fecha')?.setValue(fechaActual);
+      }
 
       // Extraer el ID del administrativo del localStorage
-      const usuarioGuardado = JSON.parse(localStorage.getItem('usuarioEncontrado') || '{}');
+      const usuarioGuardado = JSON.parse(localStorage.getItem('usuario') || '{}');
       const administrativoId = usuarioGuardado.administrativo?.id;
 
       // Crear los datos del formulario incluyendo el ID del administrativo
@@ -103,7 +104,7 @@ export class AddReporteComponent {
           this.isLoading = false; // Desactivar el spinner al finalizar
           this.incidenciaForm.reset(); // Reinicia el formulario para evitar duplicados
           this.snackBar.open('Incidencia guardada con éxito', 'Cerrar', { duration: 3000 });
-          this.router.navigate(['/cbtis248/listAlumnos']);
+          this.router.navigate(['/cbtis248/listIncidencias']);
         },
         error: (error) => {
           this.isLoading = false; // Desactivar el spinner en caso de error
@@ -112,43 +113,7 @@ export class AddReporteComponent {
         }
       });
     }
-  } */
-
-    onSubmit(): void {
-      if (this.incidenciaForm.valid && !this.isLoading) { // Solo proceder si el formulario es válido y no hay un envío en proceso
-        this.isLoading = true; // Activar el spinner para evitar más envíos
-
-        // Agregar la fecha actual solo si no se ha proporcionado una
-        if (!this.incidenciaForm.get('fecha')?.value) {
-          const fechaActual = new Date().toISOString().split('T')[0]; // Formato 'YYYY-MM-DD'
-          this.incidenciaForm.get('fecha')?.setValue(fechaActual);
-        }
-
-        // Extraer el ID del administrativo del localStorage
-        const usuarioGuardado = JSON.parse(localStorage.getItem('usuarioEncontrado') || '{}');
-        const administrativoId = usuarioGuardado.administrativo?.id;
-
-        // Crear los datos del formulario incluyendo el ID del administrativo
-        const formData = {
-          ...this.incidenciaForm.value,
-          administrativo_id: administrativoId
-        };
-
-        this.apiService.postIncidencia(formData).subscribe({
-          next: () => {
-            this.isLoading = false; // Desactivar el spinner al finalizar
-            this.incidenciaForm.reset(); // Reinicia el formulario para evitar duplicados
-            this.snackBar.open('Incidencia guardada con éxito', 'Cerrar', { duration: 3000 });
-            this.router.navigate(['/cbtis248/listAlumnos']);
-          },
-          error: (error) => {
-            this.isLoading = false; // Desactivar el spinner en caso de error
-            this.snackBar.open(`Error al guardar incidencia: ${error.message}`, 'Cerrar', { duration: 3000 });
-            console.error('Error al guardar incidencia:', error);
-          }
-        });
-      }
-    }
+  }
 
 
 

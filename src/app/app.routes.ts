@@ -62,6 +62,14 @@ export const routes: Routes = [
         loadComponent: () => import('./admin/list-alumno/list-alumno.component').then(m => m.ListAlumnoComponent), canActivate: [authGuard]
       },
       {
+        path: 'listAvisos',
+        loadComponent: () => import('./admin/component/list-avisos/list-avisos.component').then(m => m.ListAvisosComponent), canActivate: [authGuard]
+      },
+      {
+        path: 'listIncidencias',
+        loadComponent: () => import('./admin/component/list-incidencias/list-incidencias.component').then(m => m.ListIncidenciasComponent), canActivate: [authGuard]
+      },
+      {
         path: 'detalleResponsable/:id',
         loadComponent: () => import('./admin/component/info-responsable/info-responsable.component').then(m => m.InfoResponsableComponent), canActivate: [authGuard]
       },

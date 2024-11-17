@@ -27,7 +27,7 @@ export const authGuard: CanActivateFn = (route, state) => {
       // Redirigir a la ruta correspondiente según el rol
       if (rol === 'Tutor') {
         router.navigate(['/cbtis248/historialIncidencias']);
-      } else if (rol === 'Admin') {
+      } else if (rol === 'Admin' || 'Maestro' || 'Prefecto') {
         router.navigate(['/cbtis248/homeAdmin']);
       }
       return false; // No permitir acceso al login
@@ -39,8 +39,18 @@ export const authGuard: CanActivateFn = (route, state) => {
       Admin: [
         'homeAdmin', 'addReporte', 'addAdministrativo', 'addResponsable',
         'addAviso', 'listResponsable', 'listAdministrativos', 'addAlumno','listAlumnos','detalleResponsable/:id',
-        'detalleAlumno/:id','detalleAdministrativo/:id'
-      ]
+        'detalleAlumno/:id','detalleAdministrativo/:id','listAvisos','listIncidencias'
+      ],
+      Maestro: [
+        'homeAdmin', 'addReporte',
+        'addAviso', 'listResponsable', 'listAdministrativos','listAlumnos','detalleResponsable/:id',
+        'detalleAlumno/:id','detalleAdministrativo/:id','listAvisos','listIncidencias'
+      ],
+      Prefecto: [
+        'homeAdmin', 'addReporte',
+        'addAviso', 'listResponsable', 'listAdministrativos','listAlumnos','detalleResponsable/:id',
+        'detalleAlumno/:id','detalleAdministrativo/:id','listAvisos','listIncidencias'
+      ],
     };
 
     const rutaActual = route.routeConfig?.path;
@@ -54,7 +64,7 @@ export const authGuard: CanActivateFn = (route, state) => {
     // Si el usuario no tiene acceso a la ruta, redirigir a la ruta correspondiente
     if (rol === 'Tutor') {
       router.navigate(['/cbtis248/historialIncidencias']); // Redirigir a una ruta permitida para Tutor
-    } else if (rol === 'Admin') {
+    } else if (rol === 'Admin' || 'Maestro' || 'Prefecto') {
       router.navigate(['/cbtis248/homeAdmin']); // Redirigir a una ruta permitida para Admin
     } else {
       router.navigate(['/cbtis248/login']); // En caso de que el rol no sea válido, redirigir al login

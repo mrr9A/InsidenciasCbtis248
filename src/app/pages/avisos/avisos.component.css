@@ -1,3 +1,6 @@
+html, body {
+  overflow: auto; /* Asegúrate de que no esté configurado en hidden */
+}
 .text {
   font-size: 4rem;
   text-align: center; /* Centra horizontalmente el texto */

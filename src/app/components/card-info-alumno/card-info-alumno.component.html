@@ -1,50 +1,55 @@
-<div class="body-info">
-  <div class="card">
-    <div class="image-container">
-      <img src="assets/img/Logo2uia 5.png" alt="App Logo" class="logo">
-      <img src="assets/img/maxfoto.png" alt="Profile Image" class="profile-img">
+<body>
+  <div class="body-info">
+    <div class="card">
+      <div class="image-container">
+        <img src="assets/img/Logo2uia 5.png" alt="App Logo" class="logo">
+        <img src="assets/img/maxfoto.png" alt="Profile Image" class="profile-img">
+      </div>
+      <div class="card-body">
+        <h5 class="text">Bienvenido</h5>
+      </div>
     </div>
-    <div class="card-body">
-      <h5 class="text">Bienvenido</h5>
+
+    <div class="select-container">
+      <select class="custom-select" (change)="onSelectAlumno($event)">
+        <option *ngFor="let alumno of alumnos" [value]="alumno.alumno.id.toString()">{{ alumno.alumno.nombre }} {{
+          alumno.alumno.apellido_paterno }} {{ alumno.alumno.apellido_materno }}</option>
+      </select>
+      <div class="icon">
+        <i class="bi bi-person-fill"></i>
+      </div>
+      <div class="arrow-icon">
+        <i class="bi bi-chevron-down"></i>
+      </div>
+    </div><br>
+
+    <div class="info-alumno" *ngIf="selectedAlumno">
+      <h2>Información del alumno:</h2>
+      <ul class="list-group">
+        <li class="list-group-item d-flex align-items-center text2">
+          <i class="bi bi-people icon1 me-2"></i>
+          <span><strong>Grado:</strong> {{ selectedAlumno.alumno.grupo.grado || 'N/A' }}</span>
+          <span><strong>Grupo:</strong> {{ selectedAlumno.alumno.grupo.grupo || 'N/A' }}</span>
+        </li>
+        <li class="list-group-item d-flex align-items-center text2">
+          <i class="bi bi-boxes icon1 me-2"></i>
+          <span><strong>Especialidad:</strong> {{ selectedAlumno.alumno.grupo.especialidad || 'N/A' }}</span>
+        </li>
+        <li class="list-group-item d-flex align-items-center text2">
+          <i class="bi bi-list-ol icon1 me-2"></i>
+          <span><strong>Num. de control escolar:</strong> {{ selectedAlumno.alumno.num_control_escolar || 'N/A'
+            }}</span>
+        </li>
+        <li class="list-group-item d-flex align-items-center text2">
+          <i class="bi bi-phone icon1 me-2"></i>
+          <span><strong>Teléfono:</strong> {{ selectedAlumno.alumno.num_telefono || 'N/A' }}</span>
+        </li>
+        <li class="list-group-item d-flex align-items-center text2">
+          <i class="bi bi-envelope icon1 me-2"></i>
+          <span><strong>Correo:</strong> {{ selectedAlumno.alumno.correo_electronico || 'N/A' }}</span>
+        </li>
+      </ul>
     </div>
   </div>
 
-  <div class="select-container">
-    <select class="custom-select"  (change)="onSelectAlumno($event)">
-      <option *ngFor="let alumno of alumnos" [value]="alumno.alumno.id.toString()">{{ alumno.alumno.nombre }} {{ alumno.alumno.apellido_paterno }} {{ alumno.alumno.apellido_materno }}</option>
-    </select>
-    <div class="icon">
-      <i class="bi bi-person-fill"></i>
-    </div>
-    <div class="arrow-icon">
-      <i class="bi bi-chevron-down"></i>
-    </div>
-  </div><br>
-
-  <div class="info-alumno" *ngIf="selectedAlumno">
-    <h2>Información del alumno:</h2>
-    <ul class="list-group">
-      <li class="list-group-item d-flex align-items-center text2">
-        <i class="bi bi-people icon1 me-2"></i>
-        <span><strong>Grado:</strong> {{ selectedAlumno.alumno.grupo.grado || 'N/A' }}</span>
-        <span><strong>Grupo:</strong> {{ selectedAlumno.alumno.grupo.grupo || 'N/A' }}</span>
-      </li>
-      <li class="list-group-item d-flex align-items-center text2">
-        <i class="bi bi-boxes icon1 me-2"></i>
-        <span><strong>Especialidad:</strong> {{ selectedAlumno.alumno.grupo.especialidad || 'N/A' }}</span>
-      </li>
-      <li class="list-group-item d-flex align-items-center text2">
-        <i class="bi bi-list-ol icon1 me-2"></i>
-        <span><strong>Num. de control escolar:</strong> {{ selectedAlumno.alumno.num_control_escolar || 'N/A' }}</span>
-      </li>
-      <li class="list-group-item d-flex align-items-center text2">
-        <i class="bi bi-phone icon1 me-2"></i>
-        <span><strong>Teléfono:</strong> {{ selectedAlumno.alumno.num_telefono || 'N/A' }}</span>
-      </li>
-      <li class="list-group-item d-flex align-items-center text2">
-        <i class="bi bi-envelope icon1 me-2"></i>
-        <span><strong>Correo:</strong> {{ selectedAlumno.alumno.correo_electronico || 'N/A' }}</span>
-      </li>
-    </ul>
-  </div>
-</div>
+</body>

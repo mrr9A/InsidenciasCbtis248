@@ -1,3 +1,6 @@
+html, body {
+  overflow: auto; /* Asegúrate de que no esté configurado en hidden */
+}
 /* Estilos para la tarjeta */
 .card {
   height: 130px; /* Altura perfecta */

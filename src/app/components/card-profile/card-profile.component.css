@@ -1,3 +1,6 @@
+html, body {
+  overflow: auto; /* Asegúrate de que no esté configurado en hidden */
+}
 /* Contenedor principal para centrar horizontalmente */
 .main-container {
   display: flex;

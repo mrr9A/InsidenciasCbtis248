@@ -1,3 +1,6 @@
+html, body {
+  overflow: auto; /* Asegúrate de que no esté configurado en hidden */
+}
 .navbar-toggler {
   border: none; /* Sin borde en el botón */
 }

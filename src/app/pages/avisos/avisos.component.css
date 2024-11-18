@@ -1,11 +1,11 @@
 html, body {
   overflow: auto; /* Asegúrate de que no esté configurado en hidden */
 }
-.text {
-  font-size: 4rem;
+.text h2{
+  font-size: 2rem;
   text-align: center; /* Centra horizontalmente el texto */
   color: #800020;
-  margin-top: 16px;
+  margin-top: 24px;
   text-shadow: 2px 2px 4px rgba(7, 5, 5, 0.46);
   /* Para centrar el texto dentro de su contenedor */
   display: flex;

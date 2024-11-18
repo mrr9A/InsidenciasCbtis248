@@ -6,6 +6,7 @@ import { onTimeService } from '../../services/actulizarInfor.service';
 import { MatDialog } from '@angular/material/dialog';
 import { ModalHistorialComponent } from '../../components/modal-historial/modal-historial.component';
 import { MatSelectModule } from '@angular/material/select';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-historial',
@@ -23,7 +24,7 @@ export class HistorialComponent {
   chooseDate: string = ''; // Fecha seleccionada en el selector
   isModalOpen = false; // Estado del modal
 
-  constructor(private onTimeService: onTimeService, public dialog: MatDialog) { }
+  constructor(private onTimeService: onTimeService,private router: Router) { }
 
   ngOnInit() {
     // Actualiza la información del usuario cada 3 minutos
@@ -91,18 +92,8 @@ export class HistorialComponent {
     }
   }
 
-  openModal(incidenciaId: number): void {
-    this.isModalOpen = true; // Marca el modal como abierto
-    const dialogRef = this.dialog.open(ModalHistorialComponent, {
-      width: '100%', // Ancho completo para el modal
-      height: '100%', // Alto completo para el modal
-      panelClass: 'full-screen-modal', // Clase personalizada para el modal
-      data: { incidenciaId } // Pasa el ID de la incidencia al modal
-    });
-
-    dialogRef.afterClosed().subscribe(() => {
-      this.isModalOpen = false; // Marca el modal como cerrado
-      console.log('El modal fue cerrado');
-    });
+  openModal(incidenciaId: string): void {
+    // Navega al componente de detalle enviando el ID del responsable
+    this.router.navigate(['/cbtis248/detalleIns', incidenciaId]); // Cambia '/ruta/lista-responsables' por tu ruta real
   }
 }

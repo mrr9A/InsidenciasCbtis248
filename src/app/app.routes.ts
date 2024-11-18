@@ -82,6 +82,14 @@ export const routes: Routes = [
         loadComponent: () => import('./admin/component/info-administrativo/info-administrativo.component').then(m => m.InfoAdministrativoComponent), canActivate: [authGuard]
       },
       {
+        path: 'detalleAvis/:id',
+        loadComponent: () => import('./components/modal-anuncio/modal-anuncio.component').then(m => m.ModalAnuncioComponent), canActivate: [authGuard]
+      },
+      {
+        path: 'detalleIns/:id',
+        loadComponent: () => import('./components/modal-historial/modal-historial.component').then(m => m.ModalHistorialComponent), canActivate: [authGuard]
+      },
+      {
         path: '**',
         redirectTo: 'login'
       }

@@ -6,11 +6,13 @@ import { MenuComponent } from '../../components/menu/menu.component';
 import { ApisService } from '../../services/apis.service';
 import { FormsModule } from '@angular/forms';
 import { onTimeService } from '../../services/actulizarInfor.service';
+import { MatSelectModule } from '@angular/material/select';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-avisos',
   standalone: true,
-  imports: [CommonModule, MenuComponent, FormsModule],
+  imports: [CommonModule, MenuComponent, FormsModule, MatSelectModule],
   templateUrl: './avisos.component.html',
   styleUrls: ['./avisos.component.css']
 })
@@ -22,7 +24,7 @@ export class AvisosComponent {
   selectedFecha: string = ''; // Fecha seleccionada por el usuario para filtrar
   isModalOpen = false;
 
-  constructor(public dialog: MatDialog, private apiService: ApisService, private onTimeService : onTimeService) {}
+  constructor(public dialog: MatDialog, private apiService: ApisService, private onTimeService: onTimeService, private router: Router) { }
   ngOnInit() {
     setInterval(() => {
       this.onTimeService.getActualUser();
@@ -62,19 +64,10 @@ export class AvisosComponent {
   }
 
 
-  openModal(anuncioId: number): void {
-    this.isModalOpen = true; // Abre el modal
-    const dialogRef = this.dialog.open(ModalAnuncioComponent, {
-      width: '100%', // Ancho completo para el modal
-      height: '100%', // Alto completo para el modal
-      panelClass: 'full-screen-modal', // Clase personalizada para el modal
-      data: { anuncioId }  // Pasa el ID del aviso
-    });
+  openModal(anuncioId: string): void {
+    // Navega al componente de detalle enviando el ID del responsable
+    this.router.navigate(['/cbtis248/detalleAvis', anuncioId]); // Cambia '/ruta/lista-responsables' por tu ruta real
 
-    dialogRef.afterClosed().subscribe(() => {
-      this.isModalOpen = false; // Cierra el modal
-      console.log('El modal fue cerrado');
-    });
   }
 }
 

@@ -80,5 +80,11 @@ export class ApisService {
   getAdministrativoById(id: string): Observable<any> {
     return this.http.get<any>(`${this.apiURL}/api/administrativos/${id}`);
   }
+  getAvisoById(id: string): Observable<any> {
+    return this.http.get<any>(`${this.apiURL}/api/avisos/${id}`);
+  }
+  getInsideById(id: string): Observable<any> {
+    return this.http.get<any>(`${this.apiURL}/api/incidencias/${id}`);
+  }
 
 }

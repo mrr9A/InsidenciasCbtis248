@@ -2,28 +2,49 @@
   <div class="content">
     <header>
       <div class="toolbar">
-        <button class="close-button" (click)="onClose()"><i class="bi bi-x"></i></button>
-        <h1 class="announcement-title">Incidencias</h1>
-      </div>
-      <div class="label">
-        <h5 class="label">12/05/23 - 23/05/23</h5>
+        <button class="close-button" (click)="onClose()">
+          <i class="bi bi-x-circle"></i>
+        </button>
+        <h1 class="announcement-title">{{ incidencia?.tipo_incidencia.nombre || 'Cargando...' }}</h1>
       </div>
     </header>
+
     <div class="card">
       <div class="avatar-container">
-        <img alt="perfil" class="avatar-card" src="https://www.cbtis248.edu.mx/bienvenida.png" />
+        <img alt="perfil" class="avatar-card" src="assets/img/Logo2uia 3.png" />
       </div>
+
       <div class="list">
         <div class="list-item">
           <div class="label">
-            <h2 class="info-title">Información de la incidencia</h2><br>
-            <h3 class="target-announcement">Descripción:</h3><br>
 
-            <p class="description">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ipsam eum
-              omnis ut nihil corporis vel, est maiores placeat debitis quaerat odit, ratione magni repellat nisi numquam
-              incidunt, animi eius recusandae? Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam dolor
-              natus possimus alias facere dolores eius fuga, laudantium illum molestiae! Placeat, voluptates porro. Ad
-              nemo quod quo dignissimos, a nulla? lor lo</p>
+            <div class="incidencia-detalle expandido">
+              <div class="incidencia-header">
+                <h3 class="titleInci">Asunto: {{ incidencia?.tipo_incidencia?.nombre }}</h3>
+              </div>
+
+              <p class="incidencia-fecha">
+                <i class="bi bi-people"></i><strong>Alumno: </strong> {{ incidencia?.alumno.nombre }} {{ incidencia?.alumno.apellido_paterno }} {{ incidencia?.alumno.apellido_materno }}
+              </p>
+
+              <p class="incidencia-clasificacion">
+                <i class="bi bi-building-exclamation"></i><strong>Clasificación: </strong>
+                {{ incidencia?.tipo_incidencia?.descripcion }}
+              </p>
+
+              <p class="incidencia-descripcion">
+                <i class="bi bi-file-earmark-text"></i><strong>Descripción: </strong> {{ incidencia?.descripcion ||
+                'Descripción no disponible.' }}
+              </p>
+
+              <p class="incidencia-fecha">
+                <i class="bi bi-people"></i><strong>Emitido por: </strong> {{ incidencia?.administrativo.nombre }} {{ incidencia?.administrativo.apellido_paterno }} {{ incidencia?.administrativo.apellido_materno }}
+              </p>
+
+              <p class="incidencia-fecha">
+                <i class="bi bi-calendar2-date"></i><strong>Fecha: </strong> {{ incidencia?.fecha ||'Cargando fecha' }}
+              </p>
+            </div>
           </div>
         </div>
       </div>

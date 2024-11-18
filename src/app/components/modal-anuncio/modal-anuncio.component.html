@@ -3,7 +3,7 @@
     <header>
       <div class="toolbar">
         <button class="close-button" (click)="onClose()">
-          <i class="bi bi-x"></i>
+          <i class="bi bi-x-circle"></i>
         </button>
         <h1 class="announcement-title">{{ anuncio?.nombre || 'Cargando...' }}</h1>
       </div>
@@ -11,25 +11,39 @@
 
     <div class="card">
       <div class="avatar-container">
-        <img alt="perfil" class="avatar-card" src="https://www.cbtis248.edu.mx/bienvenida.png" />
+        <img alt="perfil" class="avatar-card" [src]="anuncio?.img" />
       </div>
 
       <div class="list">
         <div class="list-item">
           <div class="label">
-            <h2 class="info-title">Información del anuncio</h2><br>
+            <div class="incidencia-detalle expandido">
+              <div class="incidencia-header">
+                <h3 class="titleInci">Información del anuncio</h3>
+              </div>
 
-            <h3 class="target-announcement">Anuncio dirigido para:</h3>
-            <ul *ngIf="anuncio?.grupos && anuncio.grupos.length > 0">
-              <li *ngFor="let grupo of anuncio.grupos">
-                {{ grupo.grado }}°{{ grupo.grupo }} {{ grupo.especialidad }}
-              </li>
-            </ul>
+              <p class="incidencia-fecha">
+                <i class="bi bi-collection"></i>
+                <strong>Anuncio dirigido para:</strong>
+              </p>
+              <ul *ngIf="anuncio?.grupos && anuncio.grupos.length > 0">
+                <li *ngFor="let grupo of anuncio.grupos">
+                  {{ grupo.grado }}°{{ grupo.grupo }} {{ grupo.especialidad }}
+                </li>
+              </ul>
 
-            <h3 class="target-announcement">Descripción:</h3><br>
-            <p class="description">
-              {{ anuncio?.descripcion || 'Descripción no disponible.' }}
-            </p>
+              <p class="incidencia-descripcion">
+                <i class="bi bi-file-earmark-text"></i><strong>Descripción: </strong> {{ anuncio?.descripcion ||
+                'Descripción no disponible.' }}
+              </p>
+
+              <p class="incidencia-fecha">
+                <i class="bi bi-calendar2-date"></i><strong>Fecha: </strong> {{ anuncio?.fecha | date: 'dd-MM-yyyy' }}
+              </p>
+              <p class="incidencia-fecha">
+                <i class="bi bi-people"></i><strong>Emitido por: </strong> {{ anuncio?.administrativo.nombre }} {{ anuncio?.administrativo.apellido_paterno }} {{ anuncio?.administrativo.apellido_materno }}
+              </p>
+            </div>
           </div>
         </div>
       </div>

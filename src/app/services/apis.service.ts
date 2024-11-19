@@ -9,7 +9,7 @@ export class ApisService {
 
   constructor(private http: HttpClient) { }
 /*   private apiURL = 'http://localhost:3000' */
-  private apiURL = 'https://cbtis248back.onrender.com'
+  private apiURL = 'https://cbtis248zimatlan.onrender.com'
 
   login(credentials: { correo_electronico: string; password: string }) {
     return this.http.post(`${this.apiURL}/api/auth/login`, credentials);

@@ -1,9 +1,9 @@
  <div class="offcanvas offcanvas-start" tabindex="-1" id="mobileMenu" aria-labelledby="mobileMenuLabel">
   <div class="offcanvas-header bg-custom text-white">
     <div class="text-center w-100">
-      <img src="assets/img/maxfoto.png" alt="Profile Image" class="rounded-circle profile-img logo1">
+      <img [src]="usuario.responsable?.img" alt="Profile Image" class="rounded-circle profile-img logo1">
       <br><br>
-      <h5 class="mt-2 title">Maximiliano León</h5>
+      <h5 class="mt-2 title">{{usuario.responsable?.nombre}} {{usuario.responsable?.apellido_paterno}} {{usuario.responsable?.apellido_materno}}</h5>
     </div>
   </div>
   <div class="offcanvas-body">

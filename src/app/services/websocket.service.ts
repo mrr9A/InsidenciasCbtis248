@@ -11,7 +11,7 @@ export class WebSocketService {
 
   constructor(private notificationService: NotificationService) {
     /*     this.socket = io('http://localhost:3000'); */ // URL de tu servidor de WebSockets
-    this.socket = io('https://cbtis248back.onrender.com'); // URL de tu servidor de WebSockets
+    this.socket = io('https://cbtis248zimatlan.onrender.com'); // URL de tu servidor de WebSockets
   }
 
   // Conectar al WebSocket con el ID del responsable

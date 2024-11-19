@@ -20,7 +20,7 @@ export class MenuAdminComponent {
   password: string = '';
   telefono: string = '';
   tipoPerfil: string = '';
-  constructor(private router: Router,private onTimeService: onTimeService) { }
+  constructor(private onTimeService: onTimeService) { }
 
   ngOnInit(): void {
     setInterval(() => {
@@ -44,8 +44,5 @@ export class MenuAdminComponent {
     }
   }
 
-  goToHistory() {
-    this.router.navigateByUrl('cbtis248/historialIncidencias');
-  }
 }
 

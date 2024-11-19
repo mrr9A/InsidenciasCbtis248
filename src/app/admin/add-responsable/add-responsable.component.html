@@ -8,7 +8,7 @@
     </div>
   </nav>
   <app-menu-admin></app-menu-admin>
-  <h2 class="title">Agregar responsable</h2>
+  <h2 class="title">Agregar padre de familia</h2>
   <form [formGroup]="tutorForm" (ngSubmit)="onSubmit()" class="form-container">
 
     <div class="image-upload">
@@ -19,7 +19,7 @@
     </div>
 
     <div class="form-group">
-      <label for="nombre">Nombre del responsable</label>
+      <label for="nombre">Nombre del padre de familia</label>
       <input id="nombre" formControlName="nombre" type="text" required />
     </div>
 
@@ -35,7 +35,7 @@
 
     <div class="form-group">
       <label for="num_telefono">Número de teléfono</label>
-      <input id="num_telefono" formControlName="num_telefono" type="text" required />
+      <input id="num_telefono" formControlName="num_telefono" type="text" required maxlength="10" minlength="10"/>
     </div>
 
     <div class="form-group">
@@ -45,7 +45,7 @@
 
     <div class="form-group">
       <label for="password">Contraseña</label>
-      <input id="password" formControlName="password" type="password" required />
+      <input id="password" formControlName="password" type="password" required minlength="8" maxlength="10"/>
     </div>
 
     <mat-form-field>

@@ -21,7 +21,7 @@
       </mat-select>
     </mat-form-field>
 
-    <h3 class="title">Lista de Responsables:</h3>
+    <h3 class="title">Lista de padres de familia:</h3>
 
     <div *ngIf="responsables.length > 0; else noResponsables">
       <div class="info-item" *ngFor="let responsable of responsables"
@@ -34,7 +34,7 @@
     </div>
 
     <ng-template #noResponsables>
-      <p class="title4">Seleccione un grupo de los responsables que desea ver</p>
+      <p class="title4">Seleccione un grupo de los padres de familia que desea ver</p>
       <div class="image-upload">
         <img src="assets/img/auditoria.png" alt="foto" />
       </div>

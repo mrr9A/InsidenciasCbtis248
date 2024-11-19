@@ -16,7 +16,7 @@ html, body {
 /* Estilo para el título del anuncio */
 .toolbar h1 {
   margin: 0;
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   font-weight: bold;
   color: #671233; /* Guinda */
   flex-grow: 1; /* Ocupa el espacio restante */

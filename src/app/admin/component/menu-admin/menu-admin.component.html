@@ -17,7 +17,7 @@
         <a class="nav-link" [routerLink]="['/cbtis248/addAdministrativo']"><i class="bi bi-person-add"></i> Agregar administrativo</a>
       </li>
       <li class="nav-item" *ngIf="usuario.administrativo.rol.nombre === 'Admin'">
-        <a class="nav-link" [routerLink]="['/cbtis248/addResponsable']"><i class="bi bi-person-plus"></i> Agregar responsable</a>
+        <a class="nav-link" [routerLink]="['/cbtis248/addResponsable']"><i class="bi bi-person-plus"></i> Agregar padre de familia</a>
       </li>
       <li class="nav-item" *ngIf="usuario.administrativo.rol.nombre === 'Admin'">
         <a class="nav-link" [routerLink]="['/cbtis248/addAlumno']"><i class="bi bi-person-fill-check"></i> Agregar alumno</a>
@@ -31,7 +31,7 @@
         <a class="nav-link" [routerLink]="['/cbtis248/addReporte']"><i class="bi bi-exclamation-diamond"></i> Agregar incidencia</a>
       </li>
       <li class="nav-item" *ngIf="usuario.administrativo.rol.nombre === 'Admin' || usuario.administrativo.rol.nombre === 'Maestro' || usuario.administrativo.rol.nombre === 'Prefecto'">
-        <a class="nav-link" [routerLink]="['/cbtis248/listResponsable']"><i class="bi bi-list-check"></i> Lista de responsables</a>
+        <a class="nav-link" [routerLink]="['/cbtis248/listResponsable']"><i class="bi bi-list-check"></i> Lista de padres de familias</a>
       </li>
       <li class="nav-item" *ngIf="usuario.administrativo.rol.nombre === 'Admin' || usuario.administrativo.rol.nombre === 'Maestro' || usuario.administrativo.rol.nombre === 'Prefecto'">
         <a class="nav-link" [routerLink]="['/cbtis248/listAdministrativos']"><i class="bi bi-list-check"></i> Lista de administrativos</a>

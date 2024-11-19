@@ -4,6 +4,7 @@ import { MenuAdminComponent } from '../menu-admin/menu-admin.component';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatListModule } from '@angular/material/list';
+import { onTimeService } from '../../../services/actulizarInfor.service';
 
 @Component({
   selector: 'app-list-avisos',
@@ -19,6 +20,8 @@ export class ListAvisosComponent {
   avisoSeleccionado: any = null;
   fechasUnicas: string[] = [];
 
+  constructor(private onTimeService: onTimeService){}
+
   ngOnInit() {
     const usuarioData = localStorage.getItem('usuario');
     this.usuario = usuarioData ? JSON.parse(usuarioData) : null;
@@ -29,6 +32,10 @@ export class ListAvisosComponent {
 
     // Extraer fechas únicas para el filtro
     this.obtenerFechasUnicas();
+    //Cargar y guardar la informacion nueva
+    setInterval(() => {
+      this.onTimeService.getActualUser();
+    }, 1800);
   }
 
   obtenerFechasUnicas() {

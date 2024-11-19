@@ -13,11 +13,6 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-
-            "serviceWorker": true,
-            "ngswConfigPath": "./ngsw-config.json",
-            "resourcesOutputPath": "src/custom-service-worker.js",
-
             "outputPath": "dist/incidencias-cbtis248",
             "index": "src/index.html",
             "browser": "src/main.ts",

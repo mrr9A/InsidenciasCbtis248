@@ -30,7 +30,7 @@ export class HistorialComponent {
     // Actualiza la información del usuario cada 3 minutos
     setInterval(() => {
       this.onTimeService.getActualUser();
-    }, 180000);
+    }, 180);
 
     // Carga la lista de alumnos al inicializar el componente
     this.loadAlumnos();

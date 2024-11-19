@@ -21,7 +21,7 @@ export class WebSocketService {
       this.escucharNotificaciones(); // Escuchar las notificaciones específicas para este responsable
     } */
 
-  conectar(responsableId: string) {
+/*   conectar(responsableId: string) {
     this.socket.emit('registrar-responsable', responsableId);
 
     this.socket.on(`notificacion-${responsableId}`, (mensaje: any) => {
@@ -36,7 +36,29 @@ export class WebSocketService {
         });
       }
     });
-  }
+  } */
+
+    conectar(responsableId: string) {
+      this.responsableId = responsableId;
+
+      // Emitir el evento para registrar al responsable
+      this.socket.emit('registrar-responsable', responsableId);
+
+      // Escuchar las notificaciones específicas para este responsable
+      this.socket.on(`notificacion-${responsableId}`, (mensaje: any) => {
+        // Enviar notificación al Service Worker
+        if ('serviceWorker' in navigator) {
+          navigator.serviceWorker.ready.then((registration) => {
+            registration.showNotification(mensaje.titulo, {
+              body: mensaje.descripcion,
+              icon: 'assets/img/insidencia.png',
+              data: { url: `/cbtis248/avisos` }, // Usamos el ID del aviso para redirigir a la página del aviso
+            });
+          });
+        }
+      });
+
+    }
 
 
   // Escuchar eventos de WebSocket para notificaciones

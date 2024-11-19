@@ -17,9 +17,9 @@ export class ModalAnuncioComponent {
   constructor(private onTimeService: onTimeService, private apisService: ApisService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit(): void {
-    setInterval(() => {
+/*     setInterval(() => {
       this.onTimeService.getActualUser();
-    }, 180000);
+    }, 180000); */
     const id = this.route.snapshot.paramMap.get('id');
     if (id) {
       this.apisService.getAvisoById(id).subscribe(data => {

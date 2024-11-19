@@ -26,7 +26,7 @@ export const authGuard: CanActivateFn = (route, state) => {
 
       // Redirigir a la ruta correspondiente según el rol
       if (rol === 'Tutor') {
-        router.navigate(['/cbtis248/historialIncidencias']);
+        router.navigate(['/cbtis248/home']);
       } else if (rol === 'Admin' || 'Maestro' || 'Prefecto') {
         router.navigate(['/cbtis248/homeAdmin']);
       }

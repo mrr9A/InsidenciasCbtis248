@@ -28,7 +28,7 @@ export class AvisosComponent {
   ngOnInit() {
     setInterval(() => {
       this.onTimeService.getActualUser();
-    }, 180);
+    }, 1800);
     this.loadAvisos(); // Cargar avisos al iniciar el componente
   }
 

@@ -17,9 +17,9 @@ export class ModalHistorialComponent {
   constructor(private onTimeService: onTimeService, private route: ActivatedRoute,private apisService: ApisService,private router: Router) { }
 
   ngOnInit(): void {
-    setInterval(() => {
+/*     setInterval(() => {
       this.onTimeService.getActualUser();
-    }, 180000);
+    }, 180000); */
     const id = this.route.snapshot.paramMap.get('id');
     if (id) {
       this.apisService.getInsideById(id).subscribe(data => {

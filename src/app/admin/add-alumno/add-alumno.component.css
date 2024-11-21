@@ -58,6 +58,12 @@ html, body {
   margin-bottom: 5px;
 }
 
+.form-group strong {
+  color: #8B1E3F;
+  font-size: 0.6rem;
+}
+
+
 .form-group input {
   font-weight: bold;
   color: #8B1E3F;

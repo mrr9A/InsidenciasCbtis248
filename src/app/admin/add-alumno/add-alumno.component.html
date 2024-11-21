@@ -12,40 +12,83 @@
   <form [formGroup]="alumnoForm" (ngSubmit)="onSubmit()" class="form-container">
 
     <div class="image-upload">
-      <input type="file" id="upload-photo" formControlName="file" hidden (change)="onImageSelected($event)" />
+      <input type="file" id="upload-photo" formControlName="file" hidden (change)="onImageSelected($event)"
+        accept=".jpg, .jpeg, .png"  [ngClass]="{'is-valid': alumnoForm.get('file')?.valid,'is-invalid': alumnoForm.get('file')?.invalid }"/>
       <label for="upload-photo" class="upload-label">
         <img [src]="imagePreview || 'assets/img/agregar.png'" alt="Subir foto" class="upload-icon" />
       </label>
+      <label for="file">Seleccionar foto de perfil *</label>
+      <div *ngIf="alumnoForm.get('file')?.invalid && alumnoForm.get('file')?.touched">
+        <div *ngIf="alumnoForm.get('file')?.hasError('required')">
+          <span class="text-danger">La foto de perfil es obligatorio.</span>
+        </div>
+      </div>
     </div>
 
     <div class="form-group">
-      <label for="nombre">Nombre del alumno</label>
-      <input id="nombre" formControlName="nombre" type="text" required />
+      <label for="nombre">Nombre del alumno *</label>
+      <input id="nombre" formControlName="nombre" type="text" required  [ngClass]="{'is-valid': alumnoForm.get('nombre')?.valid,'is-invalid': alumnoForm.get('nombre')?.invalid }"/>
+      <div *ngIf="alumnoForm.get('nombre')?.invalid && alumnoForm.get('nombre')?.touched">
+        <div *ngIf="alumnoForm.get('nombre')?.hasError('required')">
+          <span class="text-danger">El nombre es obligatorio.</span>
+        </div>
+      </div>
     </div>
 
     <div class="form-group">
-      <label for="apellido_paterno">Apellido Paterno</label>
-      <input id="apellido_paterno" formControlName="apellido_paterno" type="text" required />
+      <label for="apellido_paterno">Apellido Paterno *</label>
+      <input id="apellido_paterno" formControlName="apellido_paterno" type="text" required [ngClass]="{'is-valid': alumnoForm.get('apellido_paterno')?.valid,'is-invalid': alumnoForm.get('apellido_paterno')?.invalid }"/>
+      <div
+      *ngIf="alumnoForm.get('apellido_paterno')?.invalid && alumnoForm.get('apellido_paterno')?.touched">
+      <div *ngIf="alumnoForm.get('apellido_paterno')?.hasError('required')">
+        <span class="text-danger">El apellido paterno es obligatorio.</span>
+      </div>
+    </div>
     </div>
 
     <div class="form-group">
-      <label for="apellido_materno">Apellido Materno</label>
-      <input id="apellido_materno" formControlName="apellido_materno" type="text" required />
+      <label for="apellido_materno">Apellido Materno<strong>*opcional*</strong></label>
+      <input id="apellido_materno" formControlName="apellido_materno" type="text" />
     </div>
 
     <div class="form-group">
-      <label for="apellido_materno">Numero de control escolar</label>
-      <input id="apellido_materno" formControlName="num_control_escolar" type="text" required maxlength="12"/>
+      <label for="apellido_materno">Numero de control escolar *</label>
+      <input id="apellido_materno" formControlName="num_control_escolar" type="number" required [ngClass]="{'is-valid': alumnoForm.get('num_control_escolar')?.valid,'is-invalid': alumnoForm.get('num_control_escolar')?.invalid }"/>
+            <div *ngIf="alumnoForm.get('num_control_escolar')?.invalid && alumnoForm.get('num_control_escolar')?.touched">
+        <div *ngIf="alumnoForm.get('num_control_escolar')?.hasError('required')">
+          <span class="text-danger">El número de control escolar es obligatorio.</span>
+        </div>
+        <div *ngIf="alumnoForm.get('num_control_escolar')?.hasError('pattern')">
+          <span class="text-danger">El número control escolar debe tener exactamente 14 numeros.</span>
+        </div>
+      </div>
     </div>
 
     <div class="form-group">
-      <label for="num_telefono">Número de teléfono</label>
-      <input id="num_telefono" formControlName="num_telefono" type="text" required maxlength="10"/>
+      <label for="num_telefono">Número de teléfono *</label>
+      <input id="num_telefono" formControlName="num_telefono" type="number" required [ngClass]="{'is-valid': alumnoForm.get('num_telefono')?.valid,'is-invalid': alumnoForm.get('num_telefono')?.invalid }"/>
+            <div *ngIf="alumnoForm.get('num_telefono')?.invalid && alumnoForm.get('num_telefono')?.touched">
+        <div *ngIf="alumnoForm.get('num_telefono')?.hasError('required')">
+          <span class="text-danger">El teléfono es obligatorio.</span>
+        </div>
+        <div *ngIf="alumnoForm.get('num_telefono')?.hasError('pattern')">
+          <span class="text-danger">El teléfono debe tener exactamente 10 numeros.</span>
+        </div>
+      </div>
     </div>
 
     <div class="form-group">
-      <label for="correo_electronico">Correo electrónico</label>
-      <input id="correo_electronico" formControlName="correo_electronico" type="email" required />
+      <label for="correo_electronico">Correo electrónico *</label>
+      <input id="correo_electronico" formControlName="correo_electronico" type="email" required [ngClass]="{'is-valid': alumnoForm.get('correo_electronico')?.valid,'is-invalid': alumnoForm.get('correo_electronico')?.invalid }"/>
+      <div
+      *ngIf="alumnoForm.get('correo_electronico')?.invalid && alumnoForm.get('correo_electronico')?.touched">
+      <div *ngIf="alumnoForm.get('correo_electronico')?.hasError('required')">
+        <span class="text-danger">El correo es obligatorio.</span>
+      </div>
+      <div *ngIf="alumnoForm.get('correo_electronico')?.hasError('invalidEmail')">
+        <span class="text-danger">Debe contener un "&#64;" y un "."</span>
+      </div>
+    </div>
     </div>
 
     <mat-form-field>

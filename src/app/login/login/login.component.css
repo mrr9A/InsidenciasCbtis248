@@ -99,3 +99,15 @@ button:hover {
   transform: translate(-50%, -50%);
   z-index: 1000;
 }
+
+/* Clase para inputs inválidos */
+.input-container.invalid input {
+  border-color: #ff4d4d;
+}
+
+.error-message {
+  color: #ff4d4d;
+  font-size: 14px;
+  margin-top: -10px;
+  margin-bottom: 10px;
+}

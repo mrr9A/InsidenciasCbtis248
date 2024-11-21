@@ -1,4 +1,4 @@
-<div class="card">
+<!-- <div class="card">
   <div class="img">
     <img src="assets/img/Logo2uia 4.png" alt="App Logo">
   </div>
@@ -8,7 +8,7 @@
     <form (ngSubmit)="onSubmit()" #loginForm="ngForm">
       <div class="input-container">
         <div class="input-wrapper">
-          <i class="bi bi-person user-icon"></i> <!-- Ícono de usuario -->
+          <i class="bi bi-person user-icon"></i>
           <input type="email" id="email" required [(ngModel)]="credentials.correo_electronico" name="email" placeholder="Correo Electrónico"/>
         </div>
       </div>
@@ -25,6 +25,53 @@
 
 
       <button type="submit">Iniciar Sesión</button>
+    </form>
+  </div>
+  <mat-spinner *ngIf="isLoading" class="loading-spinner"></mat-spinner>
+</div>
+ -->
+
+
+<div class="card">
+  <div class="img">
+    <img src="assets/img/Logo2uia 4.png" alt="App Logo">
+  </div>
+  <div class="card-conten">
+    <h1>Iniciar sesión</h1>
+    <p>Por favor inicie sesión para continuar</p>
+    <form (ngSubmit)="onSubmit()" #loginForm="ngForm">
+
+      <div class="input-container" [class.invalid]="emailControl?.invalid && emailControl?.touched">
+        <div class="input-wrapper">
+          <i class="bi bi-person user-icon"></i>
+          <input type="email" id="email" required [(ngModel)]="credentials.correo_electronico" name="email"
+            placeholder="Correo Electrónico" #emailControl="ngModel" />
+        </div>
+        <!-- Mensajes de error -->
+        <div class="error-message" *ngIf="emailControl?.invalid && emailControl?.touched">
+          <p *ngIf="emailControl?.errors?.['required']">El correo electrónico es obligatorio.</p>
+          <p *ngIf="emailControl?.errors?.['email']">El formato del correo es incorrecto.</p>
+        </div>
+      </div>
+
+
+      <!-- Input de contraseña -->
+      <div class="input-container" [class.invalid]="passwordControl?.invalid && passwordControl?.touched">
+        <div class="input-wrapper">
+          <i class="bi bi-lock password-icon"></i>
+          <input [type]="showPassword ? 'text' : 'password'" id="password" required [(ngModel)]="credentials.password"
+            name="password" placeholder="Contraseña" minlength="8" maxlength="8" #passwordControl="ngModel" />
+          <i class="bi" (click)="togglePasswordVisibility()"
+            [ngClass]="showPassword ? 'bi-eye-slash-fill eye-icon' : 'bi-eye-fill eye-icon'"></i>
+        </div>
+        <!-- Mensajes de error -->
+        <div class="error-message" *ngIf="passwordControl?.invalid && passwordControl?.touched">
+          <p *ngIf="passwordControl?.errors?.['required']">La contraseña es obligatoria.</p>
+          <p *ngIf="passwordControl?.errors?.['minlength']">La contraseña debe tener al menos 8 caracteres.</p>
+        </div>
+      </div>
+
+      <button type="submit" [disabled]="loginForm.invalid">Iniciar Sesión</button>
     </form>
   </div>
   <mat-spinner *ngIf="isLoading" class="loading-spinner"></mat-spinner>

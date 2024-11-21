@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, ValidationErrors, Validators } from '@angular/forms';
 import { ApisService } from '../../services/apis.service';
 import { CommonModule } from '@angular/common';
 import { NgSelectModule } from '@ng-select/ng-select';
@@ -31,15 +31,48 @@ export class AddResponsableComponent {
       nombre: ['', Validators.required],
       apellido_paterno: ['', Validators.required],
       apellido_materno: ['', Validators.required],
-      correo_electronico: ['', [Validators.required, Validators.email]],
-      num_telefono: ['', Validators.required],
+      /*       correo_electronico: ['', [Validators.required, Validators.email]], */
+      correo_electronico: ['', [
+        Validators.required,
+        Validators.email,
+        this.correoValidator  // Custom validator para arroba y punto
+      ]],
+      /*       num_telefono: ['', Validators.required], */
+      num_telefono: [
+        '',
+        [Validators.required, Validators.pattern(/^\d{10}$/)],
+      ],
       rolId: [1, Validators.required],  // Campo opcional para rol
-      password: ['', Validators.required],
+      /*       password: ['', Validators.required], */
+      password: ['', [
+        Validators.required,
+        Validators.minLength(8),
+        this.passwordValidator  // Custom validator para contraseña
+      ]],
       alumnoIds: this.fb.array([], Validators.required),  // Permitir selección múltiple
-      file: [],// Campo para la imagen
+      file: [, Validators.required],// Campo para la imagen
       folder: ['tutors', Validators.required], // Campo para la imagen
       img: ['placeholder', Validators.required] // Campo para la imagen
     });
+  }
+
+  // Custom validator para el correo
+  correoValidator(control: FormControl): ValidationErrors | null {
+    const email = control.value;
+    if (email && (!email.includes('@') || !email.includes('.'))) {
+      return { invalidEmail: true };
+    }
+    return null;
+  }
+
+  // Custom validator para la contraseña
+  passwordValidator(control: FormControl): ValidationErrors | null {
+    const password = control.value;
+    const regex = /^(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$/;
+    if (password && !regex.test(password)) {
+      return { invalidPassword: true };
+    }
+    return null;
   }
 
   ngOnInit(): void {
@@ -108,7 +141,7 @@ export class AddResponsableComponent {
       this.apiService.postTutor(formData).subscribe({
         next: () => {
           this.isLoading = false;  // Desactiva el spinner al finalizar
-          this.snackBar.open('Tutor registrado con éxito', 'Cerrar', { duration: 3000 });
+          this.snackBar.open('Padre de familia registrado con éxito', 'Cerrar', { duration: 3000 });
           this.router.navigate(['/cbtis248/listResponsable']); // Redirige tras éxito
         },
         error: (error) => {

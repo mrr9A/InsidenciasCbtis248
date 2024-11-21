@@ -17,22 +17,28 @@ import { Router } from '@angular/router';
   styleUrl: './add-aviso.component.css'
 })
 export class AddAvisoComponent {
+
   itemForm: FormGroup;
   grupos: any[] = [];
   selectedImage: File | null = null; // Para almacenar la imagen seleccionada
   imagePreview: string | null = null; // Para almacenar la URL de la imagen para la previsualización
   isLoading = false;  // Variable para controlar el estado de carga
 
-  constructor(private onTimeService: onTimeService, private fb: FormBuilder, private apiService: ApisService, private snackBar: MatSnackBar, private router: Router) {
+  constructor(
+    private onTimeService: onTimeService,
+    private fb: FormBuilder,
+    private apiService: ApisService,
+    private snackBar: MatSnackBar,
+    private router: Router
+  ) {
     this.itemForm = this.fb.group({
       nombre: ['', Validators.required],
       descripcion: ['', Validators.required],
-      fecha: ['', Validators.required],
       img: ['placeholder', Validators.required],
-      file: [],
+      file: [, Validators.required],
       administrativoId: [],
       folder: ['avisos', Validators.required],
-      grupoIds: this.fb.array([], Validators.required)  // Usar FormArray para almacenar múltiples IDs
+      grupoIds: this.fb.array([], Validators.required), // Usar FormArray para almacenar múltiples IDs
     });
   }
 
@@ -50,7 +56,7 @@ export class AddAvisoComponent {
       },
       error: (error) => {
         console.error('Error al cargar grupos:', error);
-      }
+      },
     });
   }
 
@@ -64,14 +70,18 @@ export class AddAvisoComponent {
     });
   }
 
-
-  // Función para manejar la selección de la imagen
   onImageSelected(event: Event): void {
     const input = event.target as HTMLInputElement;
     if (input?.files && input.files.length > 0) {
-      this.selectedImage = input.files[0]; // Guarda el archivo de imagen en la variable
+      const selectedFile = input.files[0]; // Archivo seleccionado
 
-      // Crear una URL para la imagen seleccionada y asignarla a imagePreview
+      if (!['image/jpeg', 'image/png', 'image/jpg'].includes(selectedFile.type)) {
+        alert('Por favor, selecciona un archivo de imagen válido (JPG, JPEG, PNG)');
+        return; // No proceder con la carga si el archivo no es válido
+      }
+
+      this.selectedImage = selectedFile; // Guarda el archivo de imagen
+
       const reader = new FileReader();
       reader.onload = (e: any) => {
         this.imagePreview = e.target.result; // Almacena la URL de la imagen
@@ -80,41 +90,47 @@ export class AddAvisoComponent {
     }
   }
 
-  onSubmit(): void {
-    if (this.itemForm.valid && !this.isLoading) { // Solo permite envío si no está cargando
-      this.isLoading = true;
-      const formData = new FormData();
 
-      // Agrega el ID del administrativo desde localStorage
-      const usuarioEncontrado = JSON.parse(localStorage.getItem('usuario') || '{}');
-      const administrativoId = usuarioEncontrado?.administrativo?.id;
+      onSubmit(): void {
+        if (this.itemForm.valid && !this.isLoading) { // Solo permite envío si no está cargando
+          this.isLoading = true;
+          const formData = new FormData();
 
-      formData.append('nombre', this.itemForm.get('nombre')?.value);
-      formData.append('descripcion', this.itemForm.get('descripcion')?.value);
-      formData.append('fecha', this.itemForm.get('fecha')?.value);
-      formData.append('folder', this.itemForm.get('folder')?.value);
-      formData.append('grupoIds', JSON.stringify(this.itemForm.get('grupoIds')?.value));
+          // Agrega el ID del administrativo desde localStorage
+          const usuarioEncontrado = JSON.parse(localStorage.getItem('usuario') || '{}');
+          const administrativoId = usuarioEncontrado?.administrativo?.id;
 
-      if (administrativoId) {
-        formData.append('administrativoId', administrativoId.toString());
-      }
-      if (this.selectedImage) {
-        formData.append('file', this.selectedImage);
-      }
+          // Calcula la fecha local
+          const currentDate = new Date();
+          const localDate = currentDate.toLocaleDateString('en-CA'); // Formato YYYY-MM-DD estándar
 
-      this.apiService.postAvisos(formData).subscribe({
-        next: () => {
-          this.isLoading = false;
-          this.snackBar.open('Aviso registrado con éxito', 'Cerrar', { duration: 3000 });
-          this.router.navigate(['/cbtis248/listAvisos']);
-        },
-        error: (error) => {
-          this.isLoading = false;
-          this.snackBar.open(`Error al guardar aviso: ${error.message}`, 'Cerrar', { duration: 3000 });
-          console.error('Error al guardar aviso:', error);
+          formData.append('nombre', this.itemForm.get('nombre')?.value);
+          formData.append('descripcion', this.itemForm.get('descripcion')?.value);
+          formData.append('fecha', localDate); // Usa la fecha local correctamente formateada
+          formData.append('folder', this.itemForm.get('folder')?.value);
+          formData.append('grupoIds', JSON.stringify(this.itemForm.get('grupoIds')?.value));
+
+          if (administrativoId) {
+            formData.append('administrativoId', administrativoId.toString());
+          }
+          if (this.selectedImage) {
+            formData.append('file', this.selectedImage);
+          }
+
+          this.apiService.postAvisos(formData).subscribe({
+            next: () => {
+              this.isLoading = false;
+              this.snackBar.open('Aviso registrado con éxito', 'Cerrar', { duration: 3000 });
+              this.router.navigate(['/cbtis248/listAvisos']);
+            },
+            error: (error) => {
+              this.isLoading = false;
+              this.snackBar.open(`Error al guardar aviso: ${error.message}`, 'Cerrar', { duration: 3000 });
+              console.error('Error al guardar aviso:', error);
+            }
+          });
         }
-      });
-    }
-  }
+      }
+
 
 }

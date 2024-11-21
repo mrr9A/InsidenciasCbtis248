@@ -10,26 +10,39 @@
   <app-menu-admin></app-menu-admin>
   <h2 class="title">Agregar aviso</h2>
   <form [formGroup]="itemForm" (ngSubmit)="onSubmit()" class="form-container">
+
     <div class="image-upload">
-      <input type="file" id="upload-photo" formControlName="file" hidden (change)="onImageSelected($event)" />
+      <input type="file" id="upload-photo" formControlName="file" hidden (change)="onImageSelected($event)"
+        accept=".jpg, .jpeg, .png"  [ngClass]="{'is-valid': itemForm.get('file')?.valid,'is-invalid': itemForm.get('file')?.invalid }"/>
       <label for="upload-photo" class="upload-label">
         <img [src]="imagePreview || 'assets/img/agregar.png'" alt="Subir foto" class="upload-icon" />
       </label>
+      <label for="file">Seleccionar foto del aviso *</label>
+      <div *ngIf="itemForm.get('file')?.invalid && itemForm.get('file')?.touched">
+        <div *ngIf="itemForm.get('file')?.hasError('required')">
+          <span class="text-danger">La foto de perfil es obligatorio.</span>
+        </div>
+      </div>
     </div>
 
     <div class="form-group">
-      <label for="nombre">Nombre del aviso</label>
-      <input id="nombre" formControlName="nombre" type="text" required />
+      <label for="nombre">Nombre del aviso *</label>
+      <input id="nombre" formControlName="nombre" type="text" required  [ngClass]="{'is-valid': itemForm.get('nombre')?.valid,'is-invalid': itemForm.get('nombre')?.invalid }"/>
+      <div *ngIf="itemForm.get('nombre')?.invalid && itemForm.get('nombre')?.touched">
+        <div *ngIf="itemForm.get('nombre')?.hasError('required')">
+          <span class="text-danger">El nombre es obligatorio.</span>
+        </div>
+      </div>
     </div>
 
     <div class="form-group">
-      <label for="descripcion">Descripción</label>
-      <textarea id="descripcion" formControlName="descripcion" type="text" required></textarea>
-    </div>
-
-    <div class="form-group">
-      <label for="fecha">Fecha</label>
-      <input id="fecha" formControlName="fecha" type="date" required />
+      <label for="descripcion">Descripción *</label>
+      <textarea id="descripcion" formControlName="descripcion" type="text" required [ngClass]="{'is-valid': itemForm.get('descripcion')?.valid,'is-invalid': itemForm.get('descripcion')?.invalid }"></textarea>
+      <div *ngIf="itemForm.get('descripcion')?.invalid && itemForm.get('descripcion')?.touched">
+        <div *ngIf="itemForm.get('descripcion')?.hasError('required')">
+          <span class="text-danger">La descripción es obligatorio.</span>
+        </div>
+      </div>
     </div>
 
     <mat-form-field>

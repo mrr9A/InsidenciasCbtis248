@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, ValidationErrors, Validators } from '@angular/forms';
 import { ApisService } from '../../services/apis.service';
 import { CommonModule } from '@angular/common';
 import { NgSelectModule } from '@ng-select/ng-select';
@@ -26,19 +26,41 @@ export class AddAlumnoComponent {
   imagePreview: string | null = null; // Para almacenar la URL de la imagen para la previsualización
   isLoading = false;  // Variable para controlar el estado de carga
 
-  constructor(private onTimeService: onTimeService, private fb: FormBuilder, private apiService: ApisService, private snackBar: MatSnackBar,private router: Router) {
+  constructor(private onTimeService: onTimeService, private fb: FormBuilder, private apiService: ApisService, private snackBar: MatSnackBar, private router: Router) {
     this.alumnoForm = this.fb.group({
       nombre: ['', Validators.required],
       apellido_paterno: ['', Validators.required],
-      apellido_materno: ['', Validators.required],
-      correo_electronico: ['', [Validators.required, Validators.email]],
-      num_telefono: ['', Validators.required],
-      num_control_escolar: ['', Validators.required],
-      file: [],
+      apellido_materno: ['', Validators.nullValidator],
+      /*       correo_electronico: ['', [Validators.required, Validators.email]], */
+      correo_electronico: ['', [
+        Validators.required,
+        Validators.email,
+        this.correoValidator  // Custom validator para arroba y punto
+      ]],
+      /* num_telefono: ['', Validators.required], */
+      num_telefono: [
+        '',
+        [Validators.required, Validators.pattern(/^\d{10}$/)],
+      ],
+      /* num_control_escolar: ['', Validators.required], */
+      num_control_escolar: [
+        '',
+        [Validators.required, Validators.pattern(/^\d{14}$/)],
+      ],
+      file: [,Validators.required],
       folder: ['alumnos', Validators.required], // Campo para la imagen
       imagen_perfil: ['placeholder', Validators.required], // Campo para la imagen
       grupoId: [, Validators.required],
     });
+  }
+
+  // Custom validator para el correo
+  correoValidator(control: FormControl): ValidationErrors | null {
+    const email = control.value;
+    if (email && (!email.includes('@') || !email.includes('.'))) {
+      return { invalidEmail: true };
+    }
+    return null;
   }
 
   ngOnInit(): void {
@@ -61,7 +83,15 @@ export class AddAlumnoComponent {
   onImageSelected(event: Event): void {
     const input = event.target as HTMLInputElement;
     if (input?.files && input.files.length > 0) {
-      this.selectedImage = input.files[0]; // Guarda el archivo de imagen en la variable
+      const selectedFile = input.files[0]; // Archivo seleccionado
+
+      // Verifica si el archivo es una imagen válida
+      if (!['image/jpeg', 'image/png', 'image/jpg'].includes(selectedFile.type)) {
+        alert('Por favor, selecciona un archivo de imagen válido (JPG, JPEG, PNG)');
+        return; // No proceder con la carga si el archivo no es válido
+      }
+
+      this.selectedImage = selectedFile; // Guarda el archivo de imagen
 
       // Crear una URL para la imagen seleccionada y asignarla a imagePreview
       const reader = new FileReader();
@@ -71,41 +101,6 @@ export class AddAlumnoComponent {
       reader.readAsDataURL(this.selectedImage);
     }
   }
-/*
-  onSubmit(): void {
-    if (this.alumnoForm.valid) {
-      this.isLoading = true;  // Activar el spinner al iniciar la petición
-      const formData = new FormData();
-
-      formData.append('nombre', this.alumnoForm.get('nombre')?.value);
-      formData.append('apellido_paterno', this.alumnoForm.get('apellido_paterno')?.value);
-      formData.append('apellido_materno', this.alumnoForm.get('apellido_materno')?.value);
-      formData.append('correo_electronico', this.alumnoForm.get('correo_electronico')?.value);
-      formData.append('num_telefono', this.alumnoForm.get('num_telefono')?.value);
-      formData.append('num_control_escolar', this.alumnoForm.get('num_control_escolar')?.value);
-      formData.append('grupoId', this.alumnoForm.get('grupoId')?.value);
-      formData.append('folder', this.alumnoForm.get('folder')?.value);
-      formData.append('imagen_perfil', this.alumnoForm.get('imagen_perfil')?.value);
-
-      if (this.selectedImage) {
-        formData.append('file', this.selectedImage);
-      }
-
-      this.apiService.postAlumnos(formData).subscribe({
-        next: () => {
-          this.isLoading = false;  // Desactivar el spinner al finalizar
-          this.snackBar.open('Alumno registrado con éxito', 'Cerrar', { duration: 3000 });
-          this.router.navigate(['/cbtis248/listAlumnos']); // Cambia '/ruta/lista-responsables' por tu ruta real
-        },
-        error: (error) => {
-          this.isLoading = false;  // Desactivar el spinner en caso de error
-          this.snackBar.open(`Error al guardar alumno: ${error.message}`, 'Cerrar', { duration: 3000 });
-          console.error('Error al guardar alumno:', error);
-        }
-      });
-    }
-  }
- */
 
   onSubmit(): void {
     if (this.alumnoForm.valid && !this.isLoading) {

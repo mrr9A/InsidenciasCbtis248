@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, ValidationErrors, Validators } from '@angular/forms';
 import { ApisService } from '../../services/apis.service';
 import { CommonModule } from '@angular/common';
 import { NgSelectModule } from '@ng-select/ng-select';
@@ -30,15 +30,45 @@ export class AddAdministrativoComponent {
     this.administrativoForm = this.fb.group({
       nombre: ['', Validators.required],
       apellido_paterno: ['', Validators.required],
-      apellido_materno: ['', Validators.required],
-      correo_electronico: ['', [Validators.required, Validators.email]],
-      num_telefono: ['', Validators.required],
-      file: [],
+      apellido_materno: ['', Validators.nullValidator],
+      correo_electronico: ['', [
+        Validators.required,
+        Validators.email,
+        this.correoValidator  // Custom validator para arroba y punto
+      ]],
+      num_telefono: [
+        '',
+        [Validators.required, Validators.pattern(/^\d{10}$/)],
+      ],
+      file: [ ,Validators.required],
       folder: ['administrativos', Validators.required], // Campo para la imagen
       img: ['placeholder', Validators.required], // Campo para la imagen
       rolId: [, Validators.required],
-      password: ['', [Validators.required, Validators.minLength(8)]]
+      password: ['', [
+        Validators.required,
+        Validators.minLength(8),
+        this.passwordValidator  // Custom validator para contraseña
+      ]]
     });
+  }
+
+  // Custom validator para el correo
+  correoValidator(control: FormControl): ValidationErrors | null {
+    const email = control.value;
+    if (email && (!email.includes('@') || !email.includes('.'))) {
+      return { invalidEmail: true };
+    }
+    return null;
+  }
+
+  // Custom validator para la contraseña
+  passwordValidator(control: FormControl): ValidationErrors | null {
+    const password = control.value;
+    const regex = /^(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$/;
+    if (password && !regex.test(password)) {
+      return { invalidPassword: true };
+    }
+    return null;
   }
 
   ngOnInit(): void {
@@ -61,7 +91,15 @@ export class AddAdministrativoComponent {
   onImageSelected(event: Event): void {
     const input = event.target as HTMLInputElement;
     if (input?.files && input.files.length > 0) {
-      this.selectedImage = input.files[0]; // Guarda el archivo de imagen en la variable
+      const selectedFile = input.files[0]; // Archivo seleccionado
+
+      // Verifica si el archivo es una imagen válida
+      if (!['image/jpeg', 'image/png', 'image/jpg'].includes(selectedFile.type)) {
+        alert('Por favor, selecciona un archivo de imagen válido (JPG, JPEG, PNG)');
+        return; // No proceder con la carga si el archivo no es válido
+      }
+
+      this.selectedImage = selectedFile; // Guarda el archivo de imagen
 
       // Crear una URL para la imagen seleccionada y asignarla a imagePreview
       const reader = new FileReader();
@@ -71,6 +109,7 @@ export class AddAdministrativoComponent {
       reader.readAsDataURL(this.selectedImage);
     }
   }
+
 
   onSubmit(): void {
     if (this.administrativoForm.valid && !this.isSubmitted) {

@@ -31,11 +31,22 @@ export class LoginComponent {
   }
 
   onSubmit() {
+    // Validar manualmente el correo electrónico
+    if (!this.credentials.correo_electronico.includes('@') || !this.credentials.correo_electronico.includes('.')) {
+      this.snackBar.open('El correo electrónico debe contener un "@" y un punto.', 'Cerrar', { duration: 3000 });
+      return;
+    }
+
+    if (this.credentials.password.length < 8) {
+      this.snackBar.open('La contraseña debe tener al menos 8 caracteres.', 'Cerrar', { duration: 3000 });
+      return;
+    }
+
     this.isLoading = true; // Activa el spinner
+
     this.apiService.login(this.credentials).subscribe({
       next: (response: any) => {
         this.isLoading = false; // Desactiva el spinner
-        //console.log('Inicio de sesión exitoso', response);
         localStorage.setItem('correo_electronico', response.correo_electronico);
         localStorage.setItem('id', response.id.toString());
 
@@ -55,8 +66,6 @@ export class LoginComponent {
             } else if (['Admin', 'Maestro', 'Prefecto'].includes(rol)) {
               this.router.navigate(['cbtis248/homeAdmin']);
             }
-          } else {
-           // console.log('Usuario no encontrado en la lista.');
           }
         });
       },
@@ -66,6 +75,7 @@ export class LoginComponent {
       }
     });
   }
+
 
   private mostrarMensajeError(error: any) {
     let mensajeError = 'Credenciales incorrectas.';

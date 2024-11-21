@@ -58,6 +58,11 @@ html, body {
   margin-bottom: 5px;
 }
 
+.form-group strong {
+  color: #8B1E3F;
+  font-size: 0.6rem;
+}
+
 .form-group input {
   font-weight: bold;
   color: #8B1E3F;
@@ -158,4 +163,19 @@ mat-form-field {
 .navbar-toggler:active {
   outline: none !important; /* Evita el contorno mientras el botón está activo */
   box-shadow: none !important; /* Elimina cualquier sombra o efecto activo */
+}
+
+.error {
+  color: red;
+  font-size: 0.8rem;
+}
+
+.success-icon {
+  color: green;
+  margin-left: 5px;
+}
+
+.error-icon {
+  color: red;
+  margin-left: 5px;
 }

@@ -85,7 +85,7 @@
 
     <div class="form-group">
       <label for="password">Contraseña *</label>
-      <input id="password" formControlName="password" type="password" required minlength="8" maxlength="10"
+      <input id="password" formControlName="password" type="password" required minlength="8" maxlength="8"
         [ngClass]="{'is-valid': administrativoForm.get('password')?.valid,'is-invalid': administrativoForm.get('password')?.invalid}" />
       <div *ngIf="administrativoForm.get('password')?.invalid && administrativoForm.get('password')?.touched">
         <div *ngIf="administrativoForm.get('password')?.hasError('minlength')">

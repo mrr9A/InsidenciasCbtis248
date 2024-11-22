@@ -43,9 +43,9 @@ export class AddAvisoComponent {
   }
 
   ngOnInit(): void {
-    setInterval(() => {
+/*     setInterval(() => {
       this.onTimeService.getActualUser();
-    }, 180000);
+    }, 180000); */
     this.cargarGrupos();
   }
 
@@ -91,46 +91,46 @@ export class AddAvisoComponent {
   }
 
 
-      onSubmit(): void {
-        if (this.itemForm.valid && !this.isLoading) { // Solo permite envío si no está cargando
-          this.isLoading = true;
-          const formData = new FormData();
+  onSubmit(): void {
+    if (this.itemForm.valid && !this.isLoading) { // Solo permite envío si no está cargando
+      this.isLoading = true;
+      const formData = new FormData();
 
-          // Agrega el ID del administrativo desde localStorage
-          const usuarioEncontrado = JSON.parse(localStorage.getItem('usuario') || '{}');
-          const administrativoId = usuarioEncontrado?.administrativo?.id;
+      // Agrega el ID del administrativo desde localStorage
+      const usuarioEncontrado = JSON.parse(localStorage.getItem('usuario') || '{}');
+      const administrativoId = usuarioEncontrado?.administrativo?.id;
 
-          // Calcula la fecha local
-          const currentDate = new Date();
-          const localDate = currentDate.toLocaleDateString('en-CA'); // Formato YYYY-MM-DD estándar
+      // Calcula la fecha local
+      const currentDate = new Date();
+      const localDate = currentDate.toLocaleDateString('en-CA'); // Formato YYYY-MM-DD estándar
 
-          formData.append('nombre', this.itemForm.get('nombre')?.value);
-          formData.append('descripcion', this.itemForm.get('descripcion')?.value);
-          formData.append('fecha', localDate); // Usa la fecha local correctamente formateada
-          formData.append('folder', this.itemForm.get('folder')?.value);
-          formData.append('grupoIds', JSON.stringify(this.itemForm.get('grupoIds')?.value));
+      formData.append('nombre', this.itemForm.get('nombre')?.value);
+      formData.append('descripcion', this.itemForm.get('descripcion')?.value);
+      formData.append('fecha', localDate); // Usa la fecha local correctamente formateada
+      formData.append('folder', this.itemForm.get('folder')?.value);
+      formData.append('grupoIds', JSON.stringify(this.itemForm.get('grupoIds')?.value));
 
-          if (administrativoId) {
-            formData.append('administrativoId', administrativoId.toString());
-          }
-          if (this.selectedImage) {
-            formData.append('file', this.selectedImage);
-          }
-
-          this.apiService.postAvisos(formData).subscribe({
-            next: () => {
-              this.isLoading = false;
-              this.snackBar.open('Aviso registrado con éxito', 'Cerrar', { duration: 3000 });
-              this.router.navigate(['/cbtis248/listAvisos']);
-            },
-            error: (error) => {
-              this.isLoading = false;
-              this.snackBar.open(`Error al guardar aviso: ${error.message}`, 'Cerrar', { duration: 3000 });
-              console.error('Error al guardar aviso:', error);
-            }
-          });
-        }
+      if (administrativoId) {
+        formData.append('administrativoId', administrativoId.toString());
       }
+      if (this.selectedImage) {
+        formData.append('file', this.selectedImage);
+      }
+
+      this.apiService.postAvisos(formData).subscribe({
+        next: () => {
+          this.isLoading = false;
+          this.snackBar.open('Aviso registrado con éxito', 'Cerrar', { duration: 3000 });
+          this.router.navigate(['/cbtis248/listAvisos']);
+        },
+        error: (error) => {
+          this.isLoading = false;
+          this.snackBar.open(`Error al guardar aviso: ${error.message}`, 'Cerrar', { duration: 3000 });
+          console.error('Error al guardar aviso:', error);
+        }
+      });
+    }
+  }
 
 
 }

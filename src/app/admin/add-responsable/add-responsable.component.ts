@@ -30,7 +30,7 @@ export class AddResponsableComponent {
     this.tutorForm = this.fb.group({
       nombre: ['', Validators.required],
       apellido_paterno: ['', Validators.required],
-      apellido_materno: ['', Validators.required],
+      apellido_materno: ['', Validators.nullValidator],
       /*       correo_electronico: ['', [Validators.required, Validators.email]], */
       correo_electronico: ['', [
         Validators.required,
@@ -77,9 +77,9 @@ export class AddResponsableComponent {
 
   ngOnInit(): void {
     this.cargarAlumnos();
-    setInterval(() => {
+/*     setInterval(() => {
       this.onTimeService.getActualUser();
-    }, 180000);
+    }, 180000); */
   }
 
   cargarAlumnos(): void {

@@ -72,9 +72,9 @@ export class AddAdministrativoComponent {
   }
 
   ngOnInit(): void {
-    setInterval(() => {
+/*     setInterval(() => {
       this.onTimeService.getActualUser();
-    }, 180000);
+    }, 180000); */
     this.loadRoles();
   }
 

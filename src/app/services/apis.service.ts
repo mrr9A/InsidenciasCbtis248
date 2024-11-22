@@ -23,6 +23,10 @@ export class ApisService {
     return this.http.get(`${this.apiURL}/api/tipo-incidencias`)
   }
 
+  getincidencia() { //ESTE ES LA API PARA MANDAR A LLAMAR A LOS TUTORES
+    return this.http.get(`${this.apiURL}/api/incidencias`)
+  }
+
   getGrupos(): Observable<any[]> { //ESTE ES LA API PARA MANDAR A LLAMAR A LOS TUTORES
     return this.http.get<any[]>(`${this.apiURL}/api/grupos`)
   }

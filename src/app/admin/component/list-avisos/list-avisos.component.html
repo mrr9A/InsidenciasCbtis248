@@ -1,22 +1,37 @@
 <body>
+  <!-- Barra de navegación -->
   <nav class="bg-light fixed-menu">
     <div class="container-fluid">
       <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#mobileMenu"
         aria-controls="mobileMenu">
-        <img src="assets/img/ico-menu.svg" alt="">
+        <img src="assets/img/ico-menu.svg" alt="Menú">
       </button>
     </div>
   </nav>
+
+  <!-- Menú de administración -->
   <app-menu-admin></app-menu-admin>
+
+  <!-- Título principal -->
   <h2 class="title">Lista de avisos</h2>
+
+  <!-- Imagen de encabezado -->
   <div class="image-upload">
-    <img src="assets/img/Logo2uia 4.png" alt="Subir foto" />
+    <img src="assets/img/Logo2uia 4.png" alt="Subir foto">
   </div>
 
-
+  <!-- Contenedor del formulario -->
   <form class="form-container">
-
+    <!-- Selector de vista (Todos los avisos o Mis avisos) -->
     <mat-form-field class="rounded-field">
+      <mat-select placeholder="Seleccionar tipo de vista" (selectionChange)="onVistaSeleccionada($event.value)">
+        <mat-option value="todos">Todos los avisos</mat-option>
+        <mat-option value="mios">Mis avisos publicados</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <!-- Selector de fecha (solo visible para "Mis avisos publicados") -->
+    <mat-form-field class="rounded-field" *ngIf="vistaSeleccionada === 'mios'">
       <mat-select placeholder="Seleccionar fecha" (selectionChange)="onFechaSeleccionada($event.value)">
         <mat-option value="todos">Todos los avisos</mat-option>
         <mat-option *ngFor="let fecha of fechasUnicas" [value]="fecha">
@@ -28,14 +43,14 @@
     <!-- Lista de avisos filtrados -->
     <div *ngIf="avisosFiltrados.length > 0; else noAvisos" class="list-group">
       <div *ngFor="let aviso of avisosFiltrados" class="incidencia-item">
-        <!-- Botón para cada aviso que muestra la fecha y permite desplegar detalles -->
+        <!-- Botón para cada aviso -->
         <button type="button" class="list-group-item list-group-item-action" (click)="toggleDetalleAviso(aviso)"
           [ngClass]="{'active': aviso === avisoSeleccionado}">
           <p class="incidencia-iconAs">
-            <i class="bi bi-calendar2-date"></i>Asunto: {{ aviso.nombre }}
+            <i class="bi bi-calendar2-date"></i> Asunto: {{ aviso.nombre }}
           </p>
           <p class="incidencia-iconAs">
-            <i class="bi bi-calendar2-date"></i>Fecha: {{ aviso.fecha | date:'yyyy-MM-dd' }}
+            <i class="bi bi-calendar2-date"></i> Fecha: {{ aviso.fecha }}
           </p>
         </button>
 
@@ -45,20 +60,19 @@
             <h3 class="titleInci">Asunto: {{ aviso.nombre }}</h3>
           </div>
           <div class="info-item">
-            <img [src]="aviso.img" alt="foto del aviso" class="img-aviso">
+            <img [src]="aviso.img" alt="Foto del aviso" class="img-aviso">
           </div>
           <p class="incidencia-descripcion">
-            <i class="bi bi-file-earmark-text"></i><strong>Descripción: </strong> {{ aviso.descripcion }}
+            <i class="bi bi-file-earmark-text"></i> <strong>Descripción:</strong> {{ aviso.descripcion }}
           </p>
           <p class="incidencia-fecha">
-            <i class="bi bi-calendar2-date"></i><strong>Fecha: </strong> {{ aviso.fecha | date:'yyyy-MM-dd' }}
+            <i class="bi bi-calendar2-date"></i> <strong>Fecha:</strong> {{ aviso.fecha | date:'yyyy-MM-dd' }}
           </p>
           <p class="incidencia-fecha">
-            <i class="bi bi-collection"></i>
-            <strong>Grupos:</strong>
+            <i class="bi bi-collection"></i> <strong>Grupos:</strong>
           </p>
           <ul>
-            <li *ngFor="let grupo of aviso.grupos; let i = index">
+            <li *ngFor="let grupo of aviso.grupos">
               {{ grupo.grado }}{{ grupo.grupo }} ({{ grupo.especialidad }})
             </li>
           </ul>
@@ -66,15 +80,12 @@
       </div>
     </div>
 
-
-    <!-- Mensaje si no hay avisos -->
+    <!-- Plantilla de mensaje para lista vacía -->
     <ng-template #noAvisos>
-      <p class="title4">No hay avisos disponibles para la fecha seleccionada.</p>
+      <p class="title4">No hay avisos disponibles para la selección realizada.</p>
       <div class="image-upload">
-        <img src="assets/img/auditoria.png" alt="foto" />
+        <img src="assets/img/auditoria.png" alt="Imagen sin avisos">
       </div>
     </ng-template>
-
   </form>
-
 </body>

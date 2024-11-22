@@ -23,6 +23,14 @@ html, body {
   object-fit: cover; /* Asegura que la imagen llene el contenedor sin perder calidad */
 }
 
+.upload-icon {
+  width: 350px; /* Tamaño del contenedor */
+  height: 350px; /* Tamaño del contenedor */
+  border-radius: 20%; /* Hace que la imagen sea redonda */
+  object-fit: cover; /* Asegura que la imagen llene el contenedor sin perder calidad */
+}
+
+
 .form-group {
   width: 100%;
   display: flex;

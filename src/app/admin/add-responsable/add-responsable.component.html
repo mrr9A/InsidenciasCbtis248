@@ -10,13 +10,6 @@
   <app-menu-admin></app-menu-admin>
   <h2 class="title">Agregar padre de familia</h2>
   <form [formGroup]="tutorForm" (ngSubmit)="onSubmit()" class="form-container">
-<!--
-    <div class="image-upload">
-      <input type="file" id="upload-photo" formControlName="file" hidden (change)="onImageSelected($event)" />
-      <label for="upload-photo" class="upload-label">
-        <img [src]="imagePreview || 'assets/img/agregar.png'" alt="Subir foto" class="upload-icon" />
-      </label>
-    </div> -->
 
     <div class="image-upload">
       <input type="file" id="upload-photo" formControlName="file" hidden (change)="onImageSelected($event)"
@@ -91,7 +84,7 @@
 
     <div class="form-group">
       <label for="password">Contraseña *</label>
-      <input id="password" formControlName="password" type="password" required minlength="8" maxlength="10"
+      <input id="password" formControlName="password" type="password" required minlength="8" maxlength="8"
         [ngClass]="{'is-valid': tutorForm.get('password')?.valid,'is-invalid': tutorForm.get('password')?.invalid}" />
       <div *ngIf="tutorForm.get('password')?.invalid && tutorForm.get('password')?.touched">
         <div *ngIf="tutorForm.get('password')?.hasError('minlength')">

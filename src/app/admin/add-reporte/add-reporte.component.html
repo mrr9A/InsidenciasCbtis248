@@ -9,10 +9,22 @@
   </nav>
   <app-menu-admin></app-menu-admin>
   <h2 class="title">Nueva Incidencia</h2>
-  <div class="image-upload">
-    <img src="assets/img/Logo2uia 4.png" alt="Subir foto" />
-  </div>
   <form [formGroup]="incidenciaForm" (ngSubmit)="onSubmit()" class="form-container">
+
+    <div class="image-upload">
+      <input type="file" id="upload-photo" formControlName="file" hidden (change)="onImageSelected($event)"
+        accept=".jpg, .jpeg, .png"  [ngClass]="{'is-valid': incidenciaForm.get('file')?.valid,'is-invalid': incidenciaForm.get('file')?.invalid }"/>
+      <label for="upload-photo" class="upload-label">
+        <img [src]="imagePreview || 'assets/img/agregar.png'" alt="Subir foto" class="upload-icon" />
+      </label>
+      <label for="file"><strong>NOTA:</strong>Click a la imagen para agregar foto de la incidencia. *</label>
+      <div *ngIf="incidenciaForm.get('file')?.invalid && incidenciaForm.get('file')?.touched">
+        <div *ngIf="incidenciaForm.get('file')?.hasError('required')">
+          <span class="text-danger">La foto de perfil es obligatorio.</span>
+        </div>
+      </div>
+    </div>
+<br>
 
     <mat-form-field class="rounded-field">
       <mat-select placeholder="Seleccionar grupo" formControlName="grupo_id">
@@ -39,8 +51,13 @@
     </mat-form-field>
 
     <div class="form-group">
-      <label for="descripcion">Descripción</label>
-      <textarea id="descripcion" formControlName="descripcion" required></textarea>
+      <label for="descripcion">Descripción *</label>
+      <textarea id="descripcion" formControlName="descripcion" type="text" required [ngClass]="{'is-valid': incidenciaForm.get('descripcion')?.valid,'is-invalid': incidenciaForm.get('descripcion')?.invalid }"></textarea>
+      <div *ngIf="incidenciaForm.get('descripcion')?.invalid && incidenciaForm.get('descripcion')?.touched">
+        <div *ngIf="incidenciaForm.get('descripcion')?.hasError('required')">
+          <span class="text-danger">La descripción es obligatorio.</span>
+        </div>
+      </div>
     </div>
 
     <button type="submit" [disabled]="incidenciaForm.invalid || isLoading" class="submit-button" (click)="onSubmit()">

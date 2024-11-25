@@ -44,11 +44,12 @@ html, body {
 
 /* Asegura que la imagen del avatar se ajuste correctamente */
 .avatar-card {
-  width: 100%; /* Ocupa el 100% del contenedor */
-  height: auto; /* Mantiene la calidad original de la imagen */
+  width: 200px; /* Ancho fijo */
+  height: 200px; /* Alto fijo */
+  object-fit: cover; /* Ajusta la imagen para llenar el contenedor sin distorsión */
   display: block;
   margin: 0 auto 20px; /* Centrar imagen y espacio abajo */
-  border-radius: 60px;
+  border-radius: 20%; /* Hace que la imagen sea circular */
 }
 
 /* Personaliza el contenido del label */
@@ -120,4 +121,11 @@ html, body {
   margin-bottom: 6px;
   margin-inline-start: 8px;
   overflow-y: auto;
+}
+
+@media (max-width: 768px) {
+  .avatar-card {
+    width: 250px;
+    height: 250px;
+  }
 }

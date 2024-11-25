@@ -28,11 +28,6 @@ html, body {
   text-align: left;
 }
 
-/* Título del anuncio */
-/* .announcement-title {
-  color: #671233;
-  font-size: 1rem;
-} */
 
 /* Estilos para la tarjeta */
 .card {
@@ -55,16 +50,13 @@ html, body {
 
 /* Asegura que la imagen del avatar se ajuste correctamente */
 .avatar-card {
-  width: 100%;
-  /* Ocupa el 100% del contenedor */
-  height: auto;
-  /* Mantiene la calidad original de la imagen */
+  width: 200px; /* Ancho fijo */
+  height: 200px; /* Alto fijo */
+  object-fit: cover; /* Ajusta la imagen para llenar el contenedor sin distorsión */
   display: block;
-  margin: 0 auto 20px;
-  /* Centrar imagen y espacio abajo */
-  border-radius: 60px;
+  margin: 0 auto 20px; /* Centrar imagen y espacio abajo */
+  border-radius: 20%; /* Hace que la imagen sea circular */
 }
-
 /* Personaliza el contenido del label */
 .label h2 {
   font-weight: bold;
@@ -257,4 +249,11 @@ font-size: 12px;
 /* Ajuste del estilo de iconos cuando el botón está en estado activo */
 .list-group-item.active i {
   color: #ffffff; /* Color blanco para íconos cuando está activo */
+}
+
+@media (max-width: 768px) {
+  .avatar-card {
+    width: 250px;
+    height: 250px;
+  }
 }

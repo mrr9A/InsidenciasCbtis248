@@ -159,3 +159,10 @@ mat-form-field {
   text-align: center;
   margin-top: 10px;
 }
+
+.img-avar {
+  width: 70px; /* Ancho fijo */
+  height: 70px; /* Alto fijo (igual que el ancho para hacerlo cuadrado) */
+  object-fit: cover; /* Recorta la imagen para que encaje en el contenedor */
+  border-radius: 5px; /* (Opcional) Bordes redondeados */
+}

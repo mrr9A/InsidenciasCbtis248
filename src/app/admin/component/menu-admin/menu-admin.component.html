@@ -22,6 +22,9 @@
       <li class="nav-item" *ngIf="usuario.administrativo.rol.nombre === 'Admin'">
         <a class="nav-link" [routerLink]="['/cbtis248/addAlumno']"><i class="bi bi-person-fill-check"></i> Agregar alumno</a>
       </li>
+      <li class="nav-item" *ngIf="usuario.administrativo.rol.nombre === 'Admin'">
+        <a class="nav-link" [routerLink]="['/cbtis248/cargaArchiv']"><i class="bi bi-upload"></i> Agregar información en exel</a>
+      </li>
 
       <!-- Opciones visibles para "admin", "maestro" y "prefecto" -->
       <li class="nav-item" *ngIf="usuario.administrativo.rol.nombre === 'Admin' || usuario.administrativo.rol.nombre === 'Maestro' || usuario.administrativo.rol.nombre === 'Prefecto'">

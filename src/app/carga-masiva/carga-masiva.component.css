@@ -1,0 +1,163 @@
+/* Contenedor principal */
+.upload-container {
+  width: 100%;
+  max-width: 400px;
+  margin: 50px auto;
+  padding: 20px;
+  background: #f9f9f9;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  font-family: Arial, sans-serif;
+  text-align: center;
+}
+
+/* Título */
+.upload-container h2 {
+  margin-bottom: 20px;
+  font-size: 1.5em;
+  color: #333;
+}
+
+/* Etiqueta */
+.upload-container label {
+  display: block;
+  margin-bottom: 10px;
+  font-weight: bold;
+  color: #555;
+}
+
+/* Campo de entrada */
+.upload-container input[type="file"] {
+  margin-bottom: 15px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 0.9em;
+  width: 100%;
+}
+
+/* Botón de envío */
+.upload-container button {
+  background-color: #551515;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1em;
+  width: 100%;
+}
+
+/* Botón deshabilitado */
+.upload-container button:disabled {
+  background-color: #d3d3d3;
+  cursor: not-allowed;
+}
+
+/* Efecto hover en botón */
+.upload-container button:hover:not(:disabled) {
+  background-color: #0056b3;
+}
+
+/* Responsividad */
+@media (max-width: 500px) {
+  .upload-container {
+    padding: 15px;
+  }
+}
+
+
+/* CSS DEL MENU */
+
+.navbar-toggler {
+  border: none; /* Sin borde en el botón */
+}
+
+.fixed-menu {
+  position: fixed; /* Hace que el menú sea fijo */
+  top: 0; /* Fijar en la parte superior */
+  left: 0; /* Fijar en el lado izquierdo */
+  width: 0px; /* Ancho del menú */
+  height: 10%; /* Ocupa toda la altura de la ventana */
+  background-color: #ffffff; /* Color de fondo */
+  top: 12px;
+  color: white;
+  z-index: 1000; /* Asegura que esté por encima del contenido */
+}
+
+.navbar-toggler {
+  border: none; /* Sin borde en el botón */
+  outline: none !important; /* Asegúrate de que el contorno no aparezca nunca */
+  box-shadow: none !important; /* Evita cualquier sombra que pueda aparecer */
+}
+
+.navbar-toggler:focus {
+  outline: none !important; /* Evita el contorno al hacer clic */
+  box-shadow: none !important; /* Evita cualquier sombra al hacer clic */
+}
+
+.navbar-toggler:active {
+  outline: none !important; /* Evita el contorno mientras el botón está activo */
+  box-shadow: none !important; /* Elimina cualquier sombra o efecto activo */
+}
+
+/* Contenedor del spinner */
+.spinner-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+  font-family: Arial, sans-serif;
+  color: #333;
+}
+
+/* Estilo del spinner */
+.spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid #ccc;
+  border-top: 4px solid #441c11;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+/* Animación del spinner */
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* GIF de carga */
+.loading-gif {
+  width: 150px;
+  height: auto;
+  margin-top: 10px;
+}
+
+/* Mensaje de éxito */
+.success-message {
+  margin-top: 20px;
+  padding: 10px;
+  background-color: #d4edda;
+  color: #155724;
+  border: 1px solid #c3e6cb;
+  border-radius: 5px;
+  font-size: 14px;
+  text-align: center;
+}
+
+/* Mensaje de error */
+.error-message {
+  margin-top: 20px;
+  padding: 10px;
+  background-color: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
+  border-radius: 5px;
+  font-size: 14px;
+  text-align: center;
+}

@@ -40,6 +40,20 @@ export class ListAlumnoComponent {
     });
   }
 
+    editarAlumno(id: string, event: Event): void {
+    event.preventDefault();
+    event.stopPropagation();
+    console.log('Editar alumno con ID:', id);
+    // Lógica para editar al alumno
+  }
+
+  eliminarAlumno(id: string, event: Event): void {
+    event.preventDefault();
+    event.stopPropagation();
+    console.log('Eliminar alumno con ID:', id);
+    // Lógica para eliminar al alumno
+  }
+
   onGrupoSeleccionado(grupoSeleccionado: any): void {
     this.alumnos = grupoSeleccionado.alumnos || []; // Asignar los alumnos del grupo seleccionado
     console.log('Alumnos del grupo seleccionado:', this.alumnos);

@@ -165,4 +165,29 @@ mat-form-field {
   height: 70px; /* Alto fijo (igual que el ancho para hacerlo cuadrado) */
   object-fit: cover; /* Recorta la imagen para que encaje en el contenedor */
   border-radius: 5px; /* (Opcional) Bordes redondeados */
+  margin-left: 12px;
+}
+
+/* Íconos y texto de opciones */
+.text-muted {
+  color: #374550 !important;
+}
+
+.text-danger {
+  color: #dc3545 !important;
+}
+
+.bi {
+  font-size: 16px;
+}
+
+/* Imagen y espaciado */
+.img-avar {
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.info-item {
+  border-bottom: 1px solid #ddd;
+  padding: 10px 0;
 }

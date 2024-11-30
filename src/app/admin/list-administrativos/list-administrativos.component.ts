@@ -60,4 +60,17 @@ export class ListAdministrativosComponent {
   verDetalleAdministrativo(id: string): void {
     this.router.navigate(['/cbtis248/detalleAdministrativo', id]); // Cambia '/ruta/lista-responsables' por tu ruta real
   }
+
+
+editarAdministrativo(id: number, event: Event): void {
+  event.stopPropagation(); // Evita cerrar el dropdown al hacer clic
+  console.log('Editar administrativo con ID:', id);
+  // Implementa la lógica para redirigir o abrir un modal de edición
+}
+
+eliminarAdministrativo(id: number, event: Event): void {
+  event.stopPropagation(); // Evita cerrar el dropdown al hacer clic
+  console.log('Eliminar administrativo con ID:', id);
+  // Implementa la lógica para eliminar al administrativo
+}
 }

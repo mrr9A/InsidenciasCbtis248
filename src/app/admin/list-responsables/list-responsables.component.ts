@@ -59,4 +59,16 @@ export class ListResponsablesComponent {
   verDetalleResponsable(id: string): void {
     this.router.navigate(['/cbtis248/detalleResponsable',id]); // Cambia '/ruta/lista-responsables' por tu ruta real
   }
+
+  editarResponsable(id: number, event: Event): void {
+    event.stopPropagation(); // Evita cerrar el dropdown al hacer clic
+    console.log('Editar responsable con ID:', id);
+    // Implementa la lógica para redirigir o abrir un modal de edición
+  }
+
+  eliminarResponsable(id: number, event: Event): void {
+    event.stopPropagation(); // Evita cerrar el dropdown al hacer clic
+    console.log('Eliminar responsable con ID:', id);
+    // Implementa la lógica para eliminar al responsable
+  }
 }

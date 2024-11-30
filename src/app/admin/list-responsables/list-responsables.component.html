@@ -8,7 +8,7 @@
     </div>
   </nav>
   <app-menu-admin></app-menu-admin>
-  <h2 class="title">Lista de Responsables</h2>
+  <h2 class="title">Lista de padres de familia</h2>
   <div class="image-upload">
     <img src="assets/img/Logo2uia 4.png" alt="foto" />
   </div>
@@ -24,12 +24,40 @@
     <h3 class="title">Lista de padres de familia:</h3>
 
     <div *ngIf="responsables.length > 0; else noResponsables">
-      <div class="info-item" *ngFor="let responsable of responsables"
-        (click)="verDetalleResponsable(responsable.responsable.id)">
-        <img [src]="responsable.responsable.img" alt="{{ responsable.responsable.nombre }}" width="50" class="img-avar">
-        <span><strong>Responsable:</strong> {{ responsable.responsable.nombre }} {{
-          responsable.responsable.apellido_paterno }} {{ responsable.responsable.apellido_materno }}</span>
-        <i class="bi bi-chevron-compact-right"></i>
+      <div class="info-item d-flex align-items-center justify-content-between mb-3"
+        *ngFor="let responsable of responsables">
+        <div class="d-flex align-items-center">
+          <img [src]="responsable.responsable.img" alt="{{ responsable.responsable.nombre }}" width="50"
+            class="img-avar me-3">
+          <span>
+            <strong>Responsable:</strong>
+            {{ responsable.responsable.nombre }}
+            {{ responsable.responsable.apellido_paterno }}
+            {{ responsable.responsable.apellido_materno }}
+          </span>
+        </div>
+        <div class="dropdown">
+          <button class="btn btn-transparent dropdown" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <ul class="dropdown-menu dropdown-transparent">
+            <li>
+              <a class="dropdown-item text-muted" (click)="verDetalleResponsable(responsable.responsable.id)">
+                <i class="bi bi-eye me-2"></i> Ver detalles
+              </a>
+            </li>
+            <li>
+              <a class="dropdown-item text-muted" (click)="editarResponsable(responsable.responsable.id, $event)">
+                <i class="bi bi-pencil-square me-2"></i> Editar padre de familia
+              </a>
+            </li>
+            <li>
+              <a class="dropdown-item text-danger" (click)="eliminarResponsable(responsable.responsable.id, $event)">
+                <i class="bi bi-trash me-2"></i> Eliminar padre de familia
+              </a>
+            </li>
+          </ul>
+        </div>
       </div>
     </div>
 

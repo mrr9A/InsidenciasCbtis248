@@ -7,8 +7,7 @@ html, body {
   justify-content: space-between; /* Asegura que el título y el botón estén en extremos opuestos */
   align-items: center; /* Alinea verticalmente el contenido al centro */
   width: 100%;
-  height: 70px;
-  padding: 10px 20px; /* Añade espacio alrededor */
+  height: auto;
   background-color: white; /* Fondo blanco */
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra ligera */
 }
@@ -16,7 +15,7 @@ html, body {
 /* Estilo para el título del anuncio */
 .toolbar h1 {
   margin: 0;
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   font-weight: bold;
   color: #671233; /* Guinda */
   flex-grow: 1; /* Ocupa el espacio restante */
@@ -114,9 +113,6 @@ html, body {
 }
 
 .info-row p {
-/*   font-size: 0.9rem;
-  color: #000;
-  margin: 0; */
   font-size: 0.9rem;
   color: #000000;
   margin-bottom: 6px;

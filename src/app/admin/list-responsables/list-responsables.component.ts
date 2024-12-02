@@ -64,6 +64,7 @@ export class ListResponsablesComponent {
     event.stopPropagation(); // Evita cerrar el dropdown al hacer clic
     console.log('Editar responsable con ID:', id);
     // Implementa la lógica para redirigir o abrir un modal de edición
+    this.router.navigate(['/cbtis248/editar-padreFamilia', id]);
   }
 
   eliminarResponsable(id: number, event: Event): void {

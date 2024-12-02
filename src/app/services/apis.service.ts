@@ -91,4 +91,18 @@ export class ApisService {
     return this.http.get<any>(`${this.apiURL}/api/incidencias/${id}`);
   }
 
+  updateAlumno(id: number, formData: FormData) {
+    return this.http.patch<any>(`http://localhost:3000/api/alumnos/${id}`, formData);
+  }
+  updateResponsable(id: number, formData: FormData) {
+    return this.http.patch<any>(`http://localhost:3000/api/responsables/${id}`, formData);
+  }
+
+  getAlumnos2(): Observable<any[]> {
+    return this.http.get<any[]>('API_URL');
+  }
+
+  getAlumno(id: number) {
+    return this.http.get<any>(`/api/alumnos/${id}`);
+  }
 }

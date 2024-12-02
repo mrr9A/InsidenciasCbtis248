@@ -50,6 +50,14 @@ export const routes: Routes = [
         loadComponent: () => import('./carga-masiva/carga-masiva.component').then(m => m.CargaMasivaComponent)/* , canActivate: [authGuard] */
       },
       {
+        path: 'cardsAdd',
+        loadComponent: () => import('./admin/component/cards-add/cards-add.component').then(m => m.CardsAddComponent)/* , canActivate: [authGuard] */
+      },
+      {
+        path: 'perfilAdmin',
+        loadComponent: () => import('./admin/component/card-admin-perfil/card-admin-perfil.component').then(m => m.CardAdminPerfilComponent)/* , canActivate: [authGuard] */
+      },
+      {
         path: 'listResponsable',
         loadComponent: () => import('./admin/list-responsables/list-responsables.component').then(m => m.ListResponsablesComponent), canActivate: [authGuard]
       },
@@ -92,6 +100,14 @@ export const routes: Routes = [
       {
         path: 'detalleIns/:id',
         loadComponent: () => import('./components/modal-historial/modal-historial.component').then(m => m.ModalHistorialComponent), canActivate: [authGuard]
+      },
+      {
+        path: 'editar-alumno/:id',
+        loadComponent: () => import('./admin/component/edit/edit-alumno/edit-alumno.component').then(m => m.EditAlumnoComponent), canActivate: [authGuard]
+      },
+      {
+        path: 'editar-padreFamilia/:id',
+        loadComponent: () => import('./admin/component/edit/edit-padres/edit-padres.component').then(m => m.EditPadresComponent), canActivate: [authGuard]
       },
       {
         path: '**',

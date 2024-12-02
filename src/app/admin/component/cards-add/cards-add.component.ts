@@ -1,32 +1,31 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
-import { onTimeService } from '../../../services/actulizarInfor.service';
 import { MenuAdminComponent } from '../menu-admin/menu-admin.component';
+import { onTimeService } from '../../../services/actulizarInfor.service';
+import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
 
 @Component({
-  selector: 'app-card-admin-perfil',
+  selector: 'app-cards-add',
   standalone: true,
-  imports: [MenuAdminComponent],
-  templateUrl: './card-admin-perfil.component.html',
-  styleUrl: './card-admin-perfil.component.css'
+  imports: [MenuAdminComponent,CommonModule,RouterModule,],
+  templateUrl: './cards-add.component.html',
+  styleUrl: './cards-add.component.css'
 })
-export class CardAdminPerfilComponent {
+export class CardsAddComponent {
 
   usuario: any;
   correo: string = '';
   password: string = '';
   telefono: string = '';
   tipoPerfil: string = '';
-
-  constructor(private router: Router, private onTimeService:onTimeService) {}
+  constructor(private onTimeService: onTimeService) { }
 
   ngOnInit(): void {
     setInterval(() => {
-      this.onTimeService.getActualUser();
-    }, 180000);
-    this.loadUsuario();
+    this.onTimeService.getActualUser();
+  }, 180000);
+  this.loadUsuario();
   }
-
 
   loadUsuario() {
     // Recupera el usuario desde localStorage
@@ -41,12 +40,6 @@ export class CardAdminPerfilComponent {
       this.telefono = this.usuario.administrativo?.num_telefono || '';
       this.tipoPerfil = this.usuario.administrativo?.rol?.nombre || 'Responsable';
     }
-  }
-
-  logout() {
-    // Limpia el localStorage y redirige al usuario a la página de login
-    localStorage.clear();
-    this.router.navigate(['cbtis248/login']); // Ajusta la ruta de acuerdo a tu configuración
   }
 
 }

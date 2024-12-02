@@ -9,32 +9,32 @@
   <div class="offcanvas-body">
     <ul class="navbar-nav">
       <li class="nav-item">
-        <a class="nav-link" [routerLink]="['/cbtis248/homeAdmin']"><i class="bi bi-house-door"></i> Inicio</a>
+        <a class="nav-link" [routerLink]="['/cbtis248/homeAdmin']"><i class="bi bi-house-door-fill"></i> Inicio</a>
       </li>
 
       <!-- Opciones solo visibles para el rol "admin" -->
       <li class="nav-item" *ngIf="usuario.administrativo.rol.nombre === 'Admin'">
-        <a class="nav-link" [routerLink]="['/cbtis248/addAdministrativo']"><i class="bi bi-person-add"></i> Agregar administrativo</a>
+        <a class="nav-link" [routerLink]="['/cbtis248/addAdministrativo']"><i class="bi bi-person-fill-add"></i> Agregar administrativo</a>
       </li>
       <li class="nav-item" *ngIf="usuario.administrativo.rol.nombre === 'Admin'">
-        <a class="nav-link" [routerLink]="['/cbtis248/addResponsable']"><i class="bi bi-person-plus"></i> Agregar padre de familia</a>
+        <a class="nav-link" [routerLink]="['/cbtis248/addResponsable']"><i class="bi bi-person-plus-fill"></i> Agregar padre de familia</a>
       </li>
       <li class="nav-item" *ngIf="usuario.administrativo.rol.nombre === 'Admin'">
         <a class="nav-link" [routerLink]="['/cbtis248/addAlumno']"><i class="bi bi-person-fill-check"></i> Agregar alumno</a>
       </li>
       <li class="nav-item" *ngIf="usuario.administrativo.rol.nombre === 'Admin'">
-        <a class="nav-link" [routerLink]="['/cbtis248/cargaArchiv']"><i class="bi bi-upload"></i> Agregar información en exel</a>
+        <a class="nav-link" [routerLink]="['/cbtis248/cargaArchiv']"><i class="bi bi-file-earmark-arrow-up-fill"></i> Agregar información en exel</a>
       </li>
 
       <!-- Opciones visibles para "admin", "maestro" y "prefecto" -->
       <li class="nav-item" *ngIf="usuario.administrativo.rol.nombre === 'Admin' || usuario.administrativo.rol.nombre === 'Maestro' || usuario.administrativo.rol.nombre === 'Prefecto'">
-        <a class="nav-link" [routerLink]="['/cbtis248/addAviso']"><i class="bi bi-patch-plus"></i> Agregar avisos</a>
+        <a class="nav-link" [routerLink]="['/cbtis248/addAviso']"><i class="bi bi-patch-plus-fill"></i> Agregar avisos</a>
       </li>
       <li class="nav-item" *ngIf="usuario.administrativo.rol.nombre === 'Admin' || usuario.administrativo.rol.nombre === 'Maestro' || usuario.administrativo.rol.nombre === 'Prefecto'">
-        <a class="nav-link" [routerLink]="['/cbtis248/addReporte']"><i class="bi bi-exclamation-diamond"></i> Agregar incidencia</a>
+        <a class="nav-link" [routerLink]="['/cbtis248/addReporte']"><i class="bi bi-exclamation-diamond-fill"></i> Agregar incidencia</a>
       </li>
       <li class="nav-item" *ngIf="usuario.administrativo.rol.nombre === 'Admin' || usuario.administrativo.rol.nombre === 'Maestro' || usuario.administrativo.rol.nombre === 'Prefecto'">
-        <a class="nav-link" [routerLink]="['/cbtis248/listResponsable']"><i class="bi bi-list-check"></i> Lista de padres de familias</a>
+        <a class="nav-link" [routerLink]="['/cbtis248/listResponsable']"><i class="bi bi-list-stars"></i> Lista de padres de familias</a>
       </li>
       <li class="nav-item" *ngIf="usuario.administrativo.rol.nombre === 'Admin' || usuario.administrativo.rol.nombre === 'Maestro' || usuario.administrativo.rol.nombre === 'Prefecto'">
         <a class="nav-link" [routerLink]="['/cbtis248/listAdministrativos']"><i class="bi bi-list-check"></i> Lista de administrativos</a>
@@ -47,6 +47,9 @@
       </li>
       <li class="nav-item" *ngIf="usuario.administrativo.rol.nombre === 'Admin' || usuario.administrativo.rol.nombre === 'Maestro' || usuario.administrativo.rol.nombre === 'Prefecto'">
         <a class="nav-link" [routerLink]="['/cbtis248/listIncidencias']"><i class="bi bi-list-check"></i> Lista de incidencias</a>
+      </li>
+      <li class="nav-item" *ngIf="usuario.administrativo.rol.nombre === 'Admin' || usuario.administrativo.rol.nombre === 'Maestro' || usuario.administrativo.rol.nombre === 'Prefecto'">
+        <a class="nav-link" [routerLink]="['/cbtis248/perfilAdmin']"><i class="bi bi-person-badge"></i> Perfil</a>
       </li>
     </ul>
   </div>

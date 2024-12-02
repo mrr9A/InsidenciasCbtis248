@@ -40,11 +40,12 @@ export class ListAlumnoComponent {
     });
   }
 
-    editarAlumno(id: string, event: Event): void {
+  editarAlumno(id: string, event: Event): void {
     event.preventDefault();
     event.stopPropagation();
     console.log('Editar alumno con ID:', id);
     // Lógica para editar al alumno
+    this.router.navigate(['/cbtis248/editar-alumno', id]);
   }
 
   eliminarAlumno(id: string, event: Event): void {

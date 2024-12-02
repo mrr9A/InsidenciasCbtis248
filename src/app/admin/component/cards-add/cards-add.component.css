@@ -1,0 +1,141 @@
+.navbar-toggler {
+  border: none; /* Sin borde en el botón */
+}
+
+.fixed-menu {
+  position: fixed; /* Hace que el menú sea fijo */
+  top: 0; /* Fijar en la parte superior */
+  left: 0; /* Fijar en el lado izquierdo */
+  width: 0px; /* Ancho del menú */
+  height: 10%; /* Ocupa toda la altura de la ventana */
+  background-color: #ffffff; /* Color de fondo */
+  top: 12px;
+  color: white;
+  z-index: 1000; /* Asegura que esté por encima del contenido */
+}
+
+.navbar-toggler {
+  border: none; /* Sin borde en el botón */
+  outline: none !important; /* Asegúrate de que el contorno no aparezca nunca */
+  box-shadow: none !important; /* Evita cualquier sombra que pueda aparecer */
+}
+
+.navbar-toggler:focus {
+  outline: none !important; /* Evita el contorno al hacer clic */
+  box-shadow: none !important; /* Evita cualquier sombra al hacer clic */
+}
+
+.navbar-toggler:active {
+  outline: none !important; /* Evita el contorno mientras el botón está activo */
+  box-shadow: none !important; /* Elimina cualquier sombra o efecto activo */
+}
+
+/* Estilo general */
+.container {
+  display: grid;
+  gap: 20px;
+  padding: 20px;
+}
+
+/* Vista web: diseño de escritorio */
+@media (min-width: 768px) {
+  .container {
+    grid-template-columns: 3fr 2fr; /* Tres partes para tarjetas, dos partes para gráficas */
+  }
+  .summary-cards {
+    display: grid;
+    grid-template-columns: repeat(2, 2fr); /* 4 tarjetas en fila */
+    gap: 20px;
+  }
+  .charts-section {
+    display: grid;
+    grid-template-rows: repeat(2, auto);
+    gap: 20px;
+  }
+}
+
+/* Vista móvil */
+@media (max-width: 767px) {
+  .container {
+    grid-template-columns: 1fr; /* Una sola columna */
+  }
+  .summary-cards {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 2 tarjetas por fila */
+    gap: 20px;
+  }
+  .charts-section {
+    display: grid;
+    grid-template-columns: 1fr; /* Una sola columna para gráficas */
+    gap: 20px;
+  }
+}
+
+/* Estilo de tarjetas */
+.card {
+  background: #f5f2f253;
+  padding: 16px;
+  border: 1px solid #08010166;
+  border-radius: 16px;
+  box-shadow: 0 2px 5px rgba(72, 17, 17, 0.525);
+  text-align: center;
+}
+
+.card-title {
+  font-family: "Source Sans Pro", sans-serif;
+  font-weight: 600;
+  display: flex;
+  margin-bottom: auto;
+  align-items: center;
+  font-size: 17px;
+  color: #444444;
+}
+
+.card h3 {
+  font-family: "Source Sans Pro", sans-serif;
+  font-weight: 600;
+  font-size: 15px;
+  color: #4a1818;
+}
+
+.card-change {
+  font-family: "Source Sans Pro", sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  color: #444444;
+  opacity: 0.5;
+}
+
+.card-change.positive {
+  color: rgb(17, 61, 17);
+}
+
+.card-change.negative {
+  color: rgb(7, 93, 84);
+}
+
+/* Gráficas */
+.chart {
+  background: #ffffff;
+  padding: 16px;
+  border: 1px solid #d6d6d6;
+  border-radius: 16px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.chart-placeholder {
+  width: 100%;
+  height: 200px;
+  background: #f6f6f6;
+  border-radius: 8px;
+}
+
+.title {
+  font-size: 1.5rem;
+  color: #671233;
+  text-align: center;
+  margin-top: -35px;
+}
+html, body {
+  overflow: auto; /* Asegúrate de que no esté configurado en hidden */
+}

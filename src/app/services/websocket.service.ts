@@ -10,7 +10,7 @@ export class WebSocketService {
   private responsableId: string | null = null;
 
   constructor(private notificationService: NotificationService) {
-        this.socket = io('http://localhost:3000'); // URL de tu servidor de WebSockets
+        this.socket = io('https://cbtis248back.onrender.com'); // URL de tu servidor de WebSockets
 /*     this.socket = io('http://3.21.170.124:3000'); // URL de tu servidor de WebSockets */
   }
 

@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class CargaMasivaService {
-  private apiUrl = 'http://localhost:3000/api/carga-masiva';
+  private apiUrl = 'https://cbtis248back.onrender.com/api/carga-masiva';
 /*   private apiUrl = 'http://3.21.170.124:3000/api/carga-masiva'; */
 
   constructor(private http: HttpClient) { }

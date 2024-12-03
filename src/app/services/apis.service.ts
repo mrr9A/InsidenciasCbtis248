@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 export class ApisService {
 
   constructor(private http: HttpClient) { }
-  private apiURL = 'http://localhost:3000'
+  private apiURL = 'https://cbtis248back.onrender.com'
 /*   private apiURL = 'http://3.21.170.124:3000' */
 
   login(credentials: { correo_electronico: string; password: string }) {
@@ -103,27 +103,27 @@ export class ApisService {
   }
 
   updateAlumno(id: number, formData: FormData) {
-    return this.http.patch<any>(`http://localhost:3000/api/alumnos/${id}`, formData);
+    return this.http.patch<any>(`https://cbtis248back.onrender.com/api/alumnos/${id}`, formData);
   }
 
   updateResponsable(id: number, formData: FormData) {
-    return this.http.patch<any>(`http://localhost:3000/api/responsables/${id}`, formData);
+    return this.http.patch<any>(`https://cbtis248back.onrender.com/api/responsables/${id}`, formData);
   }
 
   getAdminis(id: number, formData: FormData) {
-    return this.http.patch<any>(`http://localhost:3000/api/administrativos/${id}`, formData);
+    return this.http.patch<any>(`https://cbtis248back.onrender.com/api/administrativos/${id}`, formData);
   }
 
   UpdateAviso(id: string, formData: FormData) {
-    return this.http.patch<any>(`http://localhost:3000/api/avisos/${id}`, formData);
+    return this.http.patch<any>(`https://cbtis248back.onrender.com/api/avisos/${id}`, formData);
   }
 
   updateIncidencia(id: number, formData: FormData) {
-    return this.http.patch<any>(`http://localhost:3000/api/avisos/${id}`, formData);
+    return this.http.patch<any>(`https://cbtis248back.onrender.com/api/avisos/${id}`, formData);
   }
 
   getAdminis1(id: number) {
-    return this.http.get<any>(`http://localhost:3000/api/administrativos/${id}`);
+    return this.http.get<any>(`https://cbtis248back.onrender.com/api/administrativos/${id}`);
   }
 
   getAlumnos2(): Observable<any[]> {

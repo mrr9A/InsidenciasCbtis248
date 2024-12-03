@@ -30,12 +30,12 @@ export class CardsAddComponent {
   constructor(private onTimeService: onTimeService,private apiService: ApisService) { }
 
   ngOnInit(): void {
+    this.loadUsuario();
+    this.loadIncidencias(); // Cargar las incidencias al inicio
+    this.loadAvisos(); // Cargar los avisos al inicio
     setInterval(() => {
     this.onTimeService.getActualUser();
   }, 180000);
-  this.loadUsuario();
-  this.loadIncidencias(); // Cargar las incidencias al inicio
-  this.loadAvisos(); // Cargar los avisos al inicio
   }
 
   loadUsuario() {

@@ -39,28 +39,6 @@ export class AppComponent {
     });
   }
 
-  /*   ngOnInit() {
-      // Obtener el objeto del usuario desde el localStorage
-      const usuario = JSON.parse(localStorage.getItem('usuario') || '{}');
-
-      // Verificar si existe un responsable
-      if (usuario.responsable) {
-        this.responsableId = usuario.responsable.id;
-      } else {
-        console.log('No se encontró un responsable.');
-      }
-
-      // Solicitar permiso para mostrar notificaciones
-      this.notificationService.solicitarPermiso();
-
-      // Si hay un responsable, conectarse al WebSocket con su ID
-      if (this.responsableId) {
-        this.webSocketService.conectar(this.responsableId.toString());
-      } else {
-        console.log('No se conectará al WebSocket porque no hay responsable.');
-      }
-    } */
-
   ngOnInit() {
 
     // Solicitar permiso para mostrar notificaciones
@@ -73,25 +51,22 @@ export class AppComponent {
       // Validar que el usuario tenga un responsable y un ID válido
       if (usuario?.responsable?.id) {
         this.responsableId = usuario.responsable.id;
-        console.log(`Responsable ID: ${this.responsableId}`);
+        //console.log(`Responsable ID: ${this.responsableId}`);
       } else {
-        console.error('No se encontró un ID de responsable válido.');
+        //console.error('No se encontró un ID de responsable válido.');
         this.responsableId = null; // O asignar un valor predeterminado
       }
     } else {
-      console.error('No se encontró un usuario en localStorage.');
+      //console.error('No se encontró un usuario en localStorage.');
       this.responsableId = null;
     }
 
     // Uso de responsableId con validación
     if (this.responsableId !== null) {
-      console.log(`Conectando con ID ${this.responsableId}`);
+      //console.log(`Conectando con ID ${this.responsableId}`);
       this.webSocketService.conectar(this.responsableId.toString());
     }
   }
-
-
-
 
   // Método para manejar el clic en el botón de instalación
   installPWA() {

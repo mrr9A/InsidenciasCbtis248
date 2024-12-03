@@ -17,7 +17,8 @@
     <!-- Selector de grupo usando Angular Material -->
     <mat-form-field class="rounded-field">
       <mat-select placeholder="Seleccionar grupo" (selectionChange)="onGrupoSeleccionado($event.value)">
-        <mat-option value="todas">Ver todas las incidencias del plantel</mat-option> <!-- Opción para ver todas las incidencias -->
+        <mat-option value="todas">Ver todas las incidencias del plantel</mat-option>
+        <!-- Opción para ver todas las incidencias -->
         <mat-option *ngFor="let grupo of grupos" [value]="grupo">
           {{ grupo.grado }} - {{ grupo.grupo }} - {{ grupo.especialidad }}
         </mat-option>
@@ -31,10 +32,27 @@
           (click)="toggleDetalleIncidencia(incidencia)" [ngClass]="{'active': incidencia === incidenciaSeleccionada}">
           Fecha: {{ incidencia.fecha }}
         </button>
-
         <div *ngIf="incidenciaSeleccionada === incidencia" class="incidencia-detalle expandido">
           <div class="incidencia-header">
             <h3 class="titleInci">Asunto: {{ incidencia.tipo_incidencia.nombre }}</h3>
+            <div class="dropdown">
+              <button class="btn btn-transparent dropdown" type="button" data-bs-toggle="dropdown"
+                aria-expanded="false">
+                <i class="bi bi1 bi-three-dots"></i>
+              </button>
+              <ul class="dropdown-menu dropdown-transparent">
+<!--                 <li>
+                  <a class="dropdown-item text-muted" (click)="editarAlumno(incidencia.id, $event)">
+                    <i class="bi bi-pencil-square me-2"></i> Editar incidencia
+                  </a>
+                </li> -->
+                <li>
+                  <a class="dropdown-item text-danger" (click)="eliminarIncidencia(incidencia.id, $event)">
+                    <i class="bi bi-trash me-2"></i> Eliminar incidencia
+                  </a>
+                </li>
+              </ul>
+            </div>
           </div>
           <p class="incidencia-clasificacion">
             <i class="bi bi-building-exclamation"></i><strong>Clasificación: </strong>
@@ -47,7 +65,8 @@
             <i class="bi bi-calendar2-date"></i><strong>Fecha: </strong> {{ incidencia.fecha }}
           </p>
           <p class="incidencia-fecha">
-            <i class="bi bi-person"></i><strong>Alumno: </strong> {{ incidencia.alumno.nombre }} {{ incidencia.alumno.apellido_paterno }} {{ incidencia.alumno.apellido_materno }}
+            <i class="bi bi-person"></i><strong>Alumno: </strong> {{ incidencia.alumno.nombre }} {{
+            incidencia.alumno.apellido_paterno }} {{ incidencia.alumno.apellido_materno }}
           </p>
         </div>
       </div>

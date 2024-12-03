@@ -1,0 +1,67 @@
+<nav class="bg-light fixed-menu">
+  <div class="container-fluid">
+    <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#mobileMenu"
+      aria-controls="mobileMenu">
+      <img src="assets/img/ico-menu.svg" alt="">
+    </button>
+  </div>
+</nav>
+<app-menu-admin></app-menu-admin>
+<h2 class="title">Editar Aviso</h2>
+<form [formGroup]="itemForm" (ngSubmit)="onSubmit()" class="form-container">
+  <!-- Mismo contenido que en el componente de creación -->
+  <div class="image-upload">
+    <input type="file" id="upload-photo" formControlName="file" hidden (change)="onImageSelected($event)"
+      accept=".jpg, .jpeg, .png"  [ngClass]="{'is-valid': itemForm.get('file')?.valid,'is-invalid': itemForm.get('file')?.invalid }"/>
+    <label for="upload-photo" class="upload-label">
+      <img [src]="imagePreview || 'assets/img/agregar.png'" alt="Subir foto" class="upload-icon" />
+    </label>
+    <label for="file">Seleccionar foto del aviso *</label>
+    <div *ngIf="itemForm.get('file')?.invalid && itemForm.get('file')?.touched">
+      <div *ngIf="itemForm.get('file')?.hasError('required')">
+        <span class="text-danger">La foto de perfil es obligatorio.</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="nombre">Nombre del aviso *</label>
+    <input id="nombre" formControlName="nombre" type="text" required  [ngClass]="{'is-valid': itemForm.get('nombre')?.valid,'is-invalid': itemForm.get('nombre')?.invalid }"/>
+    <div *ngIf="itemForm.get('nombre')?.invalid && itemForm.get('nombre')?.touched">
+      <div *ngIf="itemForm.get('nombre')?.hasError('required')">
+        <span class="text-danger">El nombre es obligatorio.</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="descripcion">Descripción *</label>
+    <textarea id="descripcion" formControlName="descripcion" type="text" required [ngClass]="{'is-valid': itemForm.get('descripcion')?.valid,'is-invalid': itemForm.get('descripcion')?.invalid }"></textarea>
+    <div *ngIf="itemForm.get('descripcion')?.invalid && itemForm.get('descripcion')?.touched">
+      <div *ngIf="itemForm.get('descripcion')?.hasError('required')">
+        <span class="text-danger">La descripción es obligatorio.</span>
+      </div>
+    </div>
+  </div>
+
+
+  <mat-form-field>
+    <mat-label>Seleccionar Alumnos</mat-label>
+    <mat-select multiple>
+      <mat-option *ngFor="let grupo of avisosFormArray.controls" [value]="grupo.value.id">
+        <mat-checkbox [checked]="grupo.value.seleccionado">{{ grupo.value.grado }} {{ grupo.value.grupo }} {{ grupo.value.especialidad }}</mat-checkbox>
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <button type="submit" [disabled]="itemForm.invalid || isLoading" class="submit-button">
+    <ng-container *ngIf="!isLoading; else loadingSpinner">
+      Guardar Cambios
+    </ng-container>
+  </button>
+
+
+  <ng-template #loadingSpinner>
+    <mat-spinner diameter="20"></mat-spinner>
+  </ng-template>
+</form>

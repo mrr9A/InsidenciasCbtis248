@@ -8,41 +8,52 @@
 </nav>
 <app-menu-admin></app-menu-admin>
 <h2 class="title">INICIO</h2>
+
 <body>
   <div class="container">
     <!-- Tarjetas Resumen -->
     <div class="summary-cards">
-      <div class="card" *ngIf="usuario.administrativo.rol.nombre === 'Admin' || usuario.administrativo.rol.nombre === 'Maestro' || usuario.administrativo.rol.nombre === 'Prefecto'">
-        <p class="card-title"  [routerLink]="['/cbtis248/listAlumnos']"><i class="bi bi-person-circle"></i>Lista de alumnos<i class="bi bi-chevron-compact-right"></i></p>
-        <h3>Total de alumnos:</h3>
-        <p class="card-change positive">+2,031</p>
+      <div class="card"
+        *ngIf="usuario.administrativo.rol.nombre === 'Admin' || usuario.administrativo.rol.nombre === 'Maestro' || usuario.administrativo.rol.nombre === 'Prefecto'">
+        <p class="card-title" [routerLink]="['/cbtis248/listAlumnos']"><i class="bi bi-person-circle"></i>Lista de
+          alumnos inscritos<i class="bi bi-chevron-compact-right"></i></p>
       </div>
-      <div class="card" *ngIf="usuario.administrativo.rol.nombre === 'Admin' || usuario.administrativo.rol.nombre === 'Maestro' || usuario.administrativo.rol.nombre === 'Prefecto'">
-        <p class="card-title" [routerLink]="['/cbtis248/listResponsable']"><i class="bi bi-people-fill"></i>Lista de padres de familia<i class="bi bi-chevron-compact-right"></i></p>
-        <h3>Total de padres de familia:</h3>
-        <p class="card-change negative">-1.22%</p>
+      <div class="card"
+        *ngIf="usuario.administrativo.rol.nombre === 'Admin' || usuario.administrativo.rol.nombre === 'Maestro' || usuario.administrativo.rol.nombre === 'Prefecto'">
+        <p class="card-title" [routerLink]="['/cbtis248/listResponsable']"><i class="bi bi-people-fill"></i>Lista de
+          padres de familia<i class="bi bi-chevron-compact-right"></i></p>
       </div>
-      <div class="card" *ngIf="usuario.administrativo.rol.nombre === 'Admin' || usuario.administrativo.rol.nombre === 'Maestro' || usuario.administrativo.rol.nombre === 'Prefecto'">
-        <p class="card-title" [routerLink]="['/cbtis248/listAvisos']"><i class="bi bi-bell-fill"></i>Lista de avisos<i class="bi bi-chevron-compact-right"></i></p>
-        <h3>Total de avisos:</h3>
-        <p class="card-change negative">-2,201</p>
+      <div class="card"
+        *ngIf="usuario.administrativo.rol.nombre === 'Admin' || usuario.administrativo.rol.nombre === 'Maestro' || usuario.administrativo.rol.nombre === 'Prefecto'">
+        <p class="card-title" [routerLink]="['/cbtis248/listAvisos']"><i class="bi bi-bell-fill"></i>Lista de avisos<i
+            class="bi bi-chevron-compact-right"></i></p>
       </div>
-      <div class="card" *ngIf="usuario.administrativo.rol.nombre === 'Admin' || usuario.administrativo.rol.nombre === 'Maestro' || usuario.administrativo.rol.nombre === 'Prefecto'">
-        <p class="card-title" [routerLink]="['/cbtis248/listIncidencias']"><i class="bi bi-exclamation-octagon-fill"></i>Lista de incidencias<i class="bi bi-chevron-compact-right"></i></p>
-        <h3>Total de incidencias:</h3>
-        <p class="card-change positive">+3,392</p>
+      <div class="card"
+        *ngIf="usuario.administrativo.rol.nombre === 'Admin' || usuario.administrativo.rol.nombre === 'Maestro' || usuario.administrativo.rol.nombre === 'Prefecto'">
+        <p class="card-title" [routerLink]="['/cbtis248/listIncidencias']"><i
+            class="bi bi-exclamation-octagon-fill"></i>Lista de incidencias<i class="bi bi-chevron-compact-right"></i>
+        </p>
       </div>
     </div>
 
     <!-- Sección de Gráficas -->
     <div class="charts-section">
       <div class="chart card">
-        <h5>Reportes levantados</h5>
-        <div class="chart-placeholder">Chart Placeholder</div>
+        <h5>Incidencias levantadas durante el semestre</h5>
+        <div class="chart-placeholder">
+          <ngx-charts-bar-vertical [results]="chartData" [xAxis]="true" [yAxis]="true" [legend]="true"
+            [showXAxisLabel]="true" [showYAxisLabel]="true" [xAxisLabel]="'Tipo de Incidencia'"
+            [yAxisLabel]="'Cantidad'">
+          </ngx-charts-bar-vertical>
+        </div>
       </div>
       <div class="chart card">
         <h5>Avisos emitidos</h5>
-        <div class="chart-placeholder">Chart Placeholder</div>
+        <div class="chart-placeholder">
+          <ngx-charts-bar-vertical [results]="chartAvisosData" [xAxis]="true" [yAxis]="true" [legend]="true"
+            [showXAxisLabel]="true" [showYAxisLabel]="true" [xAxisLabel]="'Fecha'" [yAxisLabel]="'Cantidad'">
+          </ngx-charts-bar-vertical>
+        </div>
       </div>
     </div>
   </div>

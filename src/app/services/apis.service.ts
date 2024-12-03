@@ -90,12 +90,40 @@ export class ApisService {
   getInsideById(id: string): Observable<any> {
     return this.http.get<any>(`${this.apiURL}/api/incidencias/${id}`);
   }
+  getInsideById1(id: number): Observable<any> {
+    return this.http.get<any>(`${this.apiURL}/api/incidencias/${id}`);
+  }
+
+  deleteAviso(id: string): Observable<any> {
+    return this.http.delete<any>(`${this.apiURL}/api/avisos/${id}`);
+  }
+
+  deleteIncidencia(id: string): Observable<any> {
+    return this.http.delete<any>(`${this.apiURL}/api/incidencias/${id}`);
+  }
 
   updateAlumno(id: number, formData: FormData) {
     return this.http.patch<any>(`http://localhost:3000/api/alumnos/${id}`, formData);
   }
+
   updateResponsable(id: number, formData: FormData) {
     return this.http.patch<any>(`http://localhost:3000/api/responsables/${id}`, formData);
+  }
+
+  getAdminis(id: number, formData: FormData) {
+    return this.http.patch<any>(`http://localhost:3000/api/administrativos/${id}`, formData);
+  }
+
+  UpdateAviso(id: string, formData: FormData) {
+    return this.http.patch<any>(`http://localhost:3000/api/avisos/${id}`, formData);
+  }
+
+  updateIncidencia(id: number, formData: FormData) {
+    return this.http.patch<any>(`http://localhost:3000/api/avisos/${id}`, formData);
+  }
+
+  getAdminis1(id: number) {
+    return this.http.get<any>(`http://localhost:3000/api/administrativos/${id}`);
   }
 
   getAlumnos2(): Observable<any[]> {

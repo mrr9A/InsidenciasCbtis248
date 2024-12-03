@@ -110,6 +110,18 @@ export const routes: Routes = [
         loadComponent: () => import('./admin/component/edit/edit-padres/edit-padres.component').then(m => m.EditPadresComponent), canActivate: [authGuard]
       },
       {
+        path: 'editar-administrador/:id',
+        loadComponent: () => import('./admin/component/edit/edit-administrativos/edit-administrativos.component').then(m => m.EditAdministrativosComponent), canActivate: [authGuard]
+      },
+      {
+        path: 'editar-aviso/:id',
+        loadComponent: () => import('./admin/component/edit/edit-aviso/edit-aviso.component').then(m => m.EditAvisoComponent), canActivate: [authGuard]
+      },
+      {
+        path: 'editar-incidencia/:id',
+        loadComponent: () => import('./admin/component/edit/edit-incidencia/edit-incidencia.component').then(m => m.EditIncidenciaComponent), canActivate: [authGuard]
+      },
+      {
         path: '**',
         redirectTo: 'login'
       }

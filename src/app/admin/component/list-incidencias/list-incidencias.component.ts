@@ -5,6 +5,10 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { onTimeService } from '../../../services/actulizarInfor.service';
 import { ApisService } from '../../../services/apis.service';
+import { Router } from '@angular/router';
+import { ConfirmDialogComponent } from '../../RECURSOS/confirm-dialog.component';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-list-incidencias',
@@ -22,8 +26,9 @@ export class ListIncidenciasComponent {
   incidenciaSeleccionada: any = null;     // Incidencia actualmente seleccionada para mostrar detalles
   mostrarIncidencias: boolean = false;    // Control de visualización de la lista de incidencias
   mostrarTodas: boolean = false;          // Flag para controlar si se muestran todas las incidencias
+  cargando: boolean = false; // Para el spinner
 
-  constructor(private onTimeService: onTimeService, private apiService: ApisService) {}
+  constructor(private onTimeService: onTimeService, private apiService: ApisService,private router: Router,private snackBar: MatSnackBar, private dialog: MatDialog) {}
 
   ngOnInit(): void {
     setInterval(() => {
@@ -79,5 +84,59 @@ export class ListIncidenciasComponent {
   // Método para alternar la visualización de los detalles de una incidencia específica
   toggleDetalleIncidencia(incidencia: any): void {
     this.incidenciaSeleccionada = this.incidenciaSeleccionada === incidencia ? null : incidencia;
+  }
+
+  actualizarVista(): void {
+    if (this.mostrarTodas) {
+      this.incidenciasFiltradas = this.incidencias;
+    } else if (this.grupoSeleccionado) {
+      this.incidenciasFiltradas = this.incidencias.filter(
+        (incidencia) => incidencia.grupo.id === this.grupoSeleccionado.id
+      );
+    } else {
+      this.incidenciasFiltradas = [];
+    }
+  }
+
+  eliminarIncidencia(id: string, event: Event): void {
+    event.preventDefault();
+    event.stopPropagation();
+
+    // Abrir diálogo de confirmación
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+      width: '400px',
+      data: {
+        mensaje: '¿Estás seguro de que deseas eliminar esta incidencia?',
+      },
+    });
+
+    dialogRef.afterClosed().subscribe((confirmado) => {
+      if (confirmado) {
+        this.cargando = true; // Mostrar spinner
+        this.apiService.deleteIncidencia(id).subscribe({
+          next: () => {
+            this.cargando = false; // Ocultar spinner
+            // Actualizar lista de incidencias después de eliminar
+            this.incidencias = this.incidencias.filter((incidencia) => incidencia.id !== id);
+            this.actualizarVista();
+            this.snackBar.open('La incidencia ha sido eliminada con éxito.', 'Cerrar', { duration: 3000 });
+          },
+          error: (error) => {
+            this.cargando = false; // Ocultar spinner
+            console.error('Error al eliminar la incidencia:', error);
+            this.snackBar.open(`Ocurrió un error al intentar eliminar la incidencia: ${error.message}`, 'Cerrar', { duration: 3000 });
+          },
+        });
+      }
+    });
+  }
+
+
+  editarAlumno(id: string, event: Event): void {
+    event.preventDefault();
+    event.stopPropagation();
+    //console.log('Editar aviso con ID:', id);
+    // Lógica para editar al alumno
+    this.router.navigate(['/cbtis248/editar-incidencia', id]);
   }
 }

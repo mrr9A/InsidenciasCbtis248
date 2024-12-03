@@ -62,15 +62,16 @@ export class ListAdministrativosComponent {
   }
 
 
-editarAdministrativo(id: number, event: Event): void {
-  event.stopPropagation(); // Evita cerrar el dropdown al hacer clic
-  console.log('Editar administrativo con ID:', id);
-  // Implementa la lógica para redirigir o abrir un modal de edición
-}
+  editarAdministrativo(id: number, event: Event): void {
+    event.stopPropagation(); // Evita cerrar el dropdown al hacer clic
+    console.log('Editar administrativo con ID:', id);
+    // Implementa la lógica para redirigir o abrir un modal de edición
+    this.router.navigate(['/cbtis248/editar-administrador', id]);
+  }
 
-eliminarAdministrativo(id: number, event: Event): void {
-  event.stopPropagation(); // Evita cerrar el dropdown al hacer clic
-  console.log('Eliminar administrativo con ID:', id);
-  // Implementa la lógica para eliminar al administrativo
-}
+  eliminarAdministrativo(id: number, event: Event): void {
+    event.stopPropagation(); // Evita cerrar el dropdown al hacer clic
+    console.log('Eliminar administrativo con ID:', id);
+    // Implementa la lógica para eliminar al administrativo
+  }
 }

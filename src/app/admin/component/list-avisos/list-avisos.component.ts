@@ -6,11 +6,16 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MatListModule } from '@angular/material/list';
 import { onTimeService } from '../../../services/actulizarInfor.service';
 import { ApisService } from '../../../services/apis.service';
+import { Router } from '@angular/router';
+import { MatDialog } from '@angular/material/dialog';
+import { ConfirmDialogComponent } from '../../RECURSOS/confirm-dialog.component';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-list-avisos',
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule, MenuAdminComponent, MatSelectModule, MatListModule],
+  imports: [ReactiveFormsModule, MatProgressSpinnerModule, CommonModule, MenuAdminComponent, MatSelectModule, MatListModule],
   templateUrl: './list-avisos.component.html',
   styleUrl: './list-avisos.component.css',
 })
@@ -22,8 +27,9 @@ export class ListAvisosComponent {
   avisoSeleccionado: any = null;
   fechasUnicas: string[] = [];
   vistaSeleccionada: string = 'mios'; // Por defecto, "Mis avisos"
+  cargando: boolean = false; // Para el spinner
 
-  constructor(private onTimeService: onTimeService, private apiServices: ApisService) { }
+  constructor(private snackBar: MatSnackBar, private dialog: MatDialog, private onTimeService: onTimeService, private apiServices: ApisService, private router: Router) { }
 
   ngOnInit() {
     const usuarioData = localStorage.getItem('usuario');
@@ -105,4 +111,46 @@ export class ListAvisosComponent {
   toggleDetalleAviso(aviso: any) {
     this.avisoSeleccionado = this.avisoSeleccionado === aviso ? null : aviso;
   }
+
+  editarAlumno(id: string, event: Event): void {
+    event.preventDefault();
+    event.stopPropagation();
+    console.log('Editar aviso con ID:', id);
+    // Lógica para editar al alumno
+    this.router.navigate(['/cbtis248/editar-aviso', id]);
+  }
+
+  eliminarAviso(id: string, event: Event): void {
+    event.preventDefault();
+    event.stopPropagation();
+
+    // Abrir diálogo de confirmación
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+      width: '400px',
+      data: {
+        mensaje: '¿Estás seguro de que deseas eliminar este aviso?',
+      },
+    });
+
+    dialogRef.afterClosed().subscribe((confirmado) => {
+      if (confirmado) {
+        this.cargando = true; // Mostrar spinner
+        this.apiServices.deleteAviso(id).subscribe({
+          next: () => {
+            this.cargando = false; // Ocultar spinner
+            this.avisos = this.avisos.filter((aviso) => aviso.id !== id);
+            this.todosLosAvisos = this.todosLosAvisos.filter((aviso) => aviso.id !== id);
+            this.actualizarVista();
+            this.snackBar.open('El aviso ha sido eliminado con éxito.', 'Cerrar', { duration: 3000 });
+          },
+          error: (error) => {
+            this.cargando = false; // Ocultar spinner
+            console.error('Error al eliminar el aviso:', error);
+            this.snackBar.open(`Ocurrió un error al intentar eliminar el aviso.: ${error.message}`, 'Cerrar', { duration: 3000 });
+          },
+        });
+      }
+    });
+  }
+
 }

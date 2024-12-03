@@ -58,6 +58,24 @@
         <div *ngIf="avisoSeleccionado === aviso" class="incidencia-detalle expandido">
           <div class="incidencia-header">
             <h3 class="titleInci">Asunto: {{ aviso.nombre }}</h3>
+            <div class="dropdown">
+              <button class="btn btn-transparent dropdown" type="button" data-bs-toggle="dropdown"
+                aria-expanded="false">
+                <i class="bi bi1 bi-three-dots"></i>
+              </button>
+              <ul class="dropdown-menu dropdown-transparent">
+                <!--                 <li>
+                  <a class="dropdown-item text-muted" (click)="editarAlumno(aviso.id, $event)">
+                    <i class="bi bi-pencil-square me-2"></i> Editar aviso
+                  </a>
+                </li> -->
+                <li>
+                  <a class="dropdown-item text-danger" (click)="eliminarAviso(aviso.id, $event)">
+                    <i class="bi bi-trash me-2"></i> Eliminar aviso
+                  </a>
+                </li>
+              </ul>
+            </div>
           </div>
           <div class="info-item">
             <img [src]="aviso.img" alt="Foto del aviso" class="img-aviso">
@@ -79,6 +97,11 @@
         </div>
       </div>
     </div>
+
+    <div *ngIf="cargando" class="spinner-container">
+      <mat-spinner></mat-spinner>
+    </div>
+
 
     <!-- Plantilla de mensaje para lista vacía -->
     <ng-template #noAvisos>

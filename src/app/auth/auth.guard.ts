@@ -35,22 +35,22 @@ export const authGuard: CanActivateFn = (route, state) => {
 
     // Verificación de rutas permitidas para los usuarios autenticados
     const rutasPermitidas = {
-      Tutor: ['historialIncidencias', 'avisos', 'profile','home','detalleAvis/:id','detalleIns/:id'],
+      Tutor: ['historialIncidencias', 'avisos', 'profile', 'home', 'detalleAvis/:id', 'detalleIns/:id'],
       Admin: [
         'homeAdmin', 'addReporte', 'addAdministrativo', 'addResponsable',
-        'addAviso', 'listResponsable', 'listAdministrativos', 'addAlumno','listAlumnos','detalleResponsable/:id',
-        'detalleAlumno/:id','detalleAdministrativo/:id','listAvisos','listIncidencias','cargaArchiv','editar-alumno/:id',
-        'editar-padreFamilia/:id','editar-administrador/:id','editar-incidencia/:id','editar-aviso/:id',
+        'addAviso', 'listResponsable', 'listAdministrativos', 'addAlumno', 'listAlumnos', 'detalleResponsable/:id',
+        'detalleAlumno/:id', 'detalleAdministrativo/:id', 'listAvisos', 'listIncidencias', 'cargaArchiv', 'editar-alumno/:id',
+        'editar-padreFamilia/:id', 'editar-administrador/:id', 'editar-incidencia/:id', 'editar-aviso/:id',
       ],
       Maestro: [
         'homeAdmin', 'addReporte',
-        'addAviso', 'listResponsable', 'listAdministrativos','listAlumnos','detalleResponsable/:id',
-        'detalleAlumno/:id','detalleAdministrativo/:id','listAvisos','listIncidencias'
+        'addAviso', 'listResponsable', 'listAdministrativos', 'listAlumnos', 'detalleResponsable/:id',
+        'detalleAlumno/:id', 'detalleAdministrativo/:id', 'listAvisos', 'listIncidencias', 'editar-alumno/:id',
       ],
       Prefecto: [
         'homeAdmin', 'addReporte',
-        'addAviso', 'listResponsable', 'listAdministrativos','listAlumnos','detalleResponsable/:id',
-        'detalleAlumno/:id','detalleAdministrativo/:id','listAvisos','listIncidencias'
+        'addAviso', 'listResponsable', 'listAdministrativos', 'listAlumnos', 'detalleResponsable/:id',
+        'detalleAlumno/:id', 'detalleAdministrativo/:id', 'listAvisos', 'listIncidencias', 'editar-padreFamilia/:id', 'editar-administrador/:id', 'editar-incidencia/:id', 'editar-aviso/:id',
       ],
     };
 
